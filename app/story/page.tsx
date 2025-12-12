@@ -22,7 +22,7 @@ const storyData = {
           description: "Sustainable options that compromised on longevity and visual quality.",
         },
       ],
-      image: { src: "", position: 'right' },
+      image: { src: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", position: 'right' },
     },
     {
       heading: "Where Innovation Meets Purpose: The Molecular Revolution",
@@ -37,10 +37,10 @@ const storyData = {
           description: "We utilize cutting-edge **nanotechnology** to transform the structure of our coatings from within.",
         },
       ],
-      image: { src: "", position: 'left' },
+      image: { src: "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", position: 'left' },
     },
     {
-      heading: "The [Your Website Name] Performance Promise",
+      heading: "The Performance Promise",
       body: `We don't sell paint; we deliver **Extended Longevity** and **Brilliant Color Retention** engineered for the modern world. This is the new definition of luxury: **Intelligence, Durability, and Responsibility** united.`,
       table: [
         {
@@ -59,7 +59,7 @@ const storyData = {
           nanogradsWay: "**Sustainable Intelligence** ensures eco-responsible formulations deliver maximum longevity.",
         },
       ],
-      image: { src: "", position: 'right' },
+      image: { src: "https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", position: 'right' },
     },
   ],
   conclusion: {
@@ -68,10 +68,13 @@ const storyData = {
     call: "Welcome to the molecular revolution. Welcome to a paint that refuses to compromise. This is where innovation finally meets your walls.",
   },
 };
-// --- END DATA STRUCTURE ---
 
+// --- HELPER: Rich Text Renderer ---
+const renderRichText = (html: string) => {
+  return { __html: html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') };
+};
 
-// --- COMPONENT: ZigZagSection (Handles the alternating content/image blocks) ---
+// --- COMPONENT: ZigZagSection ---
 interface SectionProps {
   heading: string;
   body: string;
@@ -81,134 +84,140 @@ interface SectionProps {
   index: number;
 }
 
-const renderRichText = (html: string) => {
-  return { __html: html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') };
-};
-
-const ZigZagSection: React.FC<SectionProps> = ({ heading, body, points, table, image, index }) => {
+const ZigZagSection: React.FC<SectionProps> = ({ heading, body, points, table, image }) => {
   const isImageLeft = image.position === 'left';
-
-  // Order array for flex-row-reverse based on image position
-  const orderClasses = isImageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse';
-
+  
   return (
-    <section className={`flex flex-col ${orderClasses} gap-12 py-16 items-center border-b border-gray-200 last:border-b-0`}>
-      
-      {/* Visual Column */}
-      <div className="w-full lg:w-5/12 p-4">
-        <div className="aspect-video bg-indigo-100 rounded-xl shadow-2xl overflow-hidden flex items-center justify-center text-center text-gray-700 font-bold text-lg p-8 border-4 border-indigo-400/50">
-          {image.src} (Placeholder for Diagram/Visual)
+    <section className="py-20 border-b border-gray-100 last:border-b-0">
+      <div className={`flex flex-col ${isImageLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}>
+        
+        {/* Visual Column */}
+        <div className="w-full lg:w-1/2">
+          <div className="relative aspect-[4/3] rounded-2xl shadow-xl overflow-hidden border border-gray-100 group">
+            <img 
+              src={image.src} 
+              alt={heading} 
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Overlay gradient for depth */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+          </div>
         </div>
-      </div>
 
-      {/* Content Column */}
-      <div className="w-full lg:w-7/12 lg:p-4">
-        <h2 className="text-3xl font-extrabold text-indigo-700 mb-6 border-b-2 border-indigo-300 inline-block pb-1">
-          {heading}
-        </h2>
-        
-        {/* Main Body */}
-        <p className="text-lg text-gray-700 leading-relaxed mb-8" dangerouslySetInnerHTML={renderRichText(body)}></p>
-        
-        {/* Points/Bullets */}
-        {points && (
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-            {points.map((point) => (
-              <div key={point.title} className="p-4 bg-white rounded-lg shadow-md border-t-4 border-indigo-400">
-                <h3 className="text-md font-bold text-gray-900 mb-1">{point.title}</h3>
-                <p className="text-sm text-gray-500">{point.description}</p>
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Content Column */}
+        <div className="w-full lg:w-1/2 flex flex-col justify-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+            {heading}
+          </h2>
+          
+          <div 
+            className="text-lg text-gray-600 leading-relaxed mb-8" 
+            dangerouslySetInnerHTML={renderRichText(body)}
+          />
+          
+          {/* Points Grid */}
+          {points && (
+            <div className="grid grid-cols-1 gap-6">
+              {points.map((point) => (
+                <div key={point.title} className="flex flex-col sm:flex-row gap-2 sm:gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-indigo-100 transition-colors">
+                  <div className="min-w-[4px] min-h-[4px] w-full h-1 sm:w-1 sm:h-auto bg-indigo-500 rounded-full sm:rounded-none"></div>
+                  <div>
+                    <h3 className="font-semibold text-gray-900 mb-1">{point.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed">{point.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-        {/* Table (Used only in the last section) */}
-        {table && (
-          <div className="overflow-x-auto mt-10">
-            <table className="min-w-full divide-y divide-gray-300 shadow-xl rounded-lg overflow-hidden">
-              <thead className="bg-indigo-600 text-white">
-                <tr>
-                  <th scope="col" className="py-3 pl-4 pr-3 text-left text-sm font-semibold">Innovation</th>
-                  <th scope="col" className="hidden sm:table-cell px-3 py-3 text-left text-sm font-semibold">The Old Way</th>
-                  <th scope="col" className="px-3 py-3 text-left text-sm font-semibold bg-indigo-700">The Difference</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {table.map((row) => (
-                  <tr key={row.innovation} className="hover:bg-indigo-50 transition duration-150">
-                    <td className="whitespace-nowrap py-3 pl-4 pr-3 text-sm font-medium text-indigo-700">{row.innovation}</td>
-                    <td className="hidden sm:table-cell px-3 py-3 text-sm text-gray-500">{row.oldWay}</td>
-                    <td className="px-3 py-3 text-sm text-gray-800 bg-indigo-50 font-semibold" dangerouslySetInnerHTML={renderRichText(row.nanogradsWay)}></td>
+          {/* Comparison Table */}
+          {table && (
+            <div className="overflow-hidden border border-gray-200 rounded-xl shadow-sm mt-4">
+              <table className="min-w-full divide-y divide-gray-200">
+                <thead className="bg-gray-50">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider">Feature</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-gray-500 uppercase tracking-wider hidden sm:table-cell">Standard</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-indigo-600 uppercase tracking-wider bg-indigo-50/50">Our Technology</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
+                </thead>
+                <tbody className="bg-white divide-y divide-gray-200">
+                  {table.map((row) => (
+                    <tr key={row.innovation}>
+                      <td className="px-4 py-4 text-sm font-medium text-gray-900">{row.innovation}</td>
+                      <td className="px-4 py-4 text-sm text-gray-500 hidden sm:table-cell">{row.oldWay}</td>
+                      <td className="px-4 py-4 text-sm text-gray-800 bg-indigo-50/30 font-medium" dangerouslySetInnerHTML={renderRichText(row.nanogradsWay)}></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
 };
-
 
 // --- MAIN PAGE COMPONENT ---
 const OurStoryPage: React.FC = () => {
   const { sections, conclusion } = storyData;
 
   return (
-    <div className="bg-white text-gray-800 font-sans min-h-screen">
+    <div className="bg-white min-h-screen font-sans text-gray-900 selection:bg-indigo-100">
       
-      {/* Hero Header Section */}
-      <header className="bg-indigo-900 text-white py-24 px-4 sm:px-6 lg:px-8 shadow-2xl">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-sm uppercase tracking-widest opacity-80 mb-2">Our Story</p>
-          <h1 className="text-6xl font-extrabold sm:text-7xl mb-4">
-            🎨 {storyData.title}
-          </h1>
-          <p className="mt-4 text-2xl font-light text-indigo-200">
-            {storyData.subtitle}
-          </p>
-        </div>
+      {/* Hero Header */}
+      <header className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
+        <span className="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-widest mb-6">
+          Our Story
+        </span>
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mb-6">
+          {storyData.title}
+        </h1>
+        <p className="text-xl sm:text-2xl text-gray-500 font-light max-w-3xl mx-auto">
+          {storyData.subtitle}
+        </p>
       </header>
 
-      <main className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-        
-        {/* Render Zig-Zag Sections */}
+      {/* Main Content Area */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {sections.map((section, index) => (
           <ZigZagSection 
             key={index} 
             {...section} 
-            index={index} 
-            // Override position for alternating pattern: index % 2 === 0 -> left, else -> right
-            image={{ ...section.image, position: index % 2 === 0 ? 'left' : 'right' }}
+            index={index}
+            // Logic to alternate layout: even indices (0, 2) = Image Right (default in data is mixed, so we force alternation)
+            image={{ 
+              ...section.image, 
+              position: index % 2 !== 0 ? 'left' : 'right' 
+            }}
           />
         ))}
       </main>
 
-      {/* Conclusion & CTA Section */}
-      <section className="bg-gray-100 py-20 px-4 text-center border-t-4 border-indigo-700/50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-4xl font-extrabold text-indigo-800 mb-4">
+      {/* Footer/Conclusion */}
+      <section className="py-24 px-4 bg-gray-50 mt-12 border-t border-gray-100">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
             {conclusion.heading}
           </h2>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
             {conclusion.paragraph}
           </p>
-          <p className="text-2xl font-light italic text-gray-600 max-w-4xl mx-auto mb-12">
+          <blockquote className="text-xl font-medium text-indigo-900 italic mb-12 border-l-4 border-indigo-500 pl-6 inline-block text-left bg-white p-6 rounded-r-lg shadow-sm">
             "{conclusion.call}"
-          </p>
+          </blockquote>
 
-          {/* CTA Buttons */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="/technology" 
-              className="px-10 py-4 text-lg font-medium text-white bg-indigo-600 rounded-full hover:bg-indigo-700 shadow-2xl transition duration-300 transform hover:scale-105 hover:-translate-y-0.5"
+              className="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-white bg-indigo-600 rounded-full hover:bg-indigo-700 transition-all transform hover:-translate-y-1 shadow-lg shadow-indigo-200"
             >
               Discover Our Technology
             </a>
             <a 
               href="/products" 
-              className="px-10 py-4 text-lg font-medium text-indigo-700 border-2 border-indigo-700 rounded-full hover:bg-indigo-50 transition duration-300 transform hover:scale-105 hover:-translate-y-0.5"
+              className="inline-flex justify-center items-center px-8 py-4 text-base font-bold text-indigo-700 bg-white border-2 border-indigo-100 rounded-full hover:border-indigo-600 hover:bg-indigo-50 transition-all"
             >
               View Our Product Collections
             </a>

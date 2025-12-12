@@ -1,379 +1,209 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-// --- Animation Variants ---
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } // Custom cubic-bezier for smoothness
-  }
-};
-
-const staggerText = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.05
+// --- CONDENSED CONTENT DATA ---
+const content = {
+  hero: {
+    label: "Material Intelligence™",
+    title: "Science That Protects.",
+    desc: "We engineer materials at the molecular scale. Extreme durability meets antimicrobial safety. Climate-strength performance with lasting beauty.",
+  },
+  features: [
+    {
+      category: "Biological Defense",
+      title: "Antimicrobial & Structural",
+      body: "Surfaces that neutralize pathogens instantly. Our Silver & Copper-Ion matrix provides broad-spectrum defense, while our Anti-Carbonation barrier prevents deep structural decay.",
+      tags: ["Silver-Ion Shield", "Contact-Kill", "Anti-Carbonation"],
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop" // Lab/Tech
+    },
+    {
+      category: "Climate Engineering",
+      title: "Active Cooling Matrix",
+      body: "Engineered for extremes. Our IR/UV reflection technology drops surface temperatures by 6-12°C, reducing HVAC loads while resisting thermal cracking.",
+      tags: ["-12°C Heat Drop", "Thermal Elasticity", "Impact Grid"],
+      image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2068&auto=format&fit=crop" // White Texture
+    },
+    {
+      category: "Aesthetic Stability",
+      title: "Living Beauty",
+      body: "Luxury that breathes. Our Vapor-Permeable structure prevents blistering and mold. With Air Crock Resistance, colors stay vibrant and pristine for decades.",
+      tags: ["No Fading", "Breathable", "Ultra-Low VOC"],
+      // UPDATED IMAGE: Clean, bright interior with natural light (Unsplash)
+      image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2574&auto=format&fit=crop" 
     }
-  }
+  ],
+  specs: [
+    { label: "Antimicrobial", value: "99.9%", desc: "Pathogen reduction" },
+    { label: "Heat Reduction", value: "12°C", desc: "Surface temp drop" },
+    { label: "Durability", value: "10Yr+", desc: "Structural warranty" },
+    { label: "Safety", value: "0%", desc: "Toxic emissions" },
+  ]
 };
 
-const charVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
-};
+// --- COMPONENTS ---
 
-// --- Components ---
+const FadeIn = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 0.6, delay, ease: "easeOut" }}
+  >
+    {children}
+  </motion.div>
+);
 
-// 1. Text Reveal Component
-const RevealTitle = ({ text, className }) => {
+export default function NanogradsPage() {
   return (
-    <motion.h2
-      variants={staggerText}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-100px' }}
-      className={className}
-    >
-      {text.split(' ').map((word, i) => (
-        <span key={i} className="inline-block mr-2">
-          {word.split('').map((char, j) => (
-            <motion.span key={j} variants={charVariant} className="inline-block">
-              {char}
-            </motion.span>
-          ))}
-        </span>
-      ))}
-    </motion.h2>
-  );
-};
-
-// 2. Parallax Image Component
-const ParallaxImage = ({ src, alt, className }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start end', 'end start']
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ['-10%', '10%']);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
-
-  return (
-    <div ref={ref} className={`overflow-hidden relative ${className}`}>
-      <motion.div style={{ y, scale }} className="w-full h-[120%] relative">
-        <Image src={src} alt={alt} fill className="object-cover" />
-        {/* Gradient Overlay for better integration */}
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 to-transparent" />
-      </motion.div>
-    </div>
-  );
-};
-
-export default function StoryPage() {
-  return (
-    <main className="bg-slate-950 text-slate-200 overflow-x-hidden selection:bg-cyan-500/30">
+    <main className="bg-white text-slate-900 font-sans selection:bg-indigo-50 selection:text-indigo-900">
       
-      {/* --- HERO SECTION --- */}
-      <section className="relative h-[95vh] flex items-center justify-center overflow-hidden">
-        {/* Background Image with Scale Effect */}
-        <motion.div
-          initial={{ scale: 1.2, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.4 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          className="absolute inset-0 z-0"
-        >
-          <Image
-            src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop" // Abstract Molecule
-            alt="Molecular Structure"
-            fill
-            className="object-cover"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/20 via-slate-950/60 to-slate-950" />
-        </motion.div>
-
-        {/* Content */}
-        <div className="relative z-10 text-center max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="inline-block py-1 px-3 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs tracking-[0.2em] font-bold uppercase mb-6 backdrop-blur-md">
-              Nanograds Tech
-            </span>
-          </motion.div>
-
-          <RevealTitle 
-            text="Luxury Built at the Molecular Level" 
-            className="text-5xl md:text-8xl font-bold text-white mb-8 tracking-tight leading-none"
-          />
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1, duration: 1 }}
-            className="text-lg md:text-2xl text-slate-300 mb-12 max-w-2xl mx-auto font-light leading-relaxed"
-          >
-            Science you can feel. Performance you can trust. <br/>
-            <span className="text-cyan-400 font-medium">Beauty engineered to last.</span>
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center"
-          >
-            <button className="px-10 py-4 bg-white text-slate-950 rounded-full font-bold hover:bg-cyan-50 hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-              Discover Technology
-            </button>
-            <button className="px-10 py-4 bg-transparent border border-slate-700 text-white rounded-full font-bold hover:bg-white/5 hover:border-white transition-all duration-300 backdrop-blur-sm">
-              View Products
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* --- SECTION 1: ORIGINS (Glassmorphism) --- */}
-      <section className="py-32 px-4 relative">
-        {/* Ambient Glow */}
-        <div className="absolute top-20 left-0 w-96 h-96 bg-cyan-900/20 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-            className="order-2 md:order-1"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 leading-tight">
-              Innovation Meets <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-emerald-400">
-                Purpose
-              </span>
-            </h2>
-            <div className="space-y-6 text-lg text-slate-400 leading-relaxed font-light">
-              <p>
-                At <span className="font-semibold text-white">NANOGRADS</span>, we bridge the gap between advanced nanotechnology and everyday life.
-              </p>
-              <p>
-                We grew tired of the compromise. Why should you have to choose between a material that looks beautiful and one that actually lasts? We took formulas from aerospace laboratories and refined them for the luxury consumer.
-              </p>
-            </div>
-          </motion.div>
-
-          <div className="order-1 md:order-2 relative group">
-            <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-            <ParallaxImage 
-              src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop" // Lab/Science
-              alt="Lab Innovation" 
-              className="h-[500px] w-full rounded-2xl shadow-2xl z-10 relative bg-slate-900" 
-            />
+      {/* 1. HERO SECTION: Clean & Centered */}
+      <section className="relative pt-32 pb-20 px-6 md:px-12 max-w-7xl mx-auto text-center">
+        <FadeIn>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold tracking-wider uppercase mb-8">
+            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"/>
+            {content.hero.label}
           </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 2: THE PROBLEM (Dark Card) --- */}
-      <section className="py-32 px-4 relative bg-slate-900/50 border-y border-white/5">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
-            
-          <div className="relative h-[600px] w-full rounded-2xl overflow-hidden">
-             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1566933293069-b55c7f326dd4?q=80&w=2070&auto=format&fit=crop" // Aerospace/Dark
-              alt="Aerospace Texture" 
-              className="h-full w-full" 
-            />
-            {/* Overlay Text on Image */}
-            <div className="absolute bottom-10 left-10 z-20">
-                <p className="text-xs font-mono text-cyan-400 mb-2">SECTOR: AEROSPACE</p>
-                <p className="text-white font-bold text-xl">Original Application Area</p>
-            </div>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+            {content.hero.title}
+          </h1>
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+            {content.hero.desc}
+          </p>
+          
+          <div className="mt-10 flex justify-center gap-4">
+            <button className="px-8 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-colors">
+              Get Started
+            </button>
+            <button className="px-8 py-3 text-slate-600 font-medium rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors">
+              View Technology
+            </button>
           </div>
+        </FadeIn>
+      </section>
 
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={fadeInUp}
-          >
-            <span className="text-cyan-500 font-mono tracking-widest uppercase text-sm mb-4 block">
-              // The Gap in the Market
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              The Illusion of <span className="text-amber-200">Luxury</span>
-            </h2>
-            <div className="space-y-6 text-lg text-slate-400 leading-relaxed">
-              <p>
-                The world's most advanced materials remained locked in research facilities. Meanwhile, consumers were buying products that looked premium on day one but degraded by day one hundred.
-              </p>
-              <blockquote className="border-l-2 border-cyan-500 pl-6 italic text-slate-300 my-8">
-                "Planned obsolescence is the enemy of true luxury. We built Nanograds to destroy that concept."
-              </blockquote>
-              <p>
-                No one delivered the truth: materials could be stronger, smarter, and longer-lasting using technology that already exists.
-              </p>
+      {/* 2. STATS GRID: Quick proof points */}
+      <section className="border-y border-slate-100 bg-slate-50/50">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-slate-100">
+          {content.specs.map((spec, i) => (
+            <div key={i} className="p-8 text-center">
+              <div className="text-3xl md:text-4xl font-bold text-slate-900 mb-1">{spec.value}</div>
+              <div className="text-xs font-bold uppercase tracking-wider text-indigo-600 mb-2">{spec.label}</div>
+              <div className="text-sm text-slate-500">{spec.desc}</div>
             </div>
-          </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* --- SECTION 3: FEATURES (Grid) --- */}
-      <section className="py-32 px-4 relative">
-           {/* Background Detail */}
-           <div className="absolute right-0 top-1/4 w-1/2 h-1/2 bg-gradient-to-b from-cyan-900/10 to-transparent blur-3xl -z-10" />
+      {/* 3. MAIN FEATURES: Alternating Clean Layout */}
+      <section className="py-24 px-6 md:px-12 max-w-7xl mx-auto space-y-32">
+        {content.features.map((feature, i) => {
+          const isEven = i % 2 === 0;
+          return (
+            <div key={i} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-20 items-center`}>
+              
+              {/* Image Side */}
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="w-full lg:w-1/2"
+              >
+                <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200 bg-slate-100">
+                  <Image 
+                    src={feature.image} 
+                    alt={feature.title} 
+                    fill 
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Subtle gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent" />
+                </div>
+              </motion.div>
 
+              {/* Text Side */}
+              <div className="w-full lg:w-1/2">
+                <FadeIn delay={0.2}>
+                  <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-4 block">
+                    {feature.category}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+                    {feature.title}
+                  </h2>
+                  <p className="text-lg text-slate-500 leading-relaxed mb-8">
+                    {feature.body}
+                  </p>
+                  
+                  {/* Tags / Pills */}
+                  <div className="flex flex-wrap gap-3">
+                    {feature.tags.map((tag, idx) => (
+                      <span key={idx} className="px-4 py-2 bg-slate-50 border border-slate-100 rounded-md text-sm font-semibold text-slate-700">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </FadeIn>
+              </div>
+            </div>
+          );
+        })}
+      </section>
+
+      {/* 4. THE DIFFERENCE: Bento Grid */}
+      <section className="py-24 px-6 md:px-12 bg-slate-900 text-white rounded-t-[3rem] mt-12">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-24 max-w-3xl mx-auto">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
-              Breaking the Compromise
-            </h2>
-            <p className="text-slate-400 text-xl">
-              For decades, you had to choose. We created NANOGRADS to end the false choice.
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">The Nanograds Difference</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Six pillars of advanced protection integrated into every coat.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              {
-                title: "Aesthetics Trap",
-                desc: "Beautiful finishes that fade. We engineered molecular bonds that refuse to let go of pigment.",
-                icon: "01"
-              },
-              {
-                title: "Durability Gap",
-                desc: "Functional items used to be ugly. We applied diamond-like carbon structures to pure elegance.",
-                icon: "02"
-              },
-              {
-                title: "Eco Sacrifice",
-                desc: "Green usually meant weak. Our sustainable formulations are actually stronger than toxic alternatives.",
-                icon: "03"
-              },
-            ].map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
+              { title: "Antimicrobial", desc: "Silver & Copper ion defense." },
+              { title: "Climate Eng.", desc: "IR/UV temperature reduction." },
+              { title: "Structural", desc: "Anti-carbonation shield." },
+              { title: "Multi-Layer", desc: "Stain & scratch protection." },
+              { title: "Safe Air", desc: "Ultra-low VOC & breathable." },
+              { title: "Sustainable", desc: "Low-waste renovation." },
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
                 viewport={{ once: true }}
-                className="group relative p-8 rounded-3xl bg-slate-900 border border-white/5 hover:border-cyan-500/30 transition-all duration-500 overflow-hidden"
+                transition={{ delay: i * 0.1 }}
+                className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors"
               >
-                {/* Hover Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/0 via-cyan-900/0 to-cyan-900/10 group-hover:to-cyan-900/30 transition-all duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="text-6xl font-bold text-white/5 mb-6 group-hover:text-cyan-500/20 transition-colors duration-500 font-mono">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 group-hover:text-cyan-400 transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-slate-400 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
+                <div className="text-indigo-400 font-mono text-xs mb-4">0{i + 1}</div>
+                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
+                <p className="text-slate-400 text-sm">{item.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* --- SECTION 4: MATERIAL INTELLIGENCE (Tech Specs) --- */}
-      
-      <section className="py-32 px-4 bg-slate-50 relative overflow-hidden text-slate-900">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-12 gap-12 items-center relative z-10">
-            
-          <motion.div 
-            className="md:col-span-7 relative h-[600px] rounded-3xl overflow-hidden shadow-2xl"
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-             <ParallaxImage 
-              src="https://images.unsplash.com/photo-1618331835717-801e976710b2?q=80&w=2070&auto=format&fit=crop" // Abstract Material Texture
-              alt="Material Intelligence" 
-              className="h-full w-full" 
-            />
-            {/* Tech HUD Overlay */}
-            <div className="absolute inset-0 border-[20px] border-white/10 pointer-events-none"></div>
-            <div className="absolute top-8 right-8 bg-white/90 backdrop-blur p-4 rounded-xl shadow-lg">
-                <p className="text-xs font-bold tracking-widest text-slate-500 uppercase mb-1">Protection Level</p>
-                <p className="text-3xl font-black text-slate-900">99.9%</p>
-            </div>
-          </motion.div>
-
-          <motion.div 
-            className="md:col-span-5"
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerText}
-            viewport={{ once: true }}
-          >
-            <span className="text-cyan-600 font-bold tracking-widest uppercase text-sm mb-4 block">
-              The Future of Luxury
-            </span>
-            <h2 className="text-4xl md:text-6xl font-bold text-slate-900 mb-8 leading-tight">
-              Material <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-600">Intelligence™</span>
-            </h2>
-            <p className="text-xl text-slate-600 mb-10">
-              We don't coat surfaces. We transform them from within using aerospace-grade nanotechnology.
-            </p>
-
-            <div className="space-y-6">
-              {[
-                "Brilliant Color Retention",
-                "Self-Healing Surface Matrix",
-                "Hydrophobic Engineering",
-                "Molecular Bonding"
-              ].map((feature, i) => (
-                <motion.div 
-                    key={i}
-                    variants={fadeInUp}
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-white hover:shadow-md transition-all cursor-default"
-                >
-                    <div className="w-2 h-2 rounded-full bg-cyan-500 shrink-0" />
-                    <span className="text-lg font-semibold text-slate-800">{feature}</span>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* --- SECTION 5: CALL TO ACTION --- */}
-      <section className="py-40 px-4 relative overflow-hidden flex items-center justify-center">
-        {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900 via-slate-900 to-black z-0" />
-        <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] z-0 mix-blend-overlay" />
-
-        <motion.div 
-          className="relative z-10 text-center max-w-4xl mx-auto"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8">
-            The Molecular Revolution
+      {/* 5. FOOTER CTA */}
+      <section className="py-24 px-6 text-center">
+        <FadeIn>
+          <h2 className="text-4xl font-bold text-slate-900 mb-6">
+            Luxury that Lasts.
           </h2>
-          <p className="text-xl md:text-2xl text-slate-300 mb-12 font-light">
-              True luxury isn't a logo. It's longevity engineered at the atomic scale.
+          <p className="text-slate-500 mb-10 text-lg">
+            Where advanced material science becomes everyday protection.
           </p>
-          <button className="px-12 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 text-white rounded-full font-bold text-lg hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] hover:scale-105 transition-all duration-300">
-            Experience Nanograds
+          <button className="px-10 py-4 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">
+            Get Started
           </button>
-        </motion.div>
+        </FadeIn>
       </section>
-      
+
     </main>
   );
 }
