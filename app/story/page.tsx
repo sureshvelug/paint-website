@@ -106,12 +106,12 @@ const ZigZagSection: React.FC<SectionProps> = ({ heading, body, points, table, i
 
         {/* Content Column */}
         <div className="w-full lg:w-1/2 flex flex-col justify-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6 leading-tight">
+          <h2 className="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mb-6 leading-tight">
             {heading}
           </h2>
           
           <div 
-            className="text-lg text-gray-600 leading-relaxed mb-8" 
+            className="text-lg text-gray-600 leading-relaxed mb-8 font-light" 
             dangerouslySetInnerHTML={renderRichText(body)}
           />
           
@@ -122,8 +122,8 @@ const ZigZagSection: React.FC<SectionProps> = ({ heading, body, points, table, i
                 <div key={point.title} className="flex flex-col sm:flex-row gap-2 sm:gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100 hover:border-indigo-100 transition-colors">
                   <div className="min-w-[4px] min-h-[4px] w-full h-1 sm:w-1 sm:h-auto bg-indigo-500 rounded-full sm:rounded-none"></div>
                   <div>
-                    <h3 className="font-semibold text-gray-900 mb-1">{point.title}</h3>
-                    <p className="text-sm text-gray-600 leading-relaxed">{point.description}</p>
+                    <h3 className="font-serif font-semibold text-gray-900 mb-1">{point.title}</h3>
+                    <p className="text-sm text-gray-600 leading-relaxed font-light">{point.description}</p>
                   </div>
                 </div>
               ))}
@@ -171,7 +171,7 @@ const OurStoryPage: React.FC = () => {
         <span className="inline-block py-1 px-3 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-widest mb-6">
           Our Story
         </span>
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-gray-900 tracking-tight mb-6">
+        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-serif font-extrabold text-gray-900 tracking-tight mb-6">
           {storyData.title}
         </h1>
         <p className="text-xl sm:text-2xl text-gray-500 font-light max-w-3xl mx-auto">
@@ -198,14 +198,14 @@ const OurStoryPage: React.FC = () => {
       {/* Footer/Conclusion */}
       <section className="py-24 px-4 bg-gray-50 mt-12 border-t border-gray-100">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mb-6">
             {conclusion.heading}
           </h2>
-          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+          <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
             {conclusion.paragraph}
           </p>
           <blockquote className="text-xl font-medium text-indigo-900 italic mb-12 border-l-4 border-indigo-500 pl-6 inline-block text-left bg-white p-6 rounded-r-lg shadow-sm">
-            "{conclusion.call}"
+            {conclusion.call}
           </blockquote>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

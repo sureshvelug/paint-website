@@ -15,10 +15,10 @@ export default function Footer() {
           
           {/* Newsletter Section */}
           <div>
-            <h3 className="text-2xl font-bold text-black mb-3">
+            <h3 className="text-2xl font-serif font-bold text-black mb-3">
               Stay Inspired
             </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed font-light">
               Get exclusive color palettes, design tips, and special offers delivered to your inbox.
             </p>
             <form className="flex flex-col sm:flex-row gap-3">
@@ -42,10 +42,10 @@ export default function Footer() {
 
           {/* Contact & Support Section */}
           <div>
-            <h3 className="text-2xl font-bold text-black mb-3">
+            <h3 className="text-2xl font-serif font-bold text-black mb-3">
               Need Help?
             </h3>
-            <p className="text-gray-600 mb-6 leading-relaxed">
+            <p className="text-gray-600 mb-6 leading-relaxed font-light">
               Our team is here to assist you with product selection, samples, and technical support.
             </p>
             
@@ -108,8 +108,8 @@ export default function Footer() {
         {/* Social Media Section */}
         <div className="border-t-2 border-gray-200 pt-12 mb-12">
           <div className="text-center mb-6">
-            <h4 className="text-lg font-bold text-black mb-2">Follow Our Journey</h4>
-            <p className="text-gray-600">Join our community for daily inspiration and exclusive content</p>
+            <h4 className="text-lg font-serif font-bold text-black mb-2">Follow Our Journey</h4>
+            <p className="text-gray-600 font-light">Join our community for daily inspiration and exclusive content</p>
           </div>
           
           <div className="flex justify-center gap-4">
@@ -168,8 +168,8 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             {/* Brand & Copyright */}
             <div className="text-center md:text-left">
-              <div className="font-bold text-xl text-black mb-1">Eco-Luxury Paints</div>
-              <div className="text-sm text-gray-500">
+              <div className="font-serif font-bold text-xl text-black mb-1">Eco-Luxury Paints</div>
+              <div className="text-sm text-gray-500 font-light">
                 © {currentYear} All rights reserved. Made in India 🇮🇳
               </div>
             </div>

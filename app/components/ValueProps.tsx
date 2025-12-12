@@ -1,7 +1,33 @@
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+
+// --- ICONS ---
+const Icons = {
+  Science: () => (
+    <svg className="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>
+  ),
+  Leaf: () => (
+    <svg className="w-8 h-8 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+    </svg>
+  ),
+  Shield: () => (
+    <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+    </svg>
+  )
+};
+
 export default function ValueProps() {
   const props = [
     {
-      icon: '🧪',
+      Icon: Icons.Science,
+      color: "bg-indigo-50 border-indigo-100",
+      accent: "text-indigo-600",
       title: 'Nano-Enhanced',
       subtitle: 'Advanced Technology',
       description: 'Cutting-edge nanotechnology delivers superior adhesion and self-cleaning properties.',
@@ -12,7 +38,9 @@ export default function ValueProps() {
       ]
     },
     {
-      icon: '🌱',
+      Icon: Icons.Leaf,
+      color: "bg-emerald-50 border-emerald-100",
+      accent: "text-emerald-600",
       title: 'Eco-Certified',
       subtitle: 'Sustainable Choice',
       description: 'Environmentally responsible formulations that protect both your home and the planet.',
@@ -23,7 +51,9 @@ export default function ValueProps() {
       ]
     },
     {
-      icon: '⏳',
+      Icon: Icons.Shield,
+      color: "bg-blue-50 border-blue-100",
+      accent: "text-blue-600",
       title: 'Long-Lasting',
       subtitle: 'Built to Endure',
       description: 'Engineered with premium ingredients for decades of vibrant, beautiful walls.',
@@ -33,115 +63,114 @@ export default function ValueProps() {
         { label: 'Washability Class 1', detail: 'Easy maintenance' }
       ]
     }
-  ]
+  ];
 
   return (
-    <section className="relative py-24 px-4 bg-white">
+    <section className="relative py-32 px-4 bg-white overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+      
       <div className="relative max-w-7xl mx-auto">
+        
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
+        <div className="text-center mb-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 border border-slate-100 text-xs font-bold tracking-widest uppercase text-slate-500 mb-6"
+          >
+            <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
             Why Choose Us
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black leading-tight">
-            Science Meets Sustainability
-          </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Where cutting-edge innovation and environmental responsibility create paints that perform beautifully for decades
-          </p>
+          </motion.div>
+          
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl font-serif font-bold mb-6 text-slate-900 tracking-tight"
+          >
+            Science Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Sustainability</span>
+          </motion.h2>
+          
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed font-light"
+          >
+            Where cutting-edge innovation and environmental responsibility create paints that perform beautifully for decades.
+          </motion.p>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {props.map((prop, idx) => (
-            <div 
+            <motion.div 
               key={idx}
-              className="group relative bg-white rounded-3xl p-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 border-2 border-gray-200 hover:border-black overflow-hidden"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="group relative bg-white rounded-[2rem] p-8 md:p-10 shadow-sm border border-slate-100 hover:shadow-xl hover:shadow-slate-200/50 hover:border-slate-200 transition-all duration-500"
             >
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className="relative inline-flex mb-6">
-                  <div className="relative w-16 h-16 rounded-2xl bg-black flex items-center justify-center text-3xl shadow-lg group-hover:scale-110 transition-transform duration-500">
-                    {prop.icon}
-                  </div>
-                </div>
+              {/* Top Accent Icon */}
+              <div className={`w-16 h-16 rounded-2xl ${prop.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
+                <prop.Icon />
+              </div>
 
-                {/* Subtitle Badge */}
-                <div className="inline-block mb-3 mx-4">
-                  <span className="text-xs font-semibold text-gray-500 uppercase tracking-wide">
-                    {prop.subtitle}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl md:text-2xl font-bold mb-3 text-black leading-tight">
+              {/* Content */}
+              <div className="mb-8">
+                <span className={`text-xs font-bold uppercase tracking-wider mb-2 block ${prop.accent}`}>
+                  {prop.subtitle}
+                </span>
+                <h3 className="text-2xl font-serif font-bold text-slate-900 mb-4">
                   {prop.title}
                 </h3>
-
-                {/* Description */}
-                <p className="text-sm md:text-base text-gray-600 mb-6 leading-relaxed">
+                <p className="text-slate-500 leading-relaxed text-sm md:text-base font-light">
                   {prop.description}
                 </p>
-
-                {/* Divider */}
-                <div className="h-px w-full bg-gray-200 mb-6" />
-
-                {/* Features List */}
-                <ul className="space-y-4">
-                  {prop.features.map((feature, fIdx) => (
-                    <li 
-                      key={fIdx}
-                      className="flex items-start gap-3"
-                    >
-                      {/* Checkmark */}
-                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-black/5 flex items-center justify-center mt-0.5">
-                        <svg 
-                          className="w-3 h-3 text-black" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <path 
-                            strokeLinecap="round" 
-                            strokeLinejoin="round" 
-                            strokeWidth={3} 
-                            d="M5 13l4 4L19 7" 
-                          />
-                        </svg>
-                      </div>
-                      
-                      {/* Feature Text */}
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-semibold text-black leading-tight mb-0.5">
-                          {feature.label}
-                        </div>
-                        <div className="text-xs text-gray-500">
-                          {feature.detail}
-                        </div>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
               </div>
 
-              {/* Decorative Number */}
-              <div className="absolute top-6 right-6 text-6xl font-bold text-black/5 group-hover:text-black/10 transition-colors duration-500">
-                {idx + 1}
-              </div>
-            </div>
+              {/* Features List */}
+              <ul className="space-y-4 pt-8 border-t border-slate-50">
+                {prop.features.map((feature, fIdx) => (
+                  <li key={fIdx} className="flex items-start gap-3 group/item">
+                    <div className={`mt-1 w-1.5 h-1.5 rounded-full ${prop.accent.replace('text-', 'bg-')} ring-4 ring-white group-hover/item:scale-125 transition-transform`} />
+                    <div>
+                      <div className="text-sm font-bold text-slate-800">
+                        {feature.label}
+                      </div>
+                      <div className="text-xs text-slate-400 font-medium">
+                        {feature.detail}
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <button className="inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-gray-800 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl text-base">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+          className="text-center mt-20"
+        >
+          <button className="inline-flex items-center gap-2 px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-indigo-600 transition-all duration-300 shadow-lg shadow-slate-200 hover:shadow-indigo-200 hover:-translate-y-0.5">
             Explore Our Technology
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
           </button>
-        </div>
+        </motion.div>
+
       </div>
     </section>
-  )
+  );
 }

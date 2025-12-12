@@ -67,10 +67,10 @@ export default function NanogradsPage() {
             <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"/>
             {content.hero.label}
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-slate-900 mb-6">
+          <h1 className="text-5xl md:text-7xl font-serif font-bold tracking-tight text-slate-900 mb-6">
             {content.hero.title}
           </h1>
-          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed font-light">
             {content.hero.desc}
           </p>
           
@@ -131,10 +131,10 @@ export default function NanogradsPage() {
                   <span className="text-indigo-600 font-bold tracking-widest uppercase text-xs mb-4 block">
                     {feature.category}
                   </span>
-                  <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6 leading-tight">
+                  <h2 className="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-6 leading-tight">
                     {feature.title}
                   </h2>
-                  <p className="text-lg text-slate-500 leading-relaxed mb-8">
+                  <p className="text-lg text-slate-500 leading-relaxed mb-8 font-light">
                     {feature.body}
                   </p>
                   
@@ -157,8 +157,8 @@ export default function NanogradsPage() {
       <section className="py-24 px-6 md:px-12 bg-slate-900 text-white rounded-t-[3rem] mt-12">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">The Nanograds Difference</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-serif font-bold mb-6">The Nanograds Difference</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto font-light">
               Six pillars of advanced protection integrated into every coat.
             </p>
           </div>
@@ -181,8 +181,8 @@ export default function NanogradsPage() {
                 className="bg-slate-800/50 p-8 rounded-2xl border border-slate-700 hover:bg-slate-800 transition-colors"
               >
                 <div className="text-indigo-400 font-mono text-xs mb-4">0{i + 1}</div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-slate-400 text-sm">{item.desc}</p>
+                <h3 className="text-xl font-serif font-bold mb-2">{item.title}</h3>
+                <p className="text-slate-400 text-sm font-light">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -192,10 +192,10 @@ export default function NanogradsPage() {
       {/* 5. FOOTER CTA */}
       <section className="py-24 px-6 text-center">
         <FadeIn>
-          <h2 className="text-4xl font-bold text-slate-900 mb-6">
+          <h2 className="text-4xl font-serif font-bold text-slate-900 mb-6">
             Luxury that Lasts.
           </h2>
-          <p className="text-slate-500 mb-10 text-lg">
+          <p className="text-slate-500 mb-10 text-lg font-light">
             Where advanced material science becomes everyday protection.
           </p>
           <button className="px-10 py-4 bg-indigo-600 text-white rounded-full font-bold hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200">

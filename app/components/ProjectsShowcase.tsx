@@ -9,13 +9,13 @@ export default function ProjectsShowcase() {
 
   return (
     <section className="py-20 px-4 max-w-7xl mx-auto">
-      <h2 className="text-h2 text-center mb-12">Featured Projects</h2>
+      <h2 className="text-h2 font-serif text-center mb-12">Featured Projects</h2>
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, idx) => (
           <div key={idx} className="relative h-80 rounded-2xl overflow-hidden shadow-xl group">
             <Image src={project.image} alt={project.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-              <h3 className="text-white text-2xl font-semibold">{project.name}</h3>
+              <h3 className="text-white text-2xl font-serif font-semibold">{project.name}</h3>
             </div>
           </div>
         ))}

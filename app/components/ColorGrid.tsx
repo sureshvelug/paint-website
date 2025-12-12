@@ -15,8 +15,8 @@ export default function ColorGrid({ colors }: ColorGridProps) {
             style={{ backgroundColor: color.hex }}
           />
           <div className="text-center">
-            <p className="font-medium text-gray-900">{color.name}</p>
-            <p className="text-sm text-gray-600">{color.collection}</p>
+            <p className="font-serif font-medium text-gray-900">{color.name}</p>
+            <p className="text-sm text-gray-600 font-light">{color.collection}</p>
           </div>
         </Link>
       ))}

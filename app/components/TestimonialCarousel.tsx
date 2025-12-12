@@ -45,10 +45,10 @@ export default function TestimonialCarousel() {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
             Client Testimonials
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-black">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
             Trusted by designers, architects, and homeowners across the country
           </p>
         </div>
@@ -80,19 +80,19 @@ export default function TestimonialCarousel() {
             </div>
 
             {/* Quote Text */}
-            <p className="text-lg md:text-xl text-gray-800 mb-8 leading-relaxed text-center max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-800 mb-8 leading-relaxed text-center max-w-3xl mx-auto font-light">
               "{testimonials[current].quote}"
             </p>
 
             {/* Author Info */}
             <div className="text-center border-t-2 border-gray-100 pt-6">
-              <div className="font-bold text-lg text-black mb-1">
+              <div className="font-serif font-bold text-lg text-black mb-1">
                 {testimonials[current].author}
               </div>
-              <div className="text-base text-gray-600 mb-1">
+              <div className="text-base text-gray-600 mb-1 font-light">
                 {testimonials[current].role}
               </div>
-              <div className="text-sm text-gray-500 font-medium">
+              <div className="text-sm text-gray-500 font-light">
                 {testimonials[current].company}
               </div>
             </div>

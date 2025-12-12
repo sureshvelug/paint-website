@@ -64,16 +64,16 @@ export default function TechSection() {
               Advanced Technology
             </div>
             
-            <h2 className="text-h2 text-black mb-2">Where Nanoscience Meets Aesthetics</h2>
-            <p className="text-sm text-gray-600 mb-6">Nano-based Low VOC Paints in India</p>
+            <h2 className="text-h2 font-serif text-black mb-2">Where Nanoscience Meets Aesthetics</h2>
+            <p className="text-sm text-gray-600 mb-6 font-light">Nano-based Low VOC Paints in India</p>
             
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+            <p className="text-lg text-gray-700 mb-6 leading-relaxed font-light">
               Our patented <strong>Nano-Silica-Titania Hybrid Network</strong> forms a 3D lattice 
               within the paint film. This structure strengthens adhesion while diffusing light 
               for a soft, timeless glow.
             </p>
 
-            <p className="text-gray-600 mb-8">
+            <p className="text-gray-600 mb-8 font-light">
               Unlike synthetic polymer paints, Eco-Luxury formulations are solvent-free, 
               odorless, and UV-stable, ensuring your walls stay beautiful for decades.
             </p>
@@ -88,10 +88,10 @@ export default function TechSection() {
                   <div className="text-2xl font-bold text-brand-sage mb-1">
                     {spec.value}
                   </div>
-                  <div className="text-sm font-medium text-gray-900 mb-1">
+                  <div className="text-sm font-serif font-medium text-gray-900 mb-1">
                     {spec.label}
                   </div>
-                  <div className="text-xs text-gray-600">
+                  <div className="text-xs text-gray-600 font-light">
                     {spec.description}
                   </div>
                 </div>
@@ -118,7 +118,7 @@ export default function TechSection() {
                       clipRule="evenodd" 
                     />
                   </svg>
-                  <span className="text-gray-700">{feature}</span>
+                  <span className="text-gray-700 font-light">{feature}</span>
                 </div>
               ))}
             </div>

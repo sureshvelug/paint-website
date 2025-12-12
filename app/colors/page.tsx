@@ -12,8 +12,8 @@ export default async function ColorsPage() {
 
   return (
     <div className="pt-32 pb-16 px-4 max-w-7xl mx-auto">
-      <h1 className="text-h1 mb-4">Explore Our Colors</h1>
-      <p className="text-xl text-gray-600 mb-12">
+      <h1 className="text-h1 font-serif mb-4">Explore Our Colors</h1>
+      <p className="text-xl text-gray-600 mb-12 font-light">
         200+ nano-mineral shades designed for timeless elegance
       </p>
       <ColorGrid colors={colors} />

@@ -7,10 +7,10 @@ export const ContactForm = () => {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
             Get In Touch
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-black">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-black">
             Get a Free Quote
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
             Tell us a bit about your project. We'll get back within 1 business
             day with a personalized quote.
           </p>

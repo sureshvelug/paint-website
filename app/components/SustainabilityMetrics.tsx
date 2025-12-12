@@ -13,10 +13,10 @@ export default function SustainabilityMetrics() {
           <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
             Our Impact
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4 text-black">
             Sustainability Beyond the Surface
           </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light">
             Eco-friendly mineral paints for homes and hotels that protect both your space and the planet
           </p>
         </div>
@@ -34,12 +34,12 @@ export default function SustainabilityMetrics() {
               </div>
               
               {/* Label */}
-              <div className="text-xl font-bold text-black mb-3">
+              <div className="text-xl font-serif font-bold text-black mb-3">
                 {metric.label}
               </div>
               
               {/* Comparison */}
-              <div className="text-base text-gray-600 font-medium">
+              <div className="text-base text-gray-600 font-light">
                 {metric.comparison}
               </div>
 
@@ -51,7 +51,7 @@ export default function SustainabilityMetrics() {
 
         {/* Bottom Description */}
         <div className="mt-16 text-center max-w-3xl mx-auto">
-          <p className="text-lg text-gray-600 leading-relaxed">
+          <p className="text-lg text-gray-600 leading-relaxed font-light">
             Every can of our paint is formulated with the future in mind—minimal environmental impact, maximum performance, and certified to exceed industry sustainability standards.
           </p>
         </div>

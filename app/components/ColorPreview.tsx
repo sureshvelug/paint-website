@@ -1,8 +1,37 @@
 'use client'
 
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { Check, Copy, Heart, ArrowRight } from 'lucide-react'
+
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: {
+      type: "spring",
+      stiffness: 50,
+      damping: 15
+    }
+  }
+}
 
 export default function ColorPreview() {
+  const [copiedHex, setCopiedHex] = useState<string | null>(null)
+  
   const colors = [
     { name: 'Sage Whisper', hex: '#A8B4A5', slug: 'sage-whisper', collection: 'Elysian Matte' },
     { name: 'Dove Grey', hex: '#C9C5C1', slug: 'dove-grey', collection: 'Elysian Matte' },
@@ -14,104 +43,153 @@ export default function ColorPreview() {
     { name: 'Ocean Mist', hex: '#B8D4D1', slug: 'ocean-mist', collection: 'Aqua Guard' },
   ]
 
+  const handleCopy = (e: React.MouseEvent, hex: string) => {
+    e.preventDefault() // Prevent navigation
+    e.stopPropagation()
+    navigator.clipboard.writeText(hex)
+    setCopiedHex(hex)
+    setTimeout(() => setCopiedHex(null), 2000)
+  }
+
   return (
-    <section className="py-24 px-4 max-w-7xl mx-auto bg-white">
-      {/* Header */}
-      <div className="text-center mb-16">
-        <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
-          Color Collections
-        </span>
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 text-black">
-          Explore Our Signature Colors
-        </h2>
-        <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-          Each shade is crafted with nano-mineral technology for unmatched beauty and durability
-        </p>
-      </div>
-
-      {/* Color Grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-        {colors.map((color) => (
-          <Link
-            key={color.slug}
-            href={`/colors/${color.slug}`}
-            className="group relative"
+    <section className="py-24 px-4 bg-stone-50 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
-            {/* Color Swatch */}
-            <div 
-              className="aspect-square rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.15)] transition-all duration-500 group-hover:scale-105 relative overflow-hidden border-2 border-gray-200 group-hover:border-black"
-              style={{ backgroundColor: color.hex }}
-            >
-              {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-
-              {/* Info Overlay on Hover */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 via-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <p className="text-white font-bold text-base mb-1">{color.name}</p>
-                <p className="text-white/90 text-sm mb-1">{color.hex}</p>
-                <p className="text-white/75 text-xs">{color.collection}</p>
-              </div>
-
-              {/* Heart Icon */}
-              <button 
-                className="absolute top-3 right-3 w-9 h-9 bg-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110 shadow-lg border border-gray-200"
-                onClick={(e) => {
-                  e.preventDefault()
-                }}
+            <span className="inline-flex items-center gap-2 px-3 py-1 mb-6 text-xs font-bold tracking-[0.2em] uppercase bg-white border border-stone-200 text-stone-900 rounded-full shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
+              2025 Collection
+            </span>
+            <h2 className="text-4xl md:text-6xl font-serif font-medium text-stone-900 mb-6 tracking-tight">
+              Curated Palette
+            </h2>
+            <p className="text-lg text-stone-600 max-w-2xl mx-auto font-light leading-relaxed">
+              Discover shades engineered with nano-mineral technology for depth that shifts beautifully with the light.
+            </p>
+          </motion.div>
+        </div>
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+        >
+          {colors.map((color) => (
+            <motion.div key={color.slug} variants={cardVariants}>
+              <Link
+                href={`/colors/${color.slug}`}
+                className="group block relative bg-white p-3 rounded-[2rem] shadow-sm hover:shadow-xl transition-all duration-500 ease-out hover:-translate-y-2 border border-stone-100"
               >
-                <svg className="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </button>
-            </div>
+                {/* Color Swatch Area */}
+                <div 
+                  className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 transition-transform duration-500 group-hover:scale-[1.02]"
+                  style={{ backgroundColor: color.hex }}
+                >
+                  {/* Subtle Gradient Overlay for Depth */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  
+                  {/* Floating Action Buttons */}
+                  <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out">
+                    <button 
+                      onClick={(e) => {
+                        e.preventDefault();
+                        // Add wishlist logic here
+                      }}
+                      className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-red-500 hover:scale-110 transition-all shadow-lg"
+                      aria-label="Save color"
+                    >
+                      <Heart className="w-5 h-5 transition-colors" />
+                    </button>
+                    <button 
+                      onClick={(e) => handleCopy(e, color.hex)}
+                      className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-600 hover:text-black hover:scale-110 transition-all shadow-lg"
+                      aria-label="Copy hex code"
+                    >
+                      {copiedHex === color.hex ? (
+                        <Check className="w-5 h-5 text-emerald-500" />
+                      ) : (
+                        <Copy className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
 
-            {/* Color Name Below (Always Visible) */}
-            <div className="mt-4 text-center">
-              <p className="font-bold text-lg text-black group-hover:text-gray-700 transition-colors">
-                {color.name}
-              </p>
-              <p className="text-sm text-gray-500 font-medium">{color.hex}</p>
+                  {/* Collection Badge */}
+                  <div className="absolute bottom-4 left-4">
+                    <span className="inline-block px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-white bg-black/20 backdrop-blur-md rounded-full border border-white/20">
+                      {color.collection}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Info */}
+                <div className="px-2 pb-2">
+                  <div className="flex justify-between items-end mb-1">
+                    <h3 className="text-xl font-medium text-stone-900 group-hover:text-stone-600 transition-colors">
+                      {color.name}
+                    </h3>
+                    <ArrowRight className="w-5 h-5 text-stone-300 group-hover:text-stone-900 -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300" />
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <p className="font-mono text-xs text-stone-400 uppercase tracking-wider group-hover:text-stone-500 transition-colors">
+                      {color.hex}
+                    </p>
+                    {copiedHex === color.hex && (
+                      <motion.span 
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0 }}
+                        className="text-xs font-medium text-emerald-600"
+                      >
+                        Copied!
+                      </motion.span>
+                    )}
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div 
+          className="text-center"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <Link 
+            href="/colors"
+            className="group inline-flex items-center gap-3 bg-stone-900 text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-stone-800 hover:shadow-2xl hover:shadow-stone-900/20 hover:-translate-y-1"
+          >
+            <span>Explore Full Catalog</span>
+            <div className="w-6 h-6 bg-white text-stone-900 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <ArrowRight className="w-3 h-3" />
             </div>
           </Link>
-        ))}
-      </div>
 
-      {/* CTA Button */}
-      <div className="text-center">
-        <Link 
-          href="/colors"
-          className="inline-flex items-center gap-2 bg-black text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition-all duration-300 hover:shadow-xl hover:scale-105 group shadow-lg text-base"
-        >
-          View All 200+ Colors
-          <svg 
-            className="w-5 h-5 transition-transform group-hover:translate-x-1" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-
-      {/* Color Stats */}
-      <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div className="p-6 rounded-2xl bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-black transition-all duration-300">
-          <div className="text-4xl font-bold text-black mb-2">200+</div>
-          <div className="text-base text-gray-600 font-medium">Unique Colors</div>
-        </div>
-        <div className="p-6 rounded-2xl bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-black transition-all duration-300">
-          <div className="text-4xl font-bold text-black mb-2">4</div>
-          <div className="text-base text-gray-600 font-medium">Collections</div>
-        </div>
-        <div className="p-6 rounded-2xl bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-black transition-all duration-300">
-          <div className="text-4xl font-bold text-black mb-2">100%</div>
-          <div className="text-base text-gray-600 font-medium">Customizable</div>
-        </div>
-        <div className="p-6 rounded-2xl bg-white border-2 border-gray-200 shadow-sm hover:shadow-lg hover:border-black transition-all duration-300">
-          <div className="text-4xl font-bold text-black mb-2">Free</div>
-          <div className="text-base text-gray-600 font-medium">Color Samples</div>
-        </div>
+          {/* Stats Bar */}
+          <div className="mt-16 pt-10 border-t border-stone-200 flex flex-wrap justify-center gap-8 md:gap-20">
+            {[
+              { label: 'Unique Shades', value: '200+' },
+              { label: 'Finish Types', value: '4' },
+              { label: 'Color Accuracy', value: '100%' },
+            ].map((stat, i) => (
+              <div key={i} className="flex flex-col items-center">
+                <span className="text-3xl font-serif font-medium text-stone-900 mb-1">{stat.value}</span>
+                <span className="text-xs font-bold tracking-widest uppercase text-stone-400">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )

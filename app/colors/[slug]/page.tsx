@@ -25,9 +25,9 @@ export default async function ColorDetailPage({ params }: { params: { slug: stri
       <div className="grid md:grid-cols-2 gap-12">
         <div className="aspect-square rounded-2xl shadow-2xl" style={{ backgroundColor: color.hex }} />
         <div>
-          <h1 className="text-h1 mb-2">{color.name}</h1>
-          <p className="text-xl text-gray-600 mb-6">{color.collection} Collection</p>
-          <p className="text-gray-700 mb-8">{color.description}</p>
+          <h1 className="text-h1 font-serif mb-2">{color.name}</h1>
+          <p className="text-xl text-gray-600 mb-6 font-light">{color.collection} Collection</p>
+          <p className="text-gray-700 mb-8 font-light">{color.description}</p>
           <div className="space-y-3 mb-8">
             <div><span className="font-medium">Color Code:</span> {color.hex}</div>
             <div><span className="font-medium">Finish:</span> {color.finish}</div>

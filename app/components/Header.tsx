@@ -42,7 +42,7 @@ export default function Header() {
           {/* Logo */}
           <Link 
             href="/" 
-            className="text-xl font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors"
+            className="text-xl font-serif font-bold text-gray-900 tracking-tight hover:text-gray-700 transition-colors"
           >
             Eco-Luxury Paints
           </Link>
