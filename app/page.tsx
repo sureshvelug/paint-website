@@ -46,21 +46,21 @@ export default function HomePage() {
           {/* Services Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              {
-                title: "Mineral Finishes",
-                image:
-                  "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=80",
-              },
+              // {
+              //   title: "Mineral Finishes",
+              //   image:
+              //     "https://images.unsplash.com/photo-1615529328331-f8917597711f?w=800&q=80",
+              // },
               {
                 title: "Textured Paint",
                 image:
                   "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=800&q=80",
               },
-              {
-                title: "Concrete Effect",
-                image:
-                  "https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=80",
-              },
+              // {
+              //   title: "Concrete Effect",
+              //   image:
+              //     "https://images.unsplash.com/photo-1615873968403-89e068629265?w=800&q=80",
+              // },
               {
                 title: "Metallic Finishes",
                 image:
@@ -71,11 +71,11 @@ export default function HomePage() {
                 image:
                   "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&q=80",
               },
-              {
-                title: "Microcement",
-                image:
-                  "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80",
-              },
+              // {
+              //   title: "Microcement",
+              //   image:
+              //     "https://images.unsplash.com/photo-1615529182904-14819c35db37?w=800&q=80",
+              // },
               {
                 title: "Custom Finishes",
                 image:

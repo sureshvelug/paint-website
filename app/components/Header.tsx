@@ -21,9 +21,9 @@ export default function Header() {
   }, [])
 
   const navigation = [
-    { name: 'Shop', href: '/colors' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Home', href: '/' },
+    { name: 'technology', href: '/technology' },
+    { name: 'story', href: '/story' },
   ]
 
   return (
