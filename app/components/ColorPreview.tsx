@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Check, Copy, Heart, ArrowRight } from 'lucide-react'
-
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -29,6 +29,10 @@ const cardVariants = {
   }
 }
 
+// FIX: Updated to a stable, high-availability Unsplash texture URL
+// Removed complex query params that might cause 404s in Next.js proxy
+const TEXTURE_URL = "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=1200"
+
 export default function ColorPreview() {
   const [copiedHex, setCopiedHex] = useState<string | null>(null)
   
@@ -44,7 +48,7 @@ export default function ColorPreview() {
   ]
 
   const handleCopy = (e: React.MouseEvent, hex: string) => {
-    e.preventDefault() // Prevent navigation
+    e.preventDefault() 
     e.stopPropagation()
     navigator.clipboard.writeText(hex)
     setCopiedHex(hex)
@@ -75,6 +79,7 @@ export default function ColorPreview() {
             </p>
           </motion.div>
         </div>
+
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -93,25 +98,29 @@ export default function ColorPreview() {
                   className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-5 transition-transform duration-500 group-hover:scale-[1.02]"
                   style={{ backgroundColor: color.hex }}
                 >
-                  {/* Subtle Gradient Overlay for Depth */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  {/* Texture Overlay (Multiplier Effect) */}
+                  <Image 
+                    src={TEXTURE_URL} 
+                    alt="Paint Texture"
+                    fill
+                    className="object-cover opacity-30 mix-blend-multiply" 
+                    sizes="(max-width: 768px) 100vw, 25vw"
+                    unoptimized // Use this if Next.js image optimization keeps failing on external URLs
+                  />
                   
                   {/* Floating Action Buttons */}
-                  <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out">
+                  <div className="absolute top-4 right-4 flex flex-col gap-2 translate-x-10 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10">
                     <button 
                       onClick={(e) => {
                         e.preventDefault();
-                        // Add wishlist logic here
                       }}
                       className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-400 hover:text-red-500 hover:scale-110 transition-all shadow-lg"
-                      aria-label="Save color"
                     >
                       <Heart className="w-5 h-5 transition-colors" />
                     </button>
                     <button 
                       onClick={(e) => handleCopy(e, color.hex)}
                       className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-stone-600 hover:text-black hover:scale-110 transition-all shadow-lg"
-                      aria-label="Copy hex code"
                     >
                       {copiedHex === color.hex ? (
                         <Check className="w-5 h-5 text-emerald-500" />
@@ -122,7 +131,7 @@ export default function ColorPreview() {
                   </div>
 
                   {/* Collection Badge */}
-                  <div className="absolute bottom-4 left-4">
+                  <div className="absolute bottom-4 left-4 z-10">
                     <span className="inline-block px-3 py-1 text-[10px] font-bold tracking-widest uppercase text-white bg-black/20 backdrop-blur-md rounded-full border border-white/20">
                       {color.collection}
                     </span>
@@ -191,6 +200,6 @@ export default function ColorPreview() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </section> 
   )
 }

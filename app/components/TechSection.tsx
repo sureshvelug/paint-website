@@ -1,156 +1,153 @@
-/**
- * TechSection Component - Technology explanation with visual
- * File: components/TechSection.tsx
- */
+'use client'
 
+import { motion } from 'framer-motion'
 import Image from 'next/image'
-import Link from 'next/link'
+import { Shield, Zap, Wind, Droplets, ArrowRight } from 'lucide-react'
+
+const techFeatures = [
+  {
+    icon: Shield,
+    title: "Crystalline Matrix",
+    desc: "Silica-free bonding agent that fuses with the substrate."
+  },
+  {
+    icon: Droplets,
+    title: "Hydrophobic",
+    desc: "Self-cleaning surface that repels water and dirt."
+  },
+  {
+    icon: Wind,
+    title: "Breathable",
+    desc: "Micro-porous structure prevents moisture trapping."
+  },
+  {
+    icon: Zap,
+    title: "High-Reflective",
+    desc: "UV-stable pigments that resist fading for decades."
+  }
+]
 
 export default function TechSection() {
-  const techSpecs = [
-    {
-      label: 'Particle Size',
-      value: '20–50 nm',
-      description: 'Optimized for optical clarity and strength'
-    },
-    {
-      label: 'VOC Content',
-      value: '<5 g/L',
-      description: 'Well below EU EcoLabel limits'
-    },
-    {
-      label: 'Washability',
-      value: 'ISO 11998 Class 1',
-      description: 'Over 5,000 wash cycles'
-    },
-    {
-      label: 'Adhesion Rating',
-      value: 'ASTM 5B',
-      description: 'Maximum adhesion performance'
-    }
-  ]
-
   return (
-    <section className="py-20 px-4 bg-gray-50">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Image/Visual Side */}
-          <div className="relative order-2 lg:order-1">
-            <div className="relative h-[400px] lg:h-[500px] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=800&q=80"
-                alt="Nano-particle technology microscopic view"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Overlay Badge */}
-              <div className="absolute top-6 left-6 bg-brand-sage text-white px-4 py-2 rounded-lg shadow-lg">
-                <div className="text-xs font-medium">Nano-Enhanced</div>
-                <div className="text-lg font-bold">TiO₂ + SiO₂</div>
-              </div>
-            </div>
+    <section className="bg-stone-950 text-stone-200 py-32 relative overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]" 
+           style={{ backgroundImage: 'linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
+      </div>
 
-            {/* Floating Stats Card */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-gray-100 hidden md:block">
-              <div className="text-4xl font-bold text-brand-sage mb-1">10+</div>
-              <div className="text-sm text-gray-600">Years Durability</div>
-            </div>
-          </div>
-
-          {/* Content Side */}
-          <div className="order-1 lg:order-2">
-            <div className="inline-block bg-brand-sage/10 text-brand-sage px-4 py-2 rounded-full text-sm font-medium mb-4">
-              Advanced Technology
-            </div>
-            
-            <h2 className="text-h2 font-serif text-black mb-2">Where Nanoscience Meets Aesthetics</h2>
-            <p className="text-sm text-gray-600 mb-6 font-light">Nano-based Low VOC Paints in India</p>
-            
-            <p className="text-lg text-gray-700 mb-6 leading-relaxed font-light">
-              Our patented <strong>Nano-Silica-Titania Hybrid Network</strong> forms a 3D lattice 
-              within the paint film. This structure strengthens adhesion while diffusing light 
-              for a soft, timeless glow.
-            </p>
-
-            <p className="text-gray-600 mb-8 font-light">
-              Unlike synthetic polymer paints, Eco-Luxury formulations are solvent-free, 
-              odorless, and UV-stable, ensuring your walls stay beautiful for decades.
-            </p>
-
-            {/* Technical Specifications Grid */}
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {techSpecs.map((spec, idx) => (
-                <div 
-                  key={idx} 
-                  className="bg-white p-4 rounded-lg border border-gray-200 hover:border-brand-sage transition-colors"
-                >
-                  <div className="text-2xl font-bold text-brand-sage mb-1">
-                    {spec.value}
-                  </div>
-                  <div className="text-sm font-serif font-medium text-gray-900 mb-1">
-                    {spec.label}
-                  </div>
-                  <div className="text-xs text-gray-600 font-light">
-                    {spec.description}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Features Checklist */}
-            <div className="space-y-3 mb-8">
-              {[
-                'Self-purifying photocatalytic properties',
-                'Breathable film regulates humidity',
-                'Zero plasticizers for healthier indoor air',
-                'Temperature stable from −5°C to 65°C'
-              ].map((feature, idx) => (
-                <div key={idx} className="flex items-center gap-3">
-                  <svg 
-                    className="w-6 h-6 text-brand-sage shrink-0" 
-                    fill="currentColor" 
-                    viewBox="0 0 20 20"
-                  >
-                    <path 
-                      fillRule="evenodd" 
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" 
-                      clipRule="evenodd" 
-                    />
-                  </svg>
-                  <span className="text-gray-700 font-light">{feature}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link 
-                href="/technology"
-                className="inline-flex items-center justify-center gap-2 bg-brand-sage text-white px-6 py-3 rounded-lg font-medium hover:bg-brand-sage/90 transition-all group"
-              >
-                Learn More About Our Technology
-                <svg 
-                  className="w-5 h-5 transition-transform group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
+      <div className="container mx-auto px-6 md:px-12 relative z-10">
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
+          
+          {/* Left: Text Content */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <span className="text-amber-500 text-xs font-bold tracking-[0.2em] uppercase mb-6 block flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                The Science
+              </span>
               
-              <Link 
-                href="/technology#download"
-                className="inline-flex items-center justify-center gap-2 border-2 border-brand-sage text-brand-sage px-6 py-3 rounded-lg font-medium hover:bg-brand-sage hover:text-white transition-all"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download Technical Data Sheet
-              </Link>
-            </div>
+              <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-[1.1]">
+                Molecular <br/> <span className="text-stone-500">Perfection.</span>
+              </h2>
+              
+              <p className="text-stone-400 text-lg leading-relaxed mb-12 font-light max-w-xl">
+                Traditional paints sit on top of the wall. Lumina fuses with it. 
+                Our patented nano-mineral technology creates a petrified bond that becomes part of the substrate itself.
+              </p>
+
+              {/* Tech Cards Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12">
+                {techFeatures.map((feature, idx) => (
+                  <motion.div 
+                    key={idx}
+                    whileHover={{ y: -5, backgroundColor: 'rgba(255,255,255,0.05)' }}
+                    className="p-6 rounded-lg border border-white/10 bg-white/5 backdrop-blur-sm transition-colors group"
+                  >
+                    <feature.icon className="w-6 h-6 text-indigo-400 mb-4 group-hover:text-amber-400 transition-colors" />
+                    <h3 className="text-white font-medium mb-2">{feature.title}</h3>
+                    <p className="text-stone-500 text-sm leading-relaxed">{feature.desc}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Metrics */}
+              <div className="flex gap-12 border-t border-white/10 pt-8">
+                 <div>
+                    <div className="text-3xl font-serif text-white mb-1">0.05<span className="text-lg text-stone-500">mm</span></div>
+                    <div className="text-xs text-stone-500 uppercase tracking-wider">Particle Size</div>
+                 </div>
+                 <div>
+                    <div className="text-3xl font-serif text-white mb-1">10<span className="text-lg text-stone-500">Yr</span></div>
+                    <div className="text-xs text-stone-500 uppercase tracking-wider">Warranty</div>
+                 </div>
+              </div>
+
+            </motion.div>
           </div>
+
+          {/* Right: Abstract Tech Visual */}
+          <div className="w-full lg:w-1/2 relative h-[600px] hidden lg:block">
+             <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1 }}
+                className="relative h-full w-full rounded-2xl overflow-hidden border border-white/10"
+             >
+                {/* 
+                   Verified Unsplash ID: Abstract Blue Technology Background
+                   Using a stable Unsplash ID to prevent 404s
+                */}
+                <Image 
+                  src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2000&auto=format&fit=crop" 
+                  alt="Nano-structure abstract visualization" 
+                  fill
+                  className="object-cover"
+                />
+                
+                {/* Overlay Text */}
+                <div className="absolute bottom-0 left-0 p-8 w-full bg-gradient-to-t from-black/90 to-transparent">
+                   <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-white font-mono text-sm">Structure Analysis</p>
+                        <p className="text-stone-500 text-xs">Magnification: 2000x</p>
+                      </div>
+                      <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center">
+                         <ArrowRight className="text-white w-5 h-5 -rotate-45" />
+                      </div>
+                   </div>
+                </div>
+             </motion.div>
+
+             {/* Floating Badge */}
+             <motion.div 
+               animate={{ y: [0, -10, 0] }}
+               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+               className="absolute -left-12 top-24 bg-stone-900 border border-white/10 p-4 rounded-lg shadow-2xl max-w-[200px]"
+             >
+                <div className="flex items-center gap-2 mb-2">
+                   <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                   <span className="text-xs text-stone-400 uppercase tracking-widest">Active Bond</span>
+                </div>
+                <div className="h-1 w-full bg-stone-800 rounded-full overflow-hidden">
+                   <motion.div 
+                     initial={{ width: 0 }}
+                     whileInView={{ width: '98%' }}
+                     transition={{ duration: 1.5, delay: 0.5 }}
+                     className="h-full bg-emerald-500"
+                   />
+                </div>
+                <div className="flex justify-between mt-1 text-[10px] text-stone-500">
+                   <span>Strength</span>
+                   <span>98%</span>
+                </div>
+             </motion.div>
+          </div>
+          
         </div>
       </div>
     </section>

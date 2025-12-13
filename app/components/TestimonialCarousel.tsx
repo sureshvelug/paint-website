@@ -1,160 +1,79 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronLeft, ChevronRight, Quote } from 'lucide-react'
+import Image from 'next/image'
 
 export default function TestimonialCarousel() {
+  const [current, setCurrent] = useState(0)
+  
   const testimonials = [
     {
-      quote: "The finish is unlike any conventional paint — soft, pure, and alive. You can feel the air quality difference.",
-      author: "Ananya Desai",
-      role: "Interior Designer",
-      company: "Studio Essence",
-      rating: 5
+      quote: "It captures light in a way standard latex never could. The depth of color shifts beautifully throughout the day.",
+      author: "Sarah Jenkins",
+      role: "Principal Architect, AD100 Firm",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
+      project: "The Nordic Villa"
     },
     {
-      quote: "A paint that combines luxury, science, and conscience — truly a new era in sustainable design.",
-      author: "Rohit Mehra",
-      role: "Architect",
-      company: "Mehra Associates",
-      rating: 5
-    },
-    {
-      quote: "Outstanding quality and sustainability. Our hotel guests consistently compliment the wall textures and finishes.",
-      author: "Priya Sharma",
-      role: "Hotel Manager",
-      company: "The Grand Palace",
-      rating: 5
+      quote: "Finally, a sustainable product that doesn't ask us to compromise on finish quality or durability.",
+      author: "Marcus Chen",
+      role: "Interior Designer, Studio Zen",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80",
+      project: "Aesop Downtown"
     }
   ]
 
-  const [current, setCurrent] = useState(0)
-
-  const nextSlide = () => {
-    setCurrent((current + 1) % testimonials.length)
-  }
-
-  const prevSlide = () => {
-    setCurrent((current - 1 + testimonials.length) % testimonials.length)
-  }
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % testimonials.length)
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
 
   return (
-    <section className="py-16 px-4 bg-gray-50">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 mb-4 text-xs font-semibold tracking-wider uppercase bg-black/5 text-black rounded-full">
-            Client Testimonials
-          </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-black">
-            What Our Clients Say
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
-            Trusted by designers, architects, and homeowners across the country
-          </p>
-        </div>
-
-        {/* Main Carousel Container */}
-        <div className="relative">
-          {/* Testimonial Card */}
-          <div className="bg-white rounded-3xl p-8 md:p-12 border-2 border-gray-200 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] transition-all duration-300">
-            {/* Star Rating */}
-            <div className="flex justify-center gap-1 mb-6">
-              {[...Array(testimonials[current].rating)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-5 h-5 text-black fill-current"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                </svg>
-              ))}
-            </div>
-
-            {/* Quote Icon */}
-            <div className="flex justify-center mb-6">
-              <div className="w-14 h-14 rounded-full bg-black/5 flex items-center justify-center">
-                <svg className="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 32 32">
-                  <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2V8zm12 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2V8z" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Quote Text */}
-            <p className="text-lg md:text-xl text-gray-800 mb-8 leading-relaxed text-center max-w-3xl mx-auto font-light">
-              "{testimonials[current].quote}"
-            </p>
-
-            {/* Author Info */}
-            <div className="text-center border-t-2 border-gray-100 pt-6">
-              <div className="font-serif font-bold text-lg text-black mb-1">
-                {testimonials[current].author}
-              </div>
-              <div className="text-base text-gray-600 mb-1 font-light">
-                {testimonials[current].role}
-              </div>
-              <div className="text-sm text-gray-500 font-light">
-                {testimonials[current].company}
-              </div>
+    <section className="py-32 bg-stone-50 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12">
+        <div className="max-w-4xl mx-auto text-center">
+          
+          <div className="mb-12 flex justify-center">
+            <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center">
+               <Quote className="text-amber-700 w-8 h-8 fill-current" />
             </div>
           </div>
 
-          {/* Navigation Arrows - Desktop */}
-          <button
-            onClick={prevSlide}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-black items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-            aria-label="Previous testimonial"
-          >
-            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={nextSlide}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-black items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-            aria-label="Next testimonial"
-          >
-            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+            >
+              <h3 className="text-3xl md:text-5xl font-serif text-stone-900 leading-tight mb-12 italic">
+                {testimonials[current].quote}
+              </h3>
+              
+              <div className="flex flex-col items-center">
+                <div className="relative w-16 h-16 mb-4 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                  <Image src={testimonials[current].image} alt={testimonials[current].author} fill className="object-cover" />
+                </div>
+                <h4 className="text-lg font-bold text-stone-900">{testimonials[current].author}</h4>
+                <p className="text-stone-500 text-sm mb-2">{testimonials[current].role}</p>
+                <span className="text-xs font-medium text-amber-700 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full">
+                  Project: {testimonials[current].project}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Navigation Dots */}
-        <div className="flex justify-center items-center gap-3 mt-10">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrent(idx)}
-              aria-label={`Show testimonial ${idx + 1}`}
-              className={`transition-all duration-300 ${
-                current === idx 
-                  ? 'w-10 h-2.5 bg-black rounded-full' 
-                  : 'w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400 rounded-full'
-              }`}
-            />
-          ))}
-        </div>
+          {/* Controls */}
+          <div className="flex justify-center gap-4 mt-12">
+            <button onClick={prevSlide} className="p-4 rounded-full border border-stone-200 hover:bg-white hover:border-stone-400 transition-all">
+              <ChevronLeft className="w-5 h-5 text-stone-600" />
+            </button>
+            <button onClick={nextSlide} className="p-4 rounded-full border border-stone-200 hover:bg-white hover:border-stone-400 transition-all">
+              <ChevronRight className="w-5 h-5 text-stone-600" />
+            </button>
+          </div>
 
-        {/* Mobile Arrow Navigation */}
-        <div className="flex md:hidden justify-center gap-4 mt-8">
-          <button
-            onClick={prevSlide}
-            className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-black flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-            aria-label="Previous testimonial"
-          >
-            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={nextSlide}
-            className="w-12 h-12 rounded-full bg-white border-2 border-gray-200 hover:border-black flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-lg"
-            aria-label="Next testimonial"
-          >
-            <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
         </div>
       </div>
     </section>
