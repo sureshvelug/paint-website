@@ -41,7 +41,6 @@ interface StoryData {
   conclusion: ConclusionData;
 }
 
-// --- DATA ---
 const storyData: StoryData = {
   title: "Painting Re-Engineered. Beyond the Surface.",
   subtitle: "The Science of Lasting Beauty",
@@ -97,7 +96,7 @@ const ZigZagSection: React.FC<SectionData & { index: number }> = ({ heading, bod
   
   const animationVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut"  as const} },
   };
 
   return (

@@ -66,7 +66,7 @@ export default function SustainabilityMetrics() {
              </h2>
           </div>
           <div className="max-w-xs text-stone-500 font-light leading-relaxed text-sm md:text-base">
-             We believe luxury shouldn't cost the earth. Our formulations are rigorously tested to minimize environmental impact without compromising performance.
+             We believe luxury should not cost the earth. Our formulations are rigorously tested to minimize environmental impact without compromising performance.
           </div>
         </div>
 

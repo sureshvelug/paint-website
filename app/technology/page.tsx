@@ -227,7 +227,6 @@ export default function NanogradsPage() {
           </button>
         </FadeIn>
       </section>
-
     </main>
   );
 }

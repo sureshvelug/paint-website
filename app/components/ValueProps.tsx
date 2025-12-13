@@ -16,7 +16,7 @@ export default function ValueProps() {
               Science Meets <span className="italic text-stone-500">Substance</span>
             </h2>
             <p className="text-stone-600 text-lg font-light leading-relaxed">
-              We've engineered the compromise out of coating. Where cutting-edge nanotechnology 
+              We have engineered the compromise out of coating. Where cutting-edge nanotechnology 
               merges with environmental responsibility to create finishes that perform beautifully.
             </p>
           </div>
