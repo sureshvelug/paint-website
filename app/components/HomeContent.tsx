@@ -1,16 +1,13 @@
 'use client'
-
-import React from 'react'
 import Header from './Header'
 import Hero from './Hero'
 import ValueProps from './ValueProps'
 import TechSection from './TechSection'
 import ProjectsShowcase from './ProjectsShowcase'
 import SustainabilityMetrics from './SustainabilityMetrics'
-import InspirationGallery from './Insipiration' // Ensure filename matches
+import InspirationGallery from './Insipiration' 
 import TestimonialCarousel from './TestimonialCarousel'
 import CTASection from './CTASection'
-import Footer from './Footer'
 
 export default function HomeContent() {
   return (

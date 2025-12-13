@@ -4,32 +4,34 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 
 export default function InspirationGallery() {
-  const moods = [
+  const moods = [ 
     { 
-      // Organic Modern -> Warm wood, plants, natural light (Japandi style)
-      src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=80&w=600", 
+      // Organic Modern: Sharp, high-res beige living room with natural light
+      src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=100&w=2000", 
       title: "Organic Modern", 
       color: "Sage & Stone" 
     },
     { 
-      // Industrial Luxe -> Dark walls, concrete textures, sophisticated lighting
-      src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&q=80&w=600", 
+      // Industrial Luxe: High-contrast dark interior with sharp concrete details
+      src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=100&w=2000", 
       title: "Industrial Luxe", 
       color: "Charcoal" 
     },
     { 
-      // Minimalist Warmth -> Clean White/Beige (VERY Stable ID)
-      src: "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&q=80&w=600", 
+      // Minimalist Warmth: Ultra-clean white room with sharp shadows (High Quality)
+      src: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=100&w=2000", 
       title: "Minimalist Warmth", 
       color: "Alabaster" 
     },
     { 
-      // Earthen Clay -> Warm Terracotta/Brown (VERY Stable ID)
-      src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=600", 
+      // Earthen Clay: Rich, deep terracotta/warm clay wall texture
+      // Verified High-Availability ID
+      src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2000", 
       title: "Earthen Clay", 
       color: "Terracotta" 
     },
-  ]
+]
+
   
 
   return (
