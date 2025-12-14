@@ -54,9 +54,9 @@ export default function ProjectsShowcase() {
             Architecture <br /> & <span className="text-stone-500">Texture</span>
           </h2>
         </div>
-        <Link href="/projects" className="hidden md:flex items-center gap-2 text-white hover:text-amber-500 transition-colors">
+        <button className="hidden md:flex items-center gap-2 text-white hover:text-amber-500 transition-colors">
           View All Projects <ArrowUpRight className="w-4 h-4"/>
-        </Link>
+        </button>
       </div>
 
       {/* Navigation Buttons (Visible on Hover or Mobile) */}

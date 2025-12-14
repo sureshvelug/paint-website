@@ -15,7 +15,7 @@ export default function Header() {
   })
 
   const navLinks = [
-    { name: 'Collections', href: '/collections' },
+    // { name: 'Collections', href: '/collections' },
     { name: 'Technology', href: '/technology' },
     { name: 'story', href: '/story' },
   ]
@@ -47,8 +47,8 @@ export default function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden md:block">
-          <Link 
-            href="/contact" 
+          <button 
+            // href="/contact" 
             className={`px-6 py-2.5 text-xs font-bold uppercase tracking-widest border transition-all duration-300 ${
               isScrolled 
                 ? 'border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white' 
@@ -56,7 +56,7 @@ export default function Header() {
             }`}
           >
             Request Sample
-          </Link>
+          </button>
         </div>
 
         {/* Mobile Menu Toggle */}

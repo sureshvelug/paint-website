@@ -45,10 +45,10 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-5">
-            <Link href={primaryCTA.href} className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
+            <button className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
               <span className="tracking-wide text-sm font-medium text-white">{primaryCTA.text}</span>
               <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </button>
             <Link href={secondaryCTA.href} className="group flex items-center justify-center gap-3 border border-stone-300 px-8 py-4 rounded-none hover:border-stone-900 hover:bg-stone-50 transition-all duration-300">
               <span className="tracking-wide text-sm font-medium text-stone-900">{secondaryCTA.text}</span>
             </Link>
