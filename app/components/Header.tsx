@@ -15,7 +15,7 @@ export default function Header() {
   })
 
   const navLinks = [
-    // { name: 'Collections', href: '/collections' },
+    { name: 'Collections', href: '/collections' },
     { name: 'Technology', href: '/technology' },
     { name: 'story', href: '/story' },
   ]

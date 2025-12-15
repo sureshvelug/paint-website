@@ -17,7 +17,6 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
   return (
     <section className="relative h-screen w-full bg-stone-50 overflow-hidden flex flex-col lg:flex-row">
       
-      {/* LEFT: Editorial Content */}
       <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-20 z-10 relative">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -45,10 +44,10 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
 
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-5">
-            <button className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
+            <Link href={primaryCTA.href} className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
               <span className="tracking-wide text-sm font-medium text-white">{primaryCTA.text}</span>
               <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <Link href={secondaryCTA.href} className="group flex items-center justify-center gap-3 border border-stone-300 px-8 py-4 rounded-none hover:border-stone-900 hover:bg-stone-50 transition-all duration-300">
               <span className="tracking-wide text-sm font-medium text-stone-900">{secondaryCTA.text}</span>
             </Link>
@@ -94,3 +93,4 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
     </section>
   )
 }
+  
