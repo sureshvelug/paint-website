@@ -266,7 +266,7 @@ export default function LoopyColorApp() {
   };
 
   return (
-    // Forces off-white background on the entire container to prevent dark bleeds
+
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-amber-100 selection:text-amber-900">
       
       <AnimatePresence mode='wait'>
