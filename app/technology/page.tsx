@@ -18,14 +18,13 @@ const content = {
       title: "Nano-Shield™",
       body: "Buildings fail silently—through corrosion, carbonation, UV fatigue, and micro-cracks. Nano-Shield™ penetrates deep into the surface matrix, reinforcing it at a molecular level to stop damage before it starts.",
       tags: ["Stops Corrosion", "Resists Cracking", "UV Stable"],
-      // PEXELS 4K IMAGES
       images: [
-        // 1. Corrosion/Structure (Steel/Metal focus)
-        "https://images.pexels.com/photos/1493088/pexels-photo-1493088.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1", 
-        // 2. Cracking/Concrete (Smooth Texture focus)
-        "https://images.pexels.com/photos/176342/pexels-photo-176342.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
-        // 3. UV/Sun (Bright Exterior focus)
-        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+        // 1. Stops Corrosion: Rusted Metal with Blue Paint (Unsplash) - Matches "Paint Protection" context
+        "https://images.unsplash.com/photo-1594818379496-da1e345b0ded?q=80&w=2000&auto=format&fit=crop",
+        // 2. Resists Cracking: Smooth Flawless Concrete (Pexels) - Matches "Structural Strength"
+        "https://images.pexels.com/photos/5973972/pexels-photo-5973972.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        // 3. UV Stable: Sun hitting Glass Facade (Pexels) - Matches "UV Resistance"
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600"
       ]
     },
     {
@@ -33,14 +32,13 @@ const content = {
       title: "24/7 Germ Defense™",
       body: "Clean isn’t enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
       tags: ["Silver & Copper Ion", "Mold Prevention", "No Toxins"],
-      // PEXELS 4K IMAGES
       images: [
-        // 1. Silver/Ion (Abstract Micro/Science)
-        "https://images.pexels.com/photos/3735707/pexels-photo-3735707.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
-        // 2. Mold Prevention (Clean White Interior)
-        "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
-        // 3. No Toxins (Fresh Air/Nature concept)
-        "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+        // 1. Silver & Copper Ion: Abstract Blue Ion Matrix (Pexels) - Matches "Scientific/Molecular"
+        "https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        // 2. Mold Prevention: Clean White Hospital Room (Pexels) - Matches "Hygiene"
+        "https://images.pexels.com/photos/668298/pexels-photo-668298.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        // 3. No Toxins: Fresh Green Nature (Pexels) - Matches "Safe/Non-Toxic"
+        "https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg?auto=compress&cs=tinysrgb&w=1600"
       ]
     },
     {
@@ -48,14 +46,13 @@ const content = {
       title: "Smart Surface Intelligence™",
       body: "Why should surfaces only look good when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
       tags: ["Self-Cleaning", "-12°C Heat Drop", "Self-Healing"],
-      // PEXELS 4K IMAGES
       images: [
-        // 1. Self Cleaning (Water Droplets/Hydrophobic)
-        "https://images.pexels.com/photos/459301/pexels-photo-459301.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
-        // 2. Heat Drop (Bright Sun/Reflection)
-        "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
-        // 3. Self Healing (Smooth Abstract Surface)
-        "https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+        // 1. Self-Cleaning: Water Beading/Hydrophobic (Pixabay) - Matches "Self Cleaning"
+        "https://cdn.pixabay.com/photo/2015/09/05/22/49/drop-of-water-926372_1280.jpg",
+        // 2. Heat Drop: Sun Reflection (Pexels) - Matches "Heat Reduction"
+        "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        // 3. Self-Healing: Abstract Smooth Liquid Surface (Pixabay) - Matches "Self Healing"
+        "https://cdn.pixabay.com/photo/2016/12/29/18/44/background-1939128_1280.jpg"
       ]
     }
   ],
@@ -80,7 +77,7 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
   </motion.div>
 );
 
-// --- FEATURE ROW COMPONENT (Handles Rotation) ---
+// --- FEATURE ROW COMPONENT ---
 const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
   const [activeTagIndex, setActiveTagIndex] = useState(0);
   const isEven = index % 2 === 0;
@@ -108,9 +105,9 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
             <motion.div
               key={activeTagIndex}
               initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 1, scale: 1 } as const}
+              animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.2, ease: "easeInOut" }} // Slower, smoother crossfade
+              transition={{ duration: 1.2, ease: "easeInOut" }}
               className="absolute inset-0"
             >
               <Image 
@@ -118,21 +115,21 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
                 alt={feature.title} 
                 fill 
                 className="object-cover"
-                priority={index === 0} // Load first row immediately
+                priority={index === 0} 
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </motion.div>
           </AnimatePresence>
           
-          {/* Optional: Indicator Dots on Image */}
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
-            {feature.tags.map((_, dotIdx) => (
-              <div 
-                key={dotIdx}
-                className={`h-1.5 rounded-full transition-all duration-500 ${dotIdx === activeTagIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/50'}`}
-              />
-            ))}
+          {/* Progress Indicators */}
+          <div className="absolute bottom-6 left-6 right-6 flex gap-2 z-10">
+             {feature.tags.map((_, idx) => (
+               <div 
+                 key={idx} 
+                 className={`h-1 rounded-full transition-all duration-500 ${idx === activeTagIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
+               />
+             ))}
           </div>
         </div>
       </motion.div>
@@ -155,40 +152,29 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
             {feature.body}
           </p>
           
-          {/* TAGS - Bold Business Points */}
+          {/* TAGS - UPDATED STYLING */}
           <div className="flex flex-wrap gap-3">
             {feature.tags.map((tag: string, idx: number) => {
               const isActive = idx === activeTagIndex;
               return (
-                <motion.span 
+                <div
                   key={idx}
-                  animate={{ 
-                    backgroundColor: isActive ? "rgb(28 25 23)" : "rgba(250, 250, 249, 1)", // stone-900 vs stone-50
-                    color: isActive ? "#ffffff" : "#57534e", // white vs stone-600
-                    scale: isActive ? 1.05 : 1,
-                    borderColor: isActive ? "rgb(28 25 23)" : "rgb(229 231 235)"
-                  }}
                   className={`
-                    px-5 py-2.5 border rounded-sm text-xs uppercase tracking-widest cursor-default transition-all duration-500
+                    group flex items-center justify-center gap-3 border px-8 py-4 rounded-none transition-all duration-300 cursor-default
                     ${isActive 
-                      ? 'font-black border-stone-900 shadow-xl shadow-stone-200' // Extra Bold for active
-                      : 'font-semibold border-stone-200 opacity-60'
+                      ? 'border-stone-900 bg-stone-900 text-white shadow-lg' 
+                      : 'border-stone-300 hover:border-stone-900 hover:bg-stone-50 text-stone-900'
                     }
                   `}
                 >
-                  {tag}
-                </motion.span>
+                  <span className="tracking-wide text-sm font-medium">
+                    {tag}
+                  </span>
+                </div>
               );
             })}
           </div>
-          
-          <div className="mt-6 flex items-center gap-2 text-xs text-stone-400 font-medium italic">
-             <span className="relative flex h-2 w-2">
-               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
-            </span>
-            <span>Live visual demonstration: <span className="text-stone-600">{feature.tags[activeTagIndex]}</span></span>
-          </div>
+
         </FadeIn>
       </div>
     </div>
