@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Eco-Luxury Paints',
-    short_name: 'EcoLux Paints',
+    name: 'The Chemical Industry',
+    short_name: 'Chemical Industry',
     description: 'Nano-mineral sustainable premium paints',
     start_url: '/',
     display: 'standalone',

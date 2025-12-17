@@ -126,7 +126,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             
             <div className="text-center md:text-left">
-              <div className="font-serif text-xl text-stone-900 tracking-tight">Eco-Luxury Paints</div>
+              <div className="font-serif text-xl text-stone-900 tracking-tight">The Chemical Industry</div>
               <div className="text-xs text-stone-400 mt-1 font-light">
                 © {currentYear} All rights reserved. Made in India 🇮🇳
               </div>

@@ -12,28 +12,28 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Eco-Luxury Paints | Nano-Based Low VOC Premium Paints',
-    template: '%s | Eco-Luxury Paints'
+    default: 'The Chemical Industry | Nano-Based Low VOC Premium Paints',
+    template: '%s | The Chemical Industry'
   },
-  description: 'Discover nanotechnology-driven, VOC-free paints that combine luxury with environmental responsibility. Eco-Luxury Paints — redefining premium walls through science and sustainability.',
-  keywords: ['nano paint', 'low VOC paint India', 'eco paint', 'sustainable coatings', 'mineral paint', 'LEED certified paint', 'green chemistry coatings'],
-  authors: [{ name: 'Eco-Luxury Paints' }],
-  creator: 'Eco-Luxury Paints',
+  description: 'Discover nanotechnology-driven, VOC-free paints that combine luxury with environmental responsibility. The Chemical Industry — redefining premium walls through science and sustainability.',
+  keywords: ['nano paint', 'low VOC paint India', 'eco paint', 'sustainable coatings', 'mineral paint', 'LEED certified paint', 'green chemistry coatings', 'The Chemical Industry', 'chemical Industry'],
+  authors: [{ name: 'The Chemical Industry' }],
+  creator: 'The Chemical Industry',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: 'https://ecoluxurypaints.com',
-    siteName: 'Eco-Luxury Paints',
+    siteName: 'The Chemical Industry',
     images: [{
       url: '/og-image.jpg',
       width: 1200,
       height: 630,
-      alt: 'Eco-Luxury Paints - Nano-Based Sustainable Paints',
+      alt: 'The Chemical Industry - Nano-Based Sustainable Paints',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eco-Luxury Paints | Nano-Based Low VOC Premium Paints',
+    title: 'The Chemical Industry | Nano-Based Low VOC Premium Paints',
     description: 'Sustainable luxury paint with nano-mineral technology',
     images: ['/og-image.jpg'],
   },

@@ -4,7 +4,7 @@ import { getAllColors } from '../lib/data'
 
 export const metadata: Metadata = {
   title: 'Color Explorer - 200+ Nano-Mineral Paint Shades',
-  description: 'Explore our complete range of eco-luxury paint colors.',
+  description: 'Explore our complete range of the chemical industry paint colors.',
 }
 
 export default async function ColorsPage() {

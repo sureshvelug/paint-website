@@ -29,7 +29,7 @@ export default function Header() {
       <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
         <Link href="/" className="relative z-50">
           <span className={`font-serif text-2xl tracking-tighter font-bold ${isScrolled ? 'text-stone-900' : 'text-stone-900'}`}>
-            Nano Grands
+            The Chemical Industry
           </span>
         </Link>
 

@@ -33,11 +33,8 @@ const content = {
       body: "Clean isn’t enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
       tags: ["Silver & Copper Ion", "Mold Prevention", "No Toxins"],
       images: [
-        // 1. Silver & Copper Ion: Abstract Blue Ion Matrix (Pexels) - Matches "Scientific/Molecular"
         "https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        // 2. Mold Prevention: Clean White Hospital Room (Pexels) - Matches "Hygiene"
         "https://images.pexels.com/photos/668298/pexels-photo-668298.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        // 3. No Toxins: Fresh Green Nature (Pexels) - Matches "Safe/Non-Toxic"
         "https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg?auto=compress&cs=tinysrgb&w=1600"
       ]
     },
@@ -61,7 +58,7 @@ const content = {
   ]
 };
 
-// --- ANIMATION COMPONENTS ---
+
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
