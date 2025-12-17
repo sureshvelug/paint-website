@@ -44,22 +44,19 @@ const content = {
     {
       category: "Self-Preserving",
       title: "Smart Surface Intelligence™",
-      body: "Why should surfaces only look good when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
+      body: "Why should surfaces only look good. when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
       tags: ["Self-Cleaning", "-12°C Heat Drop", "Self-Healing"],
       images: [
-        // 1. Self-Cleaning: Water Beading/Hydrophobic (Pixabay) - Matches "Self Cleaning"
         "https://cdn.pixabay.com/photo/2015/09/05/22/49/drop-of-water-926372_1280.jpg",
-        // 2. Heat Drop: Sun Reflection (Pexels) - Matches "Heat Reduction"
         "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        // 3. Self-Healing: Abstract Smooth Liquid Surface (Pixabay) - Matches "Self Healing"
         "https://cdn.pixabay.com/photo/2016/12/29/18/44/background-1939128_1280.jpg"
       ]
     }
   ],
   specs: [
     { label: "Antimicrobial", value: "24/7", desc: "Continuous defense", icon: ShieldCheck },
-    { label: "Heat Reduction", value: "12°C", desc: "Surface temp drop", icon: ThermometerSun },
-    { label: "Durability", value: "10Yr+", desc: "Structural warranty", icon: CheckCircle2 },
+    { label: "Heat Reduction", value: "15°C", desc: "Surface temp drop", icon: ThermometerSun },
+    { label: "Durability", value: "15Yr+", desc: "Structural warranty", icon: CheckCircle2 },
     { label: "Safety", value: "0%", desc: "Toxic emissions", icon: Wind },
   ]
 };
