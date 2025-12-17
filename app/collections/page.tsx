@@ -486,8 +486,6 @@ const ProductView = ({ family, onBack }) => {
 
            </motion.div>
         </div>
-
-        {/* RIGHT: HERO IMAGE */}
         <div className="w-full lg:w-1/2 min-h-[50vh] lg:h-auto bg-stone-200 relative overflow-hidden">
              <AnimatePresence mode='wait'>
                  <motion.img 

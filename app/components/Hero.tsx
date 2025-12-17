@@ -36,13 +36,10 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
           <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-[1.1] mb-8">
             {title}
           </h1>
-
-          {/* Subtitle - Clean Sans */}
           <p className="text-lg md:text-xl text-stone-600 leading-relaxed mb-10 max-w-md font-light">
             {subtitle}
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-5">
             <Link href={primaryCTA.href} className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
               <span className="tracking-wide text-sm font-medium text-white">{primaryCTA.text}</span>

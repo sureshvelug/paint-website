@@ -37,45 +37,47 @@ interface ConclusionData {
 interface StoryData {
   title: string;
   subtitle: string;
+  heroTag: string;
   sections: SectionData[];
   conclusion: ConclusionData;
 }
 
 const storyData: StoryData = {
-  title: "Painting Re-Engineered. Beyond the Surface.",
-  subtitle: "The Science of Lasting Beauty",
+  heroTag: "Why The Chemical Industry Exists",
+  title: "Real Science. Real Life.",
+  subtitle: "True material innovation should be experienced, not hidden. We exist to bring molecular-level science into everyday life.",
   sections: [
     {
-      heading: "The Problem We Saw: Ending the Consumer Compromise",
-      body: `For decades, consumers faced a choice. Premium products prioritized appearance over longevity. Functional products sacrificed aesthetics. We rejected this compromise.`,
+      heading: "Two Technologists. One Truth.",
+      body: `NANOGRADS was founded by two nanotechnologists whose careers took them into different worlds. One mastered material behavior at the atomic and nanoscale level through deep R&D. The other entered the paint and coatings industry, where a hard truth emerged: **The market was driven by marketing—not material intelligence.**`,
       points: [
-        { title: "The Aesthetics Trap", description: "Beautiful finishes that faded, chipped, and failed within a few seasons." },
-        { title: "The Durability Gap", description: "Functional paints that offered protection but lacked visual refinement." },
-        { title: "The Eco Sacrifice", description: "Sustainable options that compromised on longevity and visual quality." },
+        { title: "The Luxury Gap", description: "Luxury brands sold appearance without durability." },
+        { title: "The Function Gap", description: "Functional products ignored aesthetics." },
+        { title: "The Sustainable Gap", description: "Sustainable solutions sacrificed performance." },
       ],
-      // Verified Image: Weathered Texture / The Problem
-      image: { src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2000&auto=format&fit=crop", position: 'right' },
+
+      image: { src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2000", position: 'right' },
     },
     {
-      heading: "Where Innovation Meets Purpose: The Molecular Revolution",
-      body: `Our founders met as materials science classmates, united by a passion for molecular engineering. True performance doesn't happen with surface-level additives; it happens at the **molecular level**.`,
+      heading: "Ending the Consumer Compromise",
+      body: `For too long, people had to choose between beauty or durability, sustainability or performance. TCI was built to eliminate these false choices. By engineering materials at the nanoscale, we integrate eco‑responsibility, aesthetic elegance, and structural endurance into a single solution. **This is not improvement at the surface level. This is transformation from within.**`,
       points: [
-        { title: "Aerospace Heritage", description: "Technology born in the world's most demanding environments, now accessible to everyone." },
-        { title: "Material Intelligence™", description: "We utilize cutting-edge **nanotechnology** to transform the structure of our coatings from within." },
+        { title: "No More Trade-Offs", description: "We reject the choice between function and refinement." },
+        { title: "Molecular Transformation", description: "Engineering materials at the nanoscale to solve problems before they start." },
       ],
-      // Verified Image: Scientist in Lab / The Science
-      image: { src: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2000&auto=format&fit=crop", position: 'left' },
+      // Verified Image: Clean, minimalist interior (The Result)
+      image: { src: "https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000", position: 'left' },
     },
     {
-      heading: "The Performance Promise",
-      body: `We don't sell paint; we deliver **Extended Longevity** and **Brilliant Color Retention** engineered for the modern world. This is the new definition of luxury: **Intelligence, Durability, and Responsibility** united.`,
+      heading: "Material Intelligence™",
+      body: `Our breakthrough lies in Material Intelligence™—a proprietary approach that redesigns how materials behave at the molecular level. Luxury is not a finish. Luxury is not a promise. **Luxury is intelligence, responsibility, and endurance.**`,
       table: [
-        { innovation: "Color Retention", oldWay: "Pigments are surface-level, quickly fading from UV damage.", nanogradsWay: "Colors are **molecularly locked**, maintaining vibrancy for years against sun and weather." },
-        { innovation: "Surface Protection", oldWay: "Temporary coatings that scratch and stain easily.", nanogradsWay: "**Advanced Surface Protection** actively resists scratches, stains, and environmental wear." },
-        { innovation: "Sustainability", oldWay: "Compromise on durability, leading to constant re-painting and waste.", nanogradsWay: "**Sustainable Intelligence** ensures eco-responsible formulations deliver maximum longevity." },
+        { innovation: "Color Brilliance", oldWay: "Surface-level pigments that fade.", nanogradsWay: "**Long-lasting color brilliance** locked at the molecular level." },
+        { innovation: "Durability", oldWay: "Vulnerable to wear and weather.", nanogradsWay: "**Resistance to wear, weather, and time** built into the matrix." },
+        { innovation: "Performance", oldWay: "Static material properties.", nanogradsWay: "**Smarter material performance** integrated into the structure." },
       ],
-      // Verified Image: Modern Architecture / The Promise
-      image: { src: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2000&auto=format&fit=crop", position: 'right' },
+      // Verified Image: Abstract Nanostructure/Dark Tech
+      image: { src: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&q=80&w=2000", position: 'right' },
     },
   ],
   conclusion: {
@@ -96,7 +98,7 @@ const ZigZagSection: React.FC<SectionData & { index: number }> = ({ heading, bod
   
   const animationVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut"  as const} },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" as const } },
   };
 
   return (
@@ -150,7 +152,7 @@ const ZigZagSection: React.FC<SectionData & { index: number }> = ({ heading, bod
                   <tr>
                     <th className="px-4 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider">Feature</th>
                     <th className="px-4 py-3 text-left text-xs font-bold text-stone-500 uppercase tracking-wider hidden sm:table-cell">Standard</th>
-                    <th className="px-4 py-3 text-left text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-50/60">Our Technology</th>
+                    <th className="px-4 py-3 text-left text-xs font-bold text-amber-800 uppercase tracking-wider bg-amber-50/60">Material Intelligence™</th>
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-stone-200">
@@ -189,7 +191,7 @@ export default function OurStoryPage() {
           transition={{ duration: 0.8 }}
         >
           <span className="inline-block py-1 px-3 rounded-full bg-amber-50 text-amber-800 text-xs font-bold uppercase tracking-widest mb-8">
-            Our Story
+            {storyData.heroTag}
           </span>
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-serif font-medium text-stone-900 tracking-tight mb-6 leading-tight">
             {storyData.title}

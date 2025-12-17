@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ShieldCheck, ThermometerSun, Wind } from 'lucide-react';
 
 // --- CONTENT DATA ---
@@ -14,32 +14,53 @@ const content = {
   },
   features: [
     {
-      category: "Biological Defense",
-      title: "Antimicrobial & Structural",
-      body: "Surfaces that neutralize pathogens instantly. Our Silver & Copper-Ion matrix provides broad-spectrum defense, while our Anti-Carbonation barrier prevents deep structural decay.",
-      tags: ["Silver-Ion Shield", "Contact-Kill", "Anti-Carbonation"],
-      // Verified Unsplash ID: Science Lab
-      image: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=2000&auto=format&fit=crop"
+      category: "Structural Strength",
+      title: "Nano-Shield™",
+      body: "Buildings fail silently—through corrosion, carbonation, UV fatigue, and micro-cracks. Nano-Shield™ penetrates deep into the surface matrix, reinforcing it at a molecular level to stop damage before it starts.",
+      tags: ["Stops Corrosion", "Resists Cracking", "UV Stable"],
+      // PEXELS 4K IMAGES
+      images: [
+        // 1. Corrosion/Structure (Steel/Metal focus)
+        "https://images.pexels.com/photos/1493088/pexels-photo-1493088.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1", 
+        // 2. Cracking/Concrete (Smooth Texture focus)
+        "https://images.pexels.com/photos/176342/pexels-photo-176342.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
+        // 3. UV/Sun (Bright Exterior focus)
+        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+      ]
     },
     {
-      category: "Climate Engineering",
-      title: "Active Cooling Matrix",
-      body: "Engineered for extremes. Our IR/UV reflection technology drops surface temperatures by 6-12°C, reducing HVAC loads while resisting thermal cracking.",
-      tags: ["-12°C Heat Drop", "Thermal Elasticity", "Impact Grid"],
-      // Verified Unsplash ID: Minimalist White Architecture
-      image: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?q=80&w=2000&auto=format&fit=crop"
+      category: "Healthier Air",
+      title: "24/7 Germ Defense™",
+      body: "Clean isn’t enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
+      tags: ["Silver & Copper Ion", "Mold Prevention", "No Toxins"],
+      // PEXELS 4K IMAGES
+      images: [
+        // 1. Silver/Ion (Abstract Micro/Science)
+        "https://images.pexels.com/photos/3735707/pexels-photo-3735707.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
+        // 2. Mold Prevention (Clean White Interior)
+        "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
+        // 3. No Toxins (Fresh Air/Nature concept)
+        "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+      ]
     },
     {
-      category: "Aesthetic Stability",
-      title: "Living Beauty",
-      body: "Luxury that breathes. Our Vapor-Permeable structure prevents blistering and mold. With Air Crock Resistance, colors stay vibrant and pristine for decades.",
-      tags: ["No Fading", "Breathable", "Ultra-Low VOC"],
-      // Verified Unsplash ID: Luxury Beige Interior
-      image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=2000&auto=format&fit=crop"
+      category: "Self-Preserving",
+      title: "Smart Surface Intelligence™",
+      body: "Why should surfaces only look good when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
+      tags: ["Self-Cleaning", "-12°C Heat Drop", "Self-Healing"],
+      // PEXELS 4K IMAGES
+      images: [
+        // 1. Self Cleaning (Water Droplets/Hydrophobic)
+        "https://images.pexels.com/photos/459301/pexels-photo-459301.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
+        // 2. Heat Drop (Bright Sun/Reflection)
+        "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1",
+        // 3. Self Healing (Smooth Abstract Surface)
+        "https://images.pexels.com/photos/5011647/pexels-photo-5011647.jpeg?auto=compress&cs=tinysrgb&w=3840&h=2160&dpr=1"
+      ]
     }
   ],
   specs: [
-    { label: "Antimicrobial", value: "99.9%", desc: "Pathogen reduction", icon: ShieldCheck },
+    { label: "Antimicrobial", value: "24/7", desc: "Continuous defense", icon: ShieldCheck },
     { label: "Heat Reduction", value: "12°C", desc: "Surface temp drop", icon: ThermometerSun },
     { label: "Durability", value: "10Yr+", desc: "Structural warranty", icon: CheckCircle2 },
     { label: "Safety", value: "0%", desc: "Toxic emissions", icon: Wind },
@@ -58,6 +79,121 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
     {children}
   </motion.div>
 );
+
+// --- FEATURE ROW COMPONENT (Handles Rotation) ---
+const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
+  const [activeTagIndex, setActiveTagIndex] = useState(0);
+  const isEven = index % 2 === 0;
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveTagIndex((prev) => (prev + 1) % feature.tags.length);
+    }, 3000); // Change every 3 seconds
+    return () => clearInterval(timer);
+  }, [feature.tags.length]);
+
+  return (
+    <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}>
+      
+      {/* Image Side - Animated Slider */}
+      <motion.div 
+        initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="w-full lg:w-1/2"
+      >
+        <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-2xl shadow-stone-200/50 group bg-stone-100">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTagIndex}
+              initial={{ opacity: 0, scale: 1.05 }}
+              animate={{ opacity: 1, scale: 1 } as const}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.2, ease: "easeInOut" }} // Slower, smoother crossfade
+              className="absolute inset-0"
+            >
+              <Image 
+                src={feature.images[activeTagIndex]} 
+                alt={feature.title} 
+                fill 
+                className="object-cover"
+                priority={index === 0} // Load first row immediately
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+            </motion.div>
+          </AnimatePresence>
+          
+          {/* Optional: Indicator Dots on Image */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+            {feature.tags.map((_, dotIdx) => (
+              <div 
+                key={dotIdx}
+                className={`h-1.5 rounded-full transition-all duration-500 ${dotIdx === activeTagIndex ? 'w-6 bg-white' : 'w-1.5 bg-white/50'}`}
+              />
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Text Side */}
+      <div className="w-full lg:w-1/2">
+        <FadeIn delay={0.2}>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="h-[1px] w-8 bg-indigo-600/30"></span>
+            <span className="text-indigo-700 font-bold tracking-widest uppercase text-xs">
+              {feature.category}
+            </span>
+          </div>
+          
+          <h2 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-6 leading-tight">
+            {feature.title}
+          </h2>
+          
+          <p className="text-lg text-stone-600 leading-relaxed mb-8 font-light max-w-md">
+            {feature.body}
+          </p>
+          
+          {/* TAGS - Bold Business Points */}
+          <div className="flex flex-wrap gap-3">
+            {feature.tags.map((tag: string, idx: number) => {
+              const isActive = idx === activeTagIndex;
+              return (
+                <motion.span 
+                  key={idx}
+                  animate={{ 
+                    backgroundColor: isActive ? "rgb(28 25 23)" : "rgba(250, 250, 249, 1)", // stone-900 vs stone-50
+                    color: isActive ? "#ffffff" : "#57534e", // white vs stone-600
+                    scale: isActive ? 1.05 : 1,
+                    borderColor: isActive ? "rgb(28 25 23)" : "rgb(229 231 235)"
+                  }}
+                  className={`
+                    px-5 py-2.5 border rounded-sm text-xs uppercase tracking-widest cursor-default transition-all duration-500
+                    ${isActive 
+                      ? 'font-black border-stone-900 shadow-xl shadow-stone-200' // Extra Bold for active
+                      : 'font-semibold border-stone-200 opacity-60'
+                    }
+                  `}
+                >
+                  {tag}
+                </motion.span>
+              );
+            })}
+          </div>
+          
+          <div className="mt-6 flex items-center gap-2 text-xs text-stone-400 font-medium italic">
+             <span className="relative flex h-2 w-2">
+               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+               <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
+            </span>
+            <span>Live visual demonstration: <span className="text-stone-600">{feature.tags[activeTagIndex]}</span></span>
+          </div>
+        </FadeIn>
+      </div>
+    </div>
+  );
+};
 
 export default function NanogradsPage() {
   return (
@@ -114,63 +250,11 @@ export default function NanogradsPage() {
         </div>
       </section>
 
-      {/* 3. MAIN FEATURES */}
+      {/* 3. MAIN FEATURES - Now with Auto-Rotation */}
       <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto space-y-32">
-        {content.features.map((feature, i) => {
-          const isEven = i % 2 === 0;
-          return (
-            <div key={i} className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}>
-              
-              {/* Image Side */}
-              <motion.div 
-                initial={{ opacity: 0, x: isEven ? -50 : 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="w-full lg:w-1/2"
-              >
-                <div className="relative aspect-[4/3] rounded-sm overflow-hidden shadow-2xl shadow-stone-200/50 group">
-                  <Image 
-                    src={feature.image} 
-                    alt={feature.title} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
-              </motion.div>
-
-              {/* Text Side */}
-              <div className="w-full lg:w-1/2">
-                <FadeIn delay={0.2}>
-                  <div className="flex items-center gap-3 mb-6">
-                    <span className="h-[1px] w-8 bg-indigo-600/30"></span>
-                    <span className="text-indigo-700 font-bold tracking-widest uppercase text-xs">
-                      {feature.category}
-                    </span>
-                  </div>
-                  
-                  <h2 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-6 leading-tight">
-                    {feature.title}
-                  </h2>
-                  
-                  <p className="text-lg text-stone-600 leading-relaxed mb-8 font-light max-w-md">
-                    {feature.body}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-3">
-                    {feature.tags.map((tag, idx) => (
-                      <span key={idx} className="px-4 py-2 bg-stone-50 border border-stone-200 rounded-full text-xs font-bold uppercase tracking-wide text-stone-600">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </FadeIn>
-              </div>
-            </div>
-          );
-        })}
+        {content.features.map((feature, i) => (
+          <FeatureRow key={i} feature={feature} index={i} />
+        ))}
       </section>
 
       {/* 4. THE DIFFERENCE (Bento Grid) */}
