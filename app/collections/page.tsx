@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, ArrowLeft, ShieldCheck, Leaf } from 'lucide-react';
+import { ArrowRight, ArrowLeft, CheckCircle2, Star, Droplets, Sun, Shield } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -11,504 +11,559 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// --- 1. RELIABLE PEXELS ASSETS ---
-const ASSETS = {
-  // Color Families
-  reds: "https://images.pexels.com/photos/2227832/pexels-photo-2227832.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  oranges: "https://images.pexels.com/photos/7004697/pexels-photo-7004697.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  yellows: "https://images.pexels.com/photos/5998138/pexels-photo-5998138.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  greens: "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // NEW
-  blues: "https://images.pexels.com/photos/6412845/pexels-photo-6412845.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  violets: "https://images.pexels.com/photos/7135037/pexels-photo-7135037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  neutrals: "https://images.pexels.com/photos/3965521/pexels-photo-3965521.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  browns: "https://images.pexels.com/photos/1005058/pexels-photo-1005058.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  blacks: "https://images.pexels.com/photos/1672637/pexels-photo-1672637.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // NEW
-  whites: "https://images.pexels.com/photos/683929/pexels-photo-683929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  additional: "https://images.pexels.com/photos/3052725/pexels-photo-3052725.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", // NEW
-
-  // Gallery Extras
-  texture: "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  interior_1: "https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-  interior_2: "https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+// --- 1. DATA: BRANDS & CONTENT ---
+const BRAND_CONTENT = {
+  ceramic: {
+    id: 'ceramic',
+    name: 'Ceramic Society™',
+    tagline: 'Soft walls. Calm spaces. Timeless elegance.',
+    finishes: [
+      {
+        id: 'matt',
+        name: 'Matt',
+        label: 'Matt',
+        title: 'Ceramic Society™ Matt Finish',
+        price: 85,
+        description: 'A premium matt interior paint with a smooth, refined surface that absorbs light beautifully.',
+        details: {
+          whatItDoes: [
+            'Creates a smooth, even matt finish',
+            'Delivers excellent hiding and uniform coverage',
+            'Reduces glare for relaxed, comfortable spaces',
+            'Early stain resistance',
+            'Area Coverage: 100–125 sq.ft per liter'
+          ],
+          whyDifferent: [
+            'Nano-pigments for exceptional opacity',
+            'Anti-bacterial property with material intelligence',
+            'Mineral-inspired colours with depth and softness',
+            'Ultra-low VOC formulation — healthier indoor air',
+            'Designed for eco-friendly homes & green buildings'
+          ],
+          specs: {
+            Finish: 'Matt',
+            BestFor: 'Living rooms · Bedrooms · Ceilings',
+            Coverage: '110–140 sq.ft / L / coat',
+            Coats: '2',
+            DryTime: 'Touch: 30 min / Recoat: 4 hrs',
+            Warranty: '7-year performance'
+          }
+        }
+      },
+      {
+        id: 'gloss',
+        name: 'High Gloss',
+        label: 'High Gloss',
+        title: 'Ceramic Society™ Glossy Finish',
+        price: 92,
+        description: 'A rich, reflective interior paint that brings colour to life. Crafted for bold interiors.',
+        details: {
+          whatItDoes: [
+            'Delivers a smooth, luminous glossy finish',
+            'Enhances colour richness and surface clarity',
+            'Resists stains and is easy to clean',
+            'Resist furniture marks and scratches',
+            'Area Coverage: 110–130 sq.ft per liter'
+          ],
+          whyDifferent: [
+            'Nano-resin technology for enhanced durability',
+            'High colour saturation with long-lasting shine',
+            'Ultra Low-VOC, eco-responsible formulation',
+            'Suitable for modern, sustainable interiors'
+          ],
+          specs: {
+            Finish: 'Glossy',
+            BestFor: 'Accent walls · Dining areas',
+            Coverage: '100–130 sq.ft / L / coat',
+            Coats: '2',
+            DryTime: 'Touch: 30 min / Recoat: 4 hrs',
+            Warranty: '8-year performance'
+          }
+        }
+      }
+    ]
+  },
+  ellora: {
+    id: 'ellora',
+    name: 'Ellora by Elements',
+    tagline: 'The purest expression of interior luxury.',
+    finishes: [
+      {
+        id: 'matt',
+        name: 'Matt',
+        label: 'Matt',
+        title: 'Ellora Matt Expression',
+        price: 110,
+        description: 'Luxury that does not announce itself. Soft, velvety, and light-absorbing.',
+        details: {
+          whatItDoes: [
+            'Creates refined surfaces with natural depth',
+            'Allows colour to appear richer and calmer',
+            'Delivers durability without aggressive chemistry',
+            'Preserves indoor air quality'
+          ],
+          whyDifferent: [
+            'Mineral-first foundation, replacing heavy synthetics',
+            'Nano-engineered particles that refine smoothness',
+            'Intelligent film architecture',
+            'VOC LEVELS: Beyond comparison'
+          ],
+          specs: {
+            Finish: 'Soft, velvety',
+            BestFor: 'Calm interiors',
+            Coverage: '120–140 sq.ft / L / coat',
+            Coats: '2',
+            DryTime: 'Touch: 1 hr / Recoat: 4 hrs',
+            Warranty: 'Lifetime Luxury'
+          }
+        }
+      },
+      {
+        id: 'satin',
+        name: 'Satin / Silky',
+        label: 'Satin',
+        title: 'Ellora Satin Expression',
+        price: 115,
+        description: 'Smooth, tactile, gently luminous. Feels like silk on the wall.',
+        details: {
+          whatItDoes: [
+            'Gently luminous without glare',
+            'Feels like silk on the wall',
+            'Furniture mark resistance',
+            'Preserves indoor air quality'
+          ],
+          whyDifferent: [
+            'Engineered with Material Intelligence™',
+            'Nano-engineered particles for consistency',
+            'Redefines the category of luxury paints'
+          ],
+          specs: {
+            Finish: 'Smooth, tactile',
+            BestFor: 'Sophisticated living areas',
+            Coverage: '120–140 sq.ft / L / coat',
+            Coats: '2',
+            DryTime: 'Touch: 1 hr / Recoat: 4 hrs',
+            Warranty: 'Lifetime Luxury'
+          }
+        }
+      },
+      {
+        id: 'gloss',
+        name: 'High Gloss',
+        label: 'High Gloss',
+        title: 'Ellora Gloss Expression',
+        price: 118,
+        description: 'Deep colour, precise reflection. For deliberate architectural statements.',
+        details: {
+          whatItDoes: [
+            'Delivers deep colour saturation',
+            'Provides precise reflection',
+            'Superior durability',
+            'Maintains breathable film architecture'
+          ],
+          whyDifferent: [
+            'Material Intelligence™ replaces heavy synthetics',
+            'Nano-engineered for mirror-like consistency',
+            'Redefines luxury gloss'
+          ],
+          specs: {
+            Finish: 'Deep colour, precise reflection',
+            BestFor: 'Architectural statements',
+            Coverage: '120–140 sq.ft / L / coat',
+            Coats: '2',
+            DryTime: 'Touch: 1 hr / Recoat: 4 hrs',
+            Warranty: 'Lifetime Luxury'
+          }
+        }
+      }
+    ]
+  },
+  minera: {
+    id: 'minera',
+    name: 'Minera™ Exterior',
+    tagline: 'Graphene & quantum intelligence for enduring exteriors.',
+    finishes: [
+      {
+        id: 'x5',
+        name: 'Minera X5',
+        label: 'X5',
+        title: 'Minera X5 (Standard)',
+        price: 95,
+        description: 'Reliable protection. Intelligent materials. Graphene-enhanced mineral system.',
+        details: {
+          whatItDoes: [
+            'Creates stronger, more cohesive films',
+            'Intelligent UV resistance',
+            'Enhanced hydrophobic protection',
+            'Superior crack-bridging flexibility'
+          ],
+          whyDifferent: [
+            'Graphene for strength and longevity',
+            'Quantum dots for intelligent UV resistance',
+            'Mineral-first formulation',
+            'Eco-friendly, ultra-low VOC'
+          ],
+          specs: {
+            Warranty: '5-Year Performance',
+            BestFor: 'Residential exteriors',
+            Coverage: '50-60 sq.ft / L / 2 coats',
+            Coats: '2-3',
+            DryTime: 'Recoat: 4-6 hrs',
+            VOC: 'Low VOC (Eco-friendly)'
+          }
+        }
+      },
+      {
+        id: 'x10',
+        name: 'Minera X10',
+        label: 'X10',
+        title: 'Minera X10 (Advanced)',
+        price: 105,
+        description: 'Advanced weather intelligence. Upgraded graphene–quantum dot system.',
+        details: {
+          whatItDoes: [
+            'Superior water repellence (low DPUR)',
+            'Enhanced flexibility resists micro-cracks',
+            'Strong colour retention under intense sun',
+            'Outperforms premium market leaders'
+          ],
+          whyDifferent: [
+            'Graphene strength with quantum-dot UV modulation',
+            'Significantly better DPUR',
+            'Breathable yet protective architecture'
+          ],
+          specs: {
+            Warranty: '10-Year Performance',
+            BestFor: 'Villas, high-rainfall',
+            Coverage: '45-55 sq.ft / L / 2 coats',
+            Coats: '2-3',
+            DryTime: 'Recoat: 4-6 hrs',
+            VOC: 'Ultra-low'
+          }
+        }
+      },
+      {
+        id: 'x20',
+        name: 'Minera X20',
+        label: 'X20',
+        title: 'Minera X20 (Extreme)',
+        price: 125,
+        description: 'Extreme resilience. Material intelligence perfected for harsh environments.',
+        details: {
+          whatItDoes: [
+            'High-density graphene–quantum nano architecture',
+            'Exceptional UV stability',
+            'Maximum hydrophobicity',
+            'Outstanding crack-bridging'
+          ],
+          whyDifferent: [
+            'Performance beyond conventional systems',
+            'Superior resistance to algae & pollution',
+            'Perfect for LEED VOC levels'
+          ],
+          specs: {
+            Warranty: '20-Year Performance',
+            BestFor: 'Coastal zones, extreme climates',
+            Coverage: '40-50 sq.ft / L / 2 coats',
+            Coats: '3',
+            DryTime: 'Recoat: 4-6 hrs',
+            VOC: 'LEED Compliant'
+          }
+        }
+      }
+    ]
+  }
 };
 
-// --- Data ---
-const COLOR_DATA = [
-  // 1. REDS
-  {
-    id: 'reds',
-    name: '1. Reds & Terracottas',
-    subtitle: 'The Warm Soul',
-    hex: '#B55233',
-    img: ASSETS.reds,
-    description: 'Inspired by kiln-fired clay, heritage walls, and sacred vermilion.',
-    shades: [
-      { name: 'Terracotta Flame', hex: '#B55233' },
-      { name: 'Jaipur Rouge', hex: '#A33E2A' },
-      { name: 'Desert Rose', hex: '#C1695B' },
-      { name: 'Clay Ember', hex: '#B15A3D' },
-      { name: 'Vermilion Echo', hex: '#E34234' },
-      { name: 'Coral Chant', hex: '#E27D60' },
-      { name: 'Heartfire', hex: '#8B1A1A' },
-      { name: 'Reef Bloom', hex: '#FF7F6A' },
-    ]
-  },
-  // 2. ORANGES
-  {
-    id: 'oranges',
-    name: '2. Oranges & Ambers',
-    subtitle: 'The Sun’s Legacy',
-    hex: '#E27A1A',
-    img: ASSETS.oranges,
-    description: 'Festive marigolds, sacred fires, and polished copper craftsmanship.',
-    shades: [
-      { name: 'Marigold Muse', hex: '#E27A1A' },
-      { name: 'Burnt Saffron', hex: '#CC5803' },
-      { name: 'Sunset Resin', hex: '#B85B1F' },
-      { name: 'Copper Verse', hex: '#B66B33' },
-    ]
-  },
-  // 3. YELLOWS
-  {
-    id: 'yellows',
-    name: '3. Yellows & Ochres',
-    subtitle: 'Fields of Light',
-    hex: '#E8B923',
-    img: ASSETS.yellows,
-    description: 'Morning joy, fading desert warmth, and turmeric festivities.',
-    shades: [
-      { name: 'Canary Song', hex: '#FFD44D' },
-      { name: 'Golden Dusk', hex: '#E2B144' },
-      { name: 'Turmeric Aura', hex: '#E8B923' },
-      { name: 'Mango Spirit', hex: '#FFA62B' },
-      { name: 'Saharan Glow', hex: '#FFD77F' },
-      { name: 'First Light', hex: '#FFA24A' },
-      { name: 'Land of Dry', hex: '#FFD77F' },
-    ]
-  },
-  // 4. GREENS (Added)
-  {
-    id: 'greens',
-    name: '4. Greens & Olives',
-    subtitle: 'The Earth’s Breath',
-    hex: '#6B705C',
-    img: ASSETS.greens,
-    description: 'Forest canopies, sacred groves, and monsoon rebirth.',
-    shades: [
-      { name: 'Sage Silence', hex: '#8A9A5B' },
-      { name: 'Olive Branch', hex: '#6B705C' },
-      { name: 'Forest Breath', hex: '#2E4A3D' },
-      { name: 'Moss Veil', hex: '#8A8F7F' },
-      { name: 'Eucalyptus Haze', hex: '#9DA9A0' },
-      { name: 'Deep Jungle', hex: '#1B2E25' },
-    ]
-  },
-  // 5. BLUES
-  {
-    id: 'blues',
-    name: '5. Blues',
-    subtitle: 'The Horizon Line',
-    hex: '#264B8A',
-    img: ASSETS.blues,
-    description: 'From indigo dyes to ocean depths and modern steel skies.',
-    shades: [
-      { name: 'Sky Fragment', hex: '#A8C4E3' },
-      { name: 'Indigo Verse', hex: '#264B8A' },
-      { name: 'Cerulean Drift', hex: '#6BAED6' },
-      { name: 'River Mist', hex: '#7DAFC4' },
-      { name: 'Deep Harbour', hex: '#234E70' },
-      { name: 'Steel Horizon', hex: '#6C7A89' },
-      { name: 'Peacock Plume', hex: '#0F52BA' },
-      { name: 'Powder Sky', hex: '#C3DAE3' },
-      { name: 'Deep Imprint', hex: '#1A1A2E' },
-      { name: 'Urban Mist', hex: '#708090' },
-      { name: 'True Steel', hex: '#4682B4' },
-      { name: 'Frozen Silence', hex: '#003366' },
-      { name: 'Midnight Tempo', hex: '#2C5DAA' },
-    ]
-  },
-  // 6. VIOLETS
-  {
-    id: 'violets',
-    name: '6. Violets & Purples',
-    subtitle: 'The Hidden Light',
-    hex: '#B9AEDC',
-    img: ASSETS.violets,
-    description: 'Lavender memories, royal velvets, and misty twilights.',
-    shades: [
-      { name: 'Lilac Memory', hex: '#B9AEDC' },
-      { name: 'Plum Dusk', hex: '#674172' },
-      { name: 'Berry Smoke', hex: '#8E5572' },
-      { name: 'Mauve Thread', hex: '#A1869E' },
-      { name: 'Twilight Chant', hex: '#5A4A75' },
-      { name: 'Royal Whisper', hex: '#473259' },
-      { name: 'Misty Lilac', hex: '#C9B4D5' },
-      { name: 'Violet Joy', hex: '#BFA2E0' },
-    ]
-  },
-  // 7. NEUTRALS
-  {
-    id: 'neutrals',
-    name: '7. Neutrals & Greys',
-    subtitle: 'The Architectural Breath',
-    hex: '#D7D1C9',
-    img: ASSETS.neutrals,
-    description: 'Ancient limestone, morning fog, and modern concrete silence.',
-    shades: [
-      { name: 'Limestone Haze', hex: '#D7D1C9' },
-      { name: 'River Clay', hex: '#BEB4A3' },
-      { name: 'Dune Path', hex: '#D3C6B5' },
-      { name: 'Fog Veil', hex: '#C9CBCF' },
-      { name: 'Ash Tone', hex: '#B2ABA2' },
-      { name: 'Cloud Still', hex: '#D9D9D9' },
-      { name: 'Pewter Echo', hex: '#A8A39D' },
-      { name: 'Concrete Poem', hex: '#9C9A96' },
-      { name: 'Silver Quiet', hex: '#C1C3C8' },
-      { name: 'Graphite Trace', hex: '#5F5F60' },
-      { name: 'Silent Stone', hex: '#7D7F7D' },
-    ]
-  },
-  // 8. BROWNS
-  {
-    id: 'browns',
-    name: '8. Browns & Earths',
-    subtitle: 'The Ground Beneath',
-    hex: '#8B5A2B',
-    img: ASSETS.browns,
-    description: 'After-rain serenity, burnt timber, and warm tropical husks.',
-    shades: [
-      { name: 'Soil Song', hex: '#8B5A2B' },
-      { name: 'Burnt Timber', hex: '#4B2E14' },
-      { name: 'Wine Harvest', hex: '#5A2A27' },
-      { name: 'Sand Whisper', hex: '#D5C8B4' },
-      { name: 'Sandstone Beige', hex: '#D9C6A5' },
-      { name: 'Ivory Mist', hex: '#EDE7DA' },
-      { name: 'Linen Calm', hex: '#E8E1CF' },
-      { name: 'Shell Tone', hex: '#F4EBD0' },
-      { name: 'Coconut Husk', hex: '#9D8063' },
-    ]
-  },
-  // 9. BLACKS (Added)
-  {
-    id: 'blacks',
-    name: '9. Blacks & Carbons',
-    subtitle: 'The Deep Void',
-    hex: '#2A2A2A',
-    img: ASSETS.blacks,
-    description: 'Midnight shadows, charred wood, and deep mineral intensity.',
-    shades: [
-      { name: 'Charcoal Luxe', hex: '#2A2A2A' },
-      { name: 'Midnight Carbon', hex: '#1A1A1A' },
-      { name: 'Obsidian Earth', hex: '#2B2B2B' },
-      { name: 'Pitch Deep', hex: '#0D0D0D' },
-      { name: 'Shadow Blue', hex: '#1A1A2E' },
-      { name: 'Iron Cast', hex: '#363636' },
-    ]
-  },
-  // 10. WHITES
-  {
-    id: 'whites',
-    name: '10. Whites & Roses',
-    subtitle: 'Foundation of Light',
-    hex: '#F2EFE9',
-    img: ASSETS.whites,
-    description: 'Handmade wall finishes, Scandinavian pastels, and minimalist foundations.',
-    shades: [
-      { name: 'Chalk Poem', hex: '#F2EFE9' },
-      { name: 'Lotus Blush', hex: '#F4B6B8' },
-      { name: 'Blush Whisper', hex: '#E6C5C2' },
-      { name: 'Wild Pink', hex: '#FF69B4' },
-      { name: 'Platinum Mist', hex: '#E0E0E0' },
-      { name: 'Pearl Dew', hex: '#F6F4EC' },
-    ]
-  },
-  // 11. ADDITIONAL
-  {
-    id: 'additional',
-    name: '11. Additional Shades',
-    subtitle: 'The Archive',
-    hex: '#B2FF05',
-    img: ASSETS.additional,
-    description: 'Special editions, faded memories, and morning light.',
-    shades: [
-      { name: 'Whispered Memory', hex: '#D3C6B2' },
-      { name: 'Morning Hush', hex: '#B2FF05' },
-      { name: 'Terracotta Veil', hex: '#E0B79F' },
-    ]
-  },
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
+// --- 2. GENERATE 60 COLORS ---
+const generateColors = () => {
+  const bases = [
+    { name: 'White', hex: '#FAFAF8', family: 'Whites' },
+    { name: 'Cloud', hex: '#EAEBE6', family: 'Whites' },
+    { name: 'Linen', hex: '#E3DACB', family: 'Neutrals' },
+    { name: 'Oat', hex: '#D6CDBC', family: 'Neutrals' },
+    { name: 'Stone', hex: '#B8B0A6', family: 'Neutrals' },
+    { name: 'Pebble', hex: '#A8A39D', family: 'Neutrals' },
+    { name: 'Silt', hex: '#948D86', family: 'Neutrals' },
+    { name: 'Charcoal', hex: '#363636', family: 'Blacks' },
+    { name: 'Midnight', hex: '#222222', family: 'Blacks' },
+    { name: 'Sage', hex: '#9FA696', family: 'Greens' },
+    { name: 'Olive', hex: '#80856E', family: 'Greens' },
+    { name: 'Forest', hex: '#4A5D45', family: 'Greens' },
+    { name: 'Sky', hex: '#C2D1D9', family: 'Blues' },
+    { name: 'River', hex: '#9FB8C7', family: 'Blues' },
+    { name: 'Ocean', hex: '#587B94', family: 'Blues' },
+    { name: 'Navy', hex: '#2A3B4F', family: 'Blues' },
+    { name: 'Rose', hex: '#EBCBCB', family: 'Pinks' },
+    { name: 'Clay', hex: '#C99E91', family: 'Reds' },
+    { name: 'Terracotta', hex: '#B56D56', family: 'Reds' },
+    { name: 'Rust', hex: '#9C4F3B', family: 'Reds' },
+    { name: 'Straw', hex: '#EBDDA9', family: 'Yellows' },
+    { name: 'Gold', hex: '#D6B86A', family: 'Yellows' },
+    { name: 'Mustard', hex: '#C29B42', family: 'Yellows' },
+  ];
+  
+  // Create variants to reach ~60
+  let fullList: { name: string; hex: string; family: string; id: string }[] = [];
+  bases.forEach((base, i) => {
+    fullList.push({ ...base, id: `base-${i}` });
+    fullList.push({ ...base, name: `${base.name} Light`, hex: base.hex, id: `light-${i}` }); // Simplified color logic
+    fullList.push({ ...base, name: `${base.name} Dark`, hex: base.hex, id: `dark-${i}` });
+  });
+  return fullList.slice(0, 60);
 };
 
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } }
-};
+const ALL_COLORS = generateColors();
 
-// ==========================================
-// MAIN APP COMPONENT
-// ==========================================
-export default function LoopyColorApp() {
-  const [view, setView] = useState('collection'); // 'collection' | 'product'
-  const [activeFamily, setActiveFamily] = useState(null);
 
-  const handleFamilyClick = (family) => {
-    setActiveFamily(family);
+export default function App() {
+  const [view, setView] = useState('library'); 
+  const [selectedColor, setSelectedColor] = useState<typeof ALL_COLORS[0] | null>(null);
+
+  const handleColorSelect = (color: typeof ALL_COLORS[0]) => {
+    setSelectedColor(color);
     setView('product');
     window.scrollTo({ top: 0, behavior: 'instant' });
   };
 
-  const handleBack = () => {
-    setView('collection');
-  };
-
   return (
-
-    <div className="min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-amber-100 selection:text-amber-900">
-      
+    <div className="min-h-screen bg-white font-sans text-stone-900">
       <AnimatePresence mode='wait'>
-        {view === 'collection' ? (
-          <CollectionView key="collection" onSelect={handleFamilyClick} />
+        {view === 'library' ? (
+          <LibraryView key="library" onSelect={handleColorSelect} />
         ) : (
-          <ProductView key="product" family={activeFamily} onBack={handleBack} />
+          <ProductPage key="product" color={selectedColor} onBack={() => setView('library')} />
         )}
       </AnimatePresence>
-
     </div>
   );
 }
 
-// ==========================================
-// COLLECTION VIEW
-// ==========================================
-const CollectionView = ({ onSelect }) => {
+// --- VIEW 1: LIBRARY (BACKDROP STYLE) ---
+const LibraryView = ({ onSelect }: { onSelect: (c: typeof ALL_COLORS[0]) => void }) => {
   return (
     <motion.div 
-      initial="hidden"
-      animate="visible"
-      exit={{ opacity: 0, y: -20, transition: { duration: 0.4 } }}
-      // pt-32 to allow space for your fixed header
-      className="pt-32 pb-20 px-8 md:px-20 bg-stone-50"
+      initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="pt-32 pb-20 px-6 md:px-12 bg-white"
     >
       <div className="max-w-[1800px] mx-auto">
-        <motion.div variants={staggerContainer} className="mb-24 space-y-6 max-w-4xl">
-           {/* Eyebrow */}
-           <motion.div variants={fadeUp} className="flex items-center gap-4 mb-4">
-              <span className="h-[1px] w-12 bg-amber-700"></span>
-              <span className="text-amber-800 font-medium tracking-widest text-xs uppercase">
-                2025 Color Library
-              </span>
-           </motion.div>
-
-          <motion.h1 variants={fadeUp} className="text-6xl md:text-8xl font-serif text-stone-900 leading-[0.95] mb-8">
-            The Architecture <br/> <span className="text-stone-400 font-light italic">of</span> Pigment.
-          </motion.h1>
-          
-          <motion.p variants={fadeUp} className="text-lg md:text-xl text-stone-600 leading-relaxed max-w-xl font-light">
-            Sourced from the earth, grounded in history. Explore our curated families of mineral limewash paints.
-          </motion.p>
-        </motion.div>
-
-        <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-20">
-          {COLOR_DATA.map((family) => (
-            <ColorCard key={family.id} family={family} onSelect={onSelect} />
+        <h1 className="text-4xl md:text-6xl font-serif mb-6 text-stone-900">The 2025 Library.</h1>
+        <p className="text-stone-500 mb-16 max-w-xl text-lg">Curated pigments inspired by earth, stone, and sky. Select a shade to begin your journey.</p>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {ALL_COLORS.map((color) => (
+            <button 
+              key={color.id}
+              onClick={() => onSelect(color)}
+              className="group flex flex-col items-start text-left"
+            >
+              <div 
+                className="w-full aspect-[4/5] rounded-lg mb-3 shadow-sm transition-transform duration-500 group-hover:scale-[1.02] group-hover:shadow-md border border-stone-100"
+                style={{ backgroundColor: color.hex }}
+              />
+              <span className="text-xs font-bold uppercase tracking-wider text-stone-900">{color.name}</span>
+              <span className="text-[10px] text-stone-400 uppercase tracking-widest">{color.family}</span>
+            </button>
           ))}
-        </motion.div>
+        </div>
       </div>
     </motion.div>
   );
 };
 
-const ColorCard = ({ family, onSelect }) => {
+// --- VIEW 2: PRODUCT PAGE (TONESTER STYLE) ---
+const ProductPage = ({ color, onBack }: { color: typeof ALL_COLORS[0] | null, onBack: () => void }) => {
+  const [activeBrand, setActiveBrand] = useState<keyof typeof BRAND_CONTENT>('ceramic');
+  const [activeFinishId, setActiveFinishId] = useState('matt');
+
+  const brandData = BRAND_CONTENT[activeBrand];
+  // Safe find with fallback
+  const finishData = brandData.finishes.find(f => f.id === activeFinishId) || brandData.finishes[0];
+
+  const HERO_IMG = "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  const TEXTURE_IMG = "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
   return (
-    <motion.div 
-      variants={fadeUp}
-      onClick={() => onSelect(family)}
-      className="group cursor-pointer relative"
-    >
-      <div className="overflow-hidden aspect-[3/4] mb-8 relative bg-stone-100">
-        <div 
-           className="absolute inset-0 z-10 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none mix-blend-multiply"
-           style={{ backgroundColor: family.hex }}
-        />
-        <motion.img 
-          src={family.img} 
-          alt={family.name}
-          className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
-          loading="lazy"
-        />
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white">
+      
+      {/* 1. TOP SPLIT LAYOUT */}
+      <div className="flex flex-col lg:flex-row min-h-screen">
         
-        {/* Floating Tag */}
-        <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20">
-           <div className="bg-stone-900 text-stone-50 px-6 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-3">
-              Explore
-              <ArrowRight size={14} />
+        {/* LEFT: SCROLLING IMAGES */}
+        <div className="w-full lg:w-[60%] bg-stone-50 relative">
+           <button onClick={onBack} className="absolute top-8 left-8 z-20 flex items-center gap-2 bg-white/90 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all">
+              <ArrowLeft size={14} /> Library
+           </button>
+
+           <div className="flex flex-col gap-1 p-1 lg:p-4">
+              <div className="relative w-full aspect-[4/5] lg:aspect-square overflow-hidden rounded-sm">
+                 <img src={HERO_IMG} className="w-full h-full object-cover" alt="Room" />
+                 <div className="absolute inset-0 mix-blend-multiply opacity-30 transition-colors duration-700" style={{ backgroundColor: color?.hex || '#ccc' }} />
+              </div>
+              <div className="relative w-full aspect-video overflow-hidden rounded-sm">
+                 <img src={TEXTURE_IMG} className="w-full h-full object-cover" alt="Texture" />
+                 <div className="absolute inset-0 mix-blend-multiply opacity-20 transition-colors duration-700" style={{ backgroundColor: color?.hex || '#ccc' }} />
+              </div>
            </div>
         </div>
-      </div>
 
-      <div className="space-y-3 pr-4">
-          <div className="flex justify-between items-baseline border-b border-stone-200 pb-4 mb-4 group-hover:border-stone-400 transition-colors duration-500">
-             <h3 className="text-2xl font-serif text-stone-900">{family.name}</h3>
-          </div>
-          <p className="text-xs font-bold uppercase tracking-widest text-amber-800">{family.subtitle}</p>
-          <p className="text-sm text-stone-500 line-clamp-2 leading-relaxed">{family.description}</p>
-      </div>
-    </motion.div>
-  );
-};
+        {/* RIGHT: STICKY SIDEBAR */}
+        <div className="w-full lg:w-[40%] bg-white px-8 md:px-12 py-12 lg:h-screen lg:sticky lg:top-0 lg:overflow-y-auto border-l border-stone-100 flex flex-col">
+            
+            <div className="mb-auto">
+                <span className="text-amber-800 text-[10px] font-bold uppercase tracking-[0.2em] mb-4 block">Premium Finish</span>
+                <h1 className="text-5xl font-serif text-stone-900 leading-[1] mb-2">{color?.name || 'Selected Color'}</h1>
+                <p className="text-stone-400 text-sm mb-10">{finishData.title}</p>
 
-// ==========================================
-// PRODUCT VIEW
-// ==========================================
-const ProductView = ({ family, onBack }) => {
-  const [selectedShade, setSelectedShade] = useState(family.shades[0]);
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
-
-  // Gallery Data
-  const galleryImages = [
-    { id: 0, src: family.img, label: "Main View" },
-    { id: 1, src: ASSETS.texture, label: "Texture" },
-    { id: 2, src: ASSETS.interior_1, label: "Living Space" },
-    { id: 3, src: ASSETS.interior_2, label: "Detail" },
-  ];
-
-  return (
-    // Explicit bg-stone-50 to ensure header doesn't look "black" due to transparent background
-    <motion.section 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="min-h-screen pt-24 w-full bg-stone-50 flex flex-col-reverse lg:flex-row overflow-hidden relative z-0"
-    >
-        {/* LEFT: CONTENT */}
-        <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-20 py-8 lg:py-12 overflow-y-auto">
-           <motion.div 
-             initial={{ opacity: 0, y: 30 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.8, ease: "easeOut" }}
-             className="max-w-xl mx-auto lg:mx-0"
-           >
-              {/* Back Button */}
-              <button 
-                onClick={onBack}
-                className="group flex items-center gap-2 text-stone-400 hover:text-stone-900 transition-colors mb-8 text-xs font-bold uppercase tracking-widest"
-              >
-                  <ArrowLeft size={14} /> Back to Library
-              </button>
-
-              {/* Eyebrow */}
-              <div className="flex items-center gap-4 mb-6">
-                <span className="h-[1px] w-12 bg-amber-700"></span>
-                <span className="text-amber-800 font-medium tracking-widest text-xs uppercase">
-                  Nano-Mineral Technology
-                </span>
-              </div>
-
-              {/* Headline */}
-              <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-[1] mb-6">
-                {family.subtitle}
-              </h1>
-              
-              <p className="text-lg text-stone-600 leading-relaxed mb-10 font-light">
-                 {family.description} A premium finish suitable for interior and exterior application.
-              </p>
-
-              {/* Shade Selector */}
-              <div className="mb-10">
-                 <div className="flex justify-between items-center text-sm mb-4 border-b border-stone-200 pb-2">
-                    <span className="font-bold text-stone-900 uppercase tracking-wider text-xs">Select Shade</span>
-                    <span className="text-amber-800 font-serif italic">{selectedShade.name}</span>
-                 </div>
-                 <div className="flex flex-wrap gap-3">
-                    {family.shades.map((shade) => (
+                {/* --- BRAND SELECTOR --- */}
+                <div className="mb-8">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">1. Choose Formula</label>
+                  <div className="flex gap-2 border-b border-stone-100 pb-4">
+                     {Object.values(BRAND_CONTENT).map((brand) => (
                        <button
-                          key={shade.name}
-                          onClick={() => setSelectedShade(shade)}
-                          className={cn(
-                            "w-12 h-12 rounded-full relative transition-transform duration-300 focus:outline-none border border-stone-200",
-                            selectedShade.name === shade.name ? "scale-110 ring-1 ring-offset-4 ring-stone-900" : "hover:scale-105 opacity-80 hover:opacity-100"
-                          )}
-                          style={{ backgroundColor: shade.hex }}
-                          title={shade.name}
-                       />
-                    ))}
-                 </div>
-              </div>
-
-              {/* Thumbnails (Gallery Selector) */}
-              <div className="mb-10">
-                  <span className="font-bold text-stone-900 uppercase tracking-wider text-xs mb-3 block">View Gallery</span>
-                  <div className="flex gap-4">
-                      {galleryImages.map((img, idx) => (
-                          <button 
-                            key={img.id}
-                            onClick={() => setActiveImageIndex(idx)}
-                            className={cn(
-                                "w-20 h-20 border transition-all duration-300 relative overflow-hidden",
-                                activeImageIndex === idx ? "border-stone-900 opacity-100" : "border-stone-200 opacity-60 hover:opacity-100 hover:border-stone-400"
-                            )}
-                          >
-                              <img src={img.src} className="w-full h-full object-cover" />
-                              {activeImageIndex === idx && (
-                                <div className="absolute inset-0 bg-stone-900/10" />
-                              )}
-                          </button>
-                      ))}
+                         key={brand.id}
+                         onClick={() => { setActiveBrand(brand.id as keyof typeof BRAND_CONTENT); setActiveFinishId(brand.finishes[0].id); }}
+                         className={cn(
+                           "text-sm px-0 py-2 mr-4 border-b-2 transition-all font-medium",
+                           activeBrand === brand.id 
+                             ? "border-stone-900 text-stone-900" 
+                             : "border-transparent text-stone-400 hover:text-stone-600"
+                         )}
+                       >
+                         {brand.name.split('™')[0]}
+                       </button>
+                     ))}
                   </div>
-              </div>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-5 mb-8">
-                 <button className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300 min-w-[200px]">
-                    <span className="tracking-wide text-sm font-medium">Add to Cart - $89</span>
-                    <ArrowRight className="w-4 h-4 text-stone-50 group-hover:translate-x-1 transition-transform" />
-                 </button>
-                 <button className="group flex items-center justify-center gap-3 border border-stone-300 px-8 py-4 rounded-none hover:border-stone-900 hover:bg-stone-100 transition-all duration-300">
-                    <span className="tracking-wide text-sm font-medium text-stone-900">Order Sample</span>
-                 </button>
-              </div>
-
-              {/* Trust Indicators */}
-              <div className="pt-8 border-t border-stone-200 flex gap-8 text-stone-500">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-amber-700" />
-                  <span className="text-xs uppercase tracking-wider font-medium">10yr Guarantee</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Leaf className="w-4 h-4 text-emerald-700" />
-                  <span className="text-xs uppercase tracking-wider font-medium">VOC Free</span>
-                </div>
-              </div>
 
-           </motion.div>
+                {/* --- FINISH SELECTOR --- */}
+                <div className="mb-10">
+                   <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">2. Select Finish</label>
+                   <div className="flex flex-wrap gap-2">
+                      {brandData.finishes.map((finish) => (
+                        <button
+                          key={finish.id}
+                          onClick={() => setActiveFinishId(finish.id)}
+                          className={cn(
+                            "px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider border transition-all duration-300",
+                            activeFinishId === finish.id
+                              ? "bg-stone-900 text-white border-stone-900 shadow-lg scale-105"
+                              : "bg-white text-stone-500 border-stone-200 hover:border-stone-400"
+                          )}
+                        >
+                          {finish.label}
+                        </button>
+                      ))}
+                   </div>
+                </div>
+
+                {/* --- PRICE & CART --- */}
+                <div className="border-t border-stone-100 pt-8 mt-4">
+                   <div className="flex items-end justify-between mb-6">
+                      <div>
+                        <p className="text-3xl font-serif text-stone-900">${finishData.price}</p>
+                        <p className="text-xs text-stone-500 mt-1">Per Gallon · 3.78L</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-8 h-8 rounded-full border border-stone-200 shadow-sm" style={{ backgroundColor: color?.hex }} />
+                        <span className="text-xs font-bold uppercase">{color?.name}</span>
+                      </div>
+                   </div>
+
+                   <button className="w-full bg-stone-900 text-white py-5 text-sm font-bold uppercase tracking-widest hover:bg-stone-800 transition-colors mb-3">
+                     Add to Cart
+                   </button>
+                   <button className="w-full bg-stone-100 text-stone-900 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-200 transition-colors">
+                     Order Peel & Stick Sample
+                   </button>
+                </div>
+            </div>
+
+            {/* Micro Specs */}
+            <div className="mt-8 pt-8 border-t border-stone-100 grid grid-cols-3 gap-4 text-center">
+                <div>
+                   <Droplets className="w-4 h-4 mx-auto mb-2 text-stone-400" />
+                   <span className="text-[10px] font-bold uppercase block text-stone-900">Washable</span>
+                </div>
+                <div>
+                   <Sun className="w-4 h-4 mx-auto mb-2 text-stone-400" />
+                   <span className="text-[10px] font-bold uppercase block text-stone-900">Low VOC</span>
+                </div>
+                <div>
+                   <Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" />
+                   <span className="text-[10px] font-bold uppercase block text-stone-900">
+                     {finishData.details.specs.Warranty ? String(finishData.details.specs.Warranty).split(' ')[0] : 'Lifetime'}
+                   </span>
+                </div>
+            </div>
         </div>
-        <div className="w-full lg:w-1/2 min-h-[50vh] lg:h-auto bg-stone-200 relative overflow-hidden">
-             <AnimatePresence mode='wait'>
-                 <motion.img 
-                    key={activeImageIndex}
-                    src={galleryImages[activeImageIndex].src} 
-                    initial={{ opacity: 0, scale: 1.05 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.6 }}
-                    className="w-full h-full object-cover absolute inset-0"
-                 />
-             </AnimatePresence>
-             
-        
-             <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-stone-50 via-transparent to-transparent lg:w-1/3 h-24 lg:h-full bottom-0 lg:bottom-auto lg:left-0 z-10 pointer-events-none" />
-             
-             {activeImageIndex === 0 && (
-                <div 
-                    className="absolute inset-0 mix-blend-multiply opacity-20 transition-colors duration-700 pointer-events-none"
-                    style={{ backgroundColor: selectedShade.hex }}
-                />
-             )}
-        </div>
-    </motion.section>
+      </div>
+
+      {/* 3. BOTTOM: DETAILED CONTENT */}
+      <div className="bg-white border-t border-stone-200">
+         <div className="max-w-7xl mx-auto px-6 md:px-12 py-24">
+            
+            <AnimatePresence mode="wait">
+              <motion.div 
+                key={`${activeBrand}-${activeFinishId}`}
+                initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-16"
+              >
+                  {/* Left Column: Narrative */}
+                  <div className="lg:col-span-7">
+                     <span className="text-amber-700 font-serif italic text-2xl mb-6 block">{brandData.tagline}</span>
+                     <h2 className="text-4xl font-bold text-stone-900 mb-8 leading-tight">{finishData.description}</h2>
+                     
+                     <div className="mb-12">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6 flex items-center gap-2">
+                           <CheckCircle2 size={16} /> What it does
+                        </h3>
+                        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                           {finishData.details.whatItDoes.map((item, i) => (
+                             <li key={i} className="flex items-start gap-3 text-stone-600 text-sm leading-relaxed border-l-2 border-stone-100 pl-4">
+                                {item}
+                             </li>
+                           ))}
+                        </ul>
+                     </div>
+
+                     <div className="bg-stone-50 p-8 rounded-lg">
+                        <h3 className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-6 flex items-center gap-2">
+                           <Star size={16} /> Why it's different
+                        </h3>
+                        <ul className="space-y-3">
+                           {finishData.details.whyDifferent.map((item, i) => (
+                             <li key={i} className="text-stone-800 text-base font-medium">
+                                {item}
+                             </li>
+                           ))}
+                        </ul>
+                     </div>
+                  </div>
+
+                  {/* Right Column: Specs */}
+                  <div className="lg:col-span-5">
+                      <div className="sticky top-12">
+                         <h3 className="text-xs font-bold uppercase tracking-widest text-stone-900 mb-8 pb-2 border-b border-stone-200">
+                           Technical Specifications
+                         </h3>
+                         <div className="space-y-6">
+                            {Object.entries(finishData.details.specs).map(([key, value]) => (
+                               <div key={key} className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2 border-b border-stone-100 pb-4">
+                                  <span className="text-xs font-bold uppercase tracking-wider text-stone-400 w-32">{key.replace(/([A-Z])/g, ' $1').trim()}</span>
+                                  <span className="text-sm font-semibold text-stone-900 text-right">{value as string}</span>
+                               </div>
+                            ))}
+                         </div>
+                      </div>
+                  </div>
+
+              </motion.div>
+            </AnimatePresence>
+
+         </div>
+      </div>
+
+    </motion.div>
   );
 };

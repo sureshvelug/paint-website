@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: 'your-google-verification-code', // Add after Google Search Console setup
+    google: 'your-google-verification-code', 
   },
 }
 

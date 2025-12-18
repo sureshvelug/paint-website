@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ShieldCheck, ThermometerSun, Wind } from 'lucide-react';
 
-// --- CONTENT DATA ---
 const content = {
   hero: {
     label: "Material Intelligence™",
@@ -19,11 +18,8 @@ const content = {
       body: "Buildings fail silently—through corrosion, carbonation, UV fatigue, and micro-cracks. Nano-Shield™ penetrates deep into the surface matrix, reinforcing it at a molecular level to stop damage before it starts.",
       tags: ["Stops Corrosion", "Resists Cracking", "UV Stable"],
       images: [
-        // 1. Stops Corrosion: Rusted Metal with Blue Paint (Unsplash) - Matches "Paint Protection" context
-        "https://images.unsplash.com/photo-1594818379496-da1e345b0ded?q=80&w=2000&auto=format&fit=crop",
-        // 2. Resists Cracking: Smooth Flawless Concrete (Pexels) - Matches "Structural Strength"
+        "https://drive.google.com/file/d/1tp9v-B4cVUI2ZaF91YrII2sCeo_cAjAL/view",
         "https://images.pexels.com/photos/5973972/pexels-photo-5973972.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        // 3. UV Stable: Sun hitting Glass Facade (Pexels) - Matches "UV Resistance"
         "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600"
       ]
     },
@@ -71,7 +67,6 @@ const FadeIn = ({ children, delay = 0, className = "" }: { children: React.React
   </motion.div>
 );
 
-// --- FEATURE ROW COMPONENT ---
 const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
   const [activeTagIndex, setActiveTagIndex] = useState(0);
   const isEven = index % 2 === 0;
@@ -85,8 +80,7 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
 
   return (
     <div className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 lg:gap-24 items-center`}>
-      
-      {/* Image Side - Animated Slider */}
+
       <motion.div 
         initial={{ opacity: 0, x: isEven ? -50 : 50 }}
         whileInView={{ opacity: 1, x: 0 }}
@@ -209,8 +203,6 @@ export default function NanogradsPage() {
           </div>
         </FadeIn>
       </section>
-
-      {/* 2. STATS GRID */}
       <section className="border-y border-stone-100 bg-stone-50/50">
         <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-stone-100/50">
           {content.specs.map((spec, i) => (

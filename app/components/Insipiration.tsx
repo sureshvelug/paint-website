@@ -18,14 +18,12 @@ export default function InspirationGallery() {
       color: "Charcoal" 
     },
     { 
-      // Minimalist Warmth: Ultra-clean white room with sharp shadows (High Quality)
+      
       src: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=100&w=2000", 
       title: "Minimalist Warmth", 
       color: "Alabaster" 
     },
     { 
-      // Earthen Clay: Rich, deep terracotta/warm clay wall texture
-      // Verified High-Availability ID
       src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2000", 
       title: "Earthen Clay", 
       color: "Terracotta" 

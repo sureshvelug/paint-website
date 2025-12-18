@@ -12,7 +12,6 @@ import CTASection from './CTASection'
 export default function HomeContent() {
   return (
     <main className="bg-stone-50 min-h-screen selection:bg-amber-200 selection:text-amber-900">
-      <Header />
       
       <Hero 
         title="The Art of Performance."
