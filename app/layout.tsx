@@ -10,6 +10,7 @@ const inter = Inter({
   display: 'swap',
 })
 
+import { CartProvider } from './context/CartContext'
 export const metadata: Metadata = {
   title: {
     default: 'The Chemical Industry | Nano-Based Low VOC Premium Paints',
@@ -61,11 +62,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-brand-offwhite text-gray-900 antialiased">
-        <Header></Header>
         <main className="min-h-screen">
+        <CartProvider>
+          <Header />
           {children}
+          <Footer />
+        </CartProvider>
         </main>
-        <Footer />
+
         {/* <Analytics /> Vercel Analytics for performance tracking */}
       </body>
     </html>
