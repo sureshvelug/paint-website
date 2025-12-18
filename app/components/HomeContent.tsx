@@ -15,7 +15,7 @@ export default function HomeContent() {
       <Hero 
         title="The Art of Performance."
         subtitle="Architectural coatings engineered with nano-mineral technology for spaces that demand distinction."
-        primaryCTA={{ text: "Explore Collection", href: "/collection" }}
+        primaryCTA={{ text: "Explore Collection", href: "/collections" }}
         secondaryCTA={{ text: "Our Story", href: "/story" }}
         imageSrc="https://images.unsplash.com/photo-1563293775-e832df759e6e?q=80&w=2000" // High quality texture placeholder
       />

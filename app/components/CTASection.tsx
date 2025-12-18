@@ -20,19 +20,19 @@ export default function CTASection() {
             Order a curated sample kit today and experience the depth, texture, and quality of Lumina firsthand.
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <Link 
+          <div className="flex flex-col sm:flex-row justify-center gap-6 hover:text-white">
+            {/* <Link 
               href="/shop" 
               className="group bg-stone-900 text-white px-10 py-5 flex items-center justify-center gap-3 hover:bg-stone-800 transition-all duration-300"
             >
               <span className="tracking-widest text-sm font-bold uppercase">Order Sample Kit</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            </Link> */}
             <Link 
               href="/consultation" 
-              className="px-10 py-5 flex items-center justify-center gap-3 border border-stone-200 hover:border-stone-900 text-stone-900 transition-all duration-300"
+              className="px-10 py-5 flex items-center justify-center gap-3 border border-stone-200  hover:border-stone-900 text-stone-900 transition-all duration-300"
             >
-              <span className="tracking-widest text-sm font-bold uppercase">Book Consultation</span>
+              <span className="tracking-widest text-sm font-bold">Book Consultation</span>
             </Link>
           </div>
         </motion.div>

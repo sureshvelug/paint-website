@@ -16,11 +16,10 @@ export default function Header() {
     setIsScrolled(latest > 50)
   })
 
-  // Navigation Links Data
   const navLinks = [
     { name: 'Collections', href: '/collections' },
     { name: 'Technology', href: '/technology' },
-    { name: 'Story', href: '/story' },
+    { name: 'Our Story', href: '/story' },
   ]
 
   return (
@@ -66,9 +65,9 @@ export default function Header() {
               )}
             </AnimatePresence>
           </Link>
-          <button className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-all duration-300">
+          {/* <button className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-all duration-300">
             Request Sample
-          </button>
+          </button> */}
         </div>
         
         {/* 4. MOBILE CONTROLS */}
@@ -118,13 +117,13 @@ export default function Header() {
                     <ShoppingBag size={20} />
                     View Bag ({cartCount})
                   </Link>
-                  <Link 
+                  {/* <Link 
                     href="/contact"
                     className="text-lg font-medium text-stone-600 block hover:text-stone-900"
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     Request Sample Kit
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </motion.div>

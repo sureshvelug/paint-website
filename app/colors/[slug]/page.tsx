@@ -33,9 +33,9 @@ export default async function ColorDetailPage({ params }: { params: { slug: stri
             <div><span className="font-medium">Finish:</span> {color.finish}</div>
             <div><span className="font-medium">Best For:</span> {color.bestFor.join(', ')}</div>
           </div>
-          <button className="w-full bg-brand-sage text-white py-4 rounded-lg font-medium">
+          {/* <button className="w-full bg-brand-sage text-white py-4 rounded-lg font-medium">
             Request Free Sample
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

@@ -412,16 +412,12 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
             </div>
         </div>
       </div>
-
-      {/* Narrative Section */}
       <div className="bg-white border-t border-stone-200">
          <div className="max-w-7xl mx-auto px-6 md:px-12 py-24">
             <AnimatePresence mode="wait">
               <motion.div key={`${activeBrand}-${activeFinishId}`} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid grid-cols-1 lg:grid-cols-12 gap-16">
                   <div className="lg:col-span-7">
                      <span className="text-amber-700 font-serif italic text-2xl mb-6 block">{brandData.tagline}</span>
-                     
-                     {/* Dynamic Color Story */}
                      <div className="mb-12">
                        <h2 className="text-4xl font-bold text-stone-900 mb-6 leading-tight">{color.name}</h2>
                        <div className="flex flex-col gap-8">

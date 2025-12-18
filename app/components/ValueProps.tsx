@@ -20,11 +20,11 @@ export default function ValueProps() {
               merges with environmental responsibility to create finishes that perform beautifully.
             </p>
           </div>
-          <div className="hidden md:block">
+          {/* <div className="hidden md:block">
              <button className="text-stone-900 border-b border-stone-900 pb-1 hover:text-amber-700 hover:border-amber-700 transition-colors">
                 View Technical Specs
              </button>
-          </div>
+          </div> */}
         </div>
 
         {/* Bento Grid Layout */}

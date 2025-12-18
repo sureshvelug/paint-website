@@ -11,14 +11,14 @@ const projects = [
   { 
     id: 1, 
     name: 'Kyoto Minimalist', 
-    location: 'Kyoto, Japan',
+    // location: 'Kyoto, Japan',
     category: 'Residential',
     image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80' 
   },
   { 
     id: 2, 
     name: 'Aesop Flagship', 
-    location: 'London, UK',
+    // location: 'London, UK',
     category: 'Commercial',
     // Verified Stable Image
     image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop' 
@@ -26,7 +26,7 @@ const projects = [
   { 
     id: 3, 
     name: 'Desert Villa', 
-    location: 'Palm Springs, USA',
+    // location: 'Palm Springs, USA',
     category: 'Residential',
     image: 'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80' 
   }
@@ -37,7 +37,7 @@ export default function ProjectsShowcase() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = window.innerWidth * 0.6 // Scroll by 60vw
+      const scrollAmount = window.innerWidth * 0.6 
       scrollContainerRef.current.scrollBy({
         left: direction === 'left' ? -scrollAmount : scrollAmount,
         behavior: 'smooth'
@@ -54,9 +54,9 @@ export default function ProjectsShowcase() {
             Architecture <br /> & <span className="text-stone-500">Texture</span>
           </h2>
         </div>
-        <button className="hidden md:flex items-center gap-2 text-white hover:text-amber-500 transition-colors">
+        {/* <button className="hidden md:flex items-center gap-2 text-white hover:text-amber-500 transition-colors">
           View All Projects <ArrowUpRight className="w-4 h-4"/>
-        </button>
+        </button> */}
       </div>
 
       {/* Navigation Buttons (Visible on Hover or Mobile) */}
