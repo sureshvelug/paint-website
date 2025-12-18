@@ -12,7 +12,6 @@ import CTASection from './CTASection'
 export default function HomeContent() {
   return (
     <main className="bg-stone-50 min-h-screen selection:bg-amber-200 selection:text-amber-900">
-      
       <Hero 
         title="The Art of Performance."
         subtitle="Architectural coatings engineered with nano-mineral technology for spaces that demand distinction."

@@ -15,7 +15,7 @@ interface HeroProps {
 
 export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageSrc }: HeroProps) {
   return (
-    <section className="relative h-screen w-full bg-stone-50 overflow-hidden flex flex-col lg:flex-row">
+    <section className="relative h-screen w-full bg-stone-50 overflow-hidden flex flex-col lg:flex-row pt-10">
       
       <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-20 z-10 relative">
         <motion.div 

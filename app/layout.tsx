@@ -61,7 +61,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="bg-brand-offwhite text-gray-900 antialiased">
-        <Header />
+        <Header></Header>
         <main className="min-h-screen">
           {children}
         </main>
