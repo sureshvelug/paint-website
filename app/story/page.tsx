@@ -245,7 +245,7 @@ export default function OurStoryPage() {
               Discover Our Technology
             </a>
             <a 
-              href="/products" 
+              href="/collections" 
               className="group inline-flex justify-center items-center px-8 py-4 text-sm font-bold tracking-widest text-stone-900 bg-transparent border border-stone-300 uppercase hover:bg-white hover:border-stone-900 transition-all"
             >
               View Collections

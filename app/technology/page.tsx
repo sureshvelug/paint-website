@@ -192,7 +192,7 @@ export default function NanogradsPage() {
             {content.hero.desc}
           </p>
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+          {/* <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button className="group px-8 py-4 bg-stone-900 text-white font-medium rounded-sm hover:bg-stone-800 transition-all flex items-center justify-center gap-2">
               Get Started
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -200,7 +200,7 @@ export default function NanogradsPage() {
             <button className="px-8 py-4 text-stone-600 font-medium rounded-sm border border-stone-200 hover:border-stone-900 hover:bg-stone-50 transition-all">
               View Technology
             </button>
-          </div>
+          </div> */}
         </FadeIn>
       </section>
       <section className="border-y border-stone-100 bg-stone-50/50">
@@ -267,21 +267,6 @@ export default function NanogradsPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* 5. FOOTER CTA */}
-      <section className="py-32 px-6 text-center bg-stone-50">
-        <FadeIn>
-          <h2 className="text-5xl md:text-6xl font-serif font-medium text-stone-900 mb-8">
-            Luxury that Lasts.
-          </h2>
-          <p className="text-stone-500 mb-12 text-xl font-light max-w-2xl mx-auto">
-            Where advanced material science becomes everyday protection.
-          </p>
-          <button className="px-12 py-5 bg-indigo-700 text-white rounded-full font-bold tracking-wide hover:bg-indigo-800 transition-all shadow-xl shadow-indigo-200 hover:shadow-2xl hover:-translate-y-1 transform duration-300">
-            Start Your Project
-          </button>
-        </FadeIn>
       </section>
     </main>
   );
