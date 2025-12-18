@@ -108,7 +108,7 @@ export default function ProjectsShowcase() {
                 <div>
                   <p className="text-amber-500 text-xs uppercase tracking-widest mb-2">{project.category}</p>
                   <h3 className="text-3xl font-serif text-white mb-1">{project.name}</h3>
-                  <p className="text-stone-400 font-light">{project.location}</p>
+                  {/* <p className="text-stone-400 font-light">{project.location}</p> */}
                 </div>
                 <div className="bg-white/10 p-3 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
                   <ArrowUpRight className="text-white w-6 h-6" />
