@@ -50,7 +50,7 @@ const FILTERS = [
   { id: 'Yellows', label: 'Yellows', hex: '#FFD44D' },
   { id: 'Greens', label: 'Greens', hex: '#B7CBB2' },
   { id: 'Blues', label: 'Blues', hex: '#8EB9D4' },
-  { id: 'Purples', label: 'Purples', hex: '#674172' }, // Mapped Violets to Purples
+  { id: 'Purples', label: 'Purples', hex: '#674172' },
   { id: 'Neutrals', label: 'Neutrals', hex: '#D7D1C9' },
   { id: 'Browns', label: 'Browns', hex: '#8B5A2B' },
   { id: 'Whites', label: 'Whites', hex: '#F2EFE9' },
@@ -93,27 +93,66 @@ const BRAND_CONTENT = {
   },
   ellora: {
     id: 'ellora',
-    name: 'Ellora by Elements',
-    tagline: 'The purest expression of interior luxury.',
+    name: 'Ellora™ Luxe',
+    tagline: 'Where light touches walls and everything feels elevated.',
     finishes: [
       {
-        id: 'matt',
-        name: 'Matt',
-        label: 'Matt',
-        title: 'Ellora Matt Expression',
-        price: 110,
-        description: 'Luxury that does not announce itself. Soft, velvety, and light-absorbing.',
+        id: 'soft-glow',
+        name: 'Soft Glow',
+        label: 'Soft Glow Luxe',
+        title: 'Ellora™ Luxe Interior Finish',
+        price: 120,
+        description: 'A soft–glow, ultra-smooth luxury wall coating inspired by natural minerals and modern design.',
         details: {
-          whatItDoes: [ 'Creates refined surfaces with natural depth', 'Allows colour to appear richer and calmer' ],
-          whyDifferent: [ 'Mineral-first foundation', 'Nano-engineered particles', 'Intelligent film architecture' ],
-          specs: { Finish: 'Soft, velvety', Coverage: '120–140 sq.ft / L', Coats: '2', DryTime: '1 hr', Warranty: 'Lifetime' }
+          whatItDoes: [ 'High-sheen luxury glow', 'Uniform, velvet-smooth finish', 'Washable & stain-resistant', 'Anti-fungal, anti-microbial nanotech' ],
+          whyDifferent: [ 'Mineral-rich micro-particles create a naturally smooth finish', 'Nano-enhanced film forms a dense, stain-blocking layer', 'Non-leaching antimicrobial action keeps surfaces hygienic' ],
+          specs: { Finish: 'Soft Glow Luxe', Sheen: 'Medium-to-high reflective subtle sheen', Coverage: '10–14 m²/L per coat', DryTime: '30-45 min', Recoat: '4 hrs', VOC: 'Low VOC' }
+        }
+      }
+    ]
+  },
+  minera: {
+    id: 'minera',
+    name: 'Minera™ Exterior',
+    tagline: 'Nature. Strength. Timeless Protection.',
+    finishes: [
+      {
+        id: 'mineral-matte',
+        name: 'Mineral Matte',
+        label: 'Mineral Matte',
+        title: 'Minera™ Exterior Shield',
+        price: 150,
+        description: 'Luxury Mineral-Based Nanotech Coating for Walls. Defends against sun, rain, humidity, and pollution.',
+        details: {
+          whatItDoes: [ 'Ultimate Weather Resistance', 'Eco & Carbon Neutral', 'Elegant mineral matte finish', 'Self-Cleaning & Anti-Stain' ],
+          whyDifferent: [ 'Mineral nanoparticles penetrate the surface to form a permanent protective lattice', 'Nano-silver & copper complexes provide 24/7 antimicrobial surface protection', 'Non-leaching, environmentally safe, and highly breathable' ],
+          specs: { Finish: 'Smooth, refined, mineral matte', Sheen: 'Low to medium', Durability: '8–10 years', Coverage: '10–12 m²/L per coat', 'Water Repellency': 'Superior', 'UV Shield': 'Excellent' }
+        }
+      }
+    ]
+  },
+  x10: {
+    id: 'x10',
+    name: 'X-10 GrapheneFlex™',
+    tagline: 'Crack-Proof. Weather-Proof. Future-Proof.',
+    finishes: [
+      {
+        id: 'elastomeric-satin',
+        name: 'Elastomeric Satin',
+        label: 'Elastomeric',
+        title: 'X-10 GrapheneFlex™ Exterior Coating',
+        price: 180,
+        description: 'An ultra-premium, eco-conscious, graphene-reinforced elastomeric coating designed to outlast extreme sun, rain, dust, pollution and temperature swings.',
+        details: {
+          whatItDoes: [ 'Hydrophobic elastomeric film resists wind-driven rain', 'High crack-bridging capability up to 2 mm', 'Superior waterproofing and dampness control' ],
+          whyDifferent: [ 'Graphene-enhanced tensile strength and film toughness', 'Colloidal Nano-Silica densifies polymer matrix, increasing abrasion resistance', '250–350% elongation with deep film memory' ],
+          specs: { 'Tech Base': 'Graphene + Nano-Silica Elastomeric', Elongation: '250–350%', 'Crack Bridging': 'Up to 2 mm', 'UV Resistance': 'Excellent (QUV 1000h)', 'Life Expectancy': '10–12+ Years', VOC: '< 15 g/L' }
         }
       }
     ]
   }
 };
 
-// --- REAL DATA FROM YOUR FILE ---
 const ALL_COLORS = [
   // REDS
   { name: "Terracotta Flame", hex: "#B55233", family: "Reds", story: "Terracotta Flame carries the warmth of handmade clay, the kind shaped by centuries of Indian potters who mould earth into life. It feels grounded, ancient, and beautifully imperfect—like a wall kissed by sun and history.", scientific: "Sitting around 610–630 nm, this red-orange wavelength stimulates warmth, creativity, and emotional grounding. Its reflectance absorbs harsher wavelengths, giving interiors a calm, matte warmth." },
@@ -140,6 +179,16 @@ const ALL_COLORS = [
   { name: "First Light", hex: "#FFA24A", family: "Yellows", story: "First Light is the colour of a rising sun—radiant, hopeful, and quietly courageous. It transforms rooms into spaces filled with new beginnings.", scientific: "At 580–600 nm, this bright yellow-orange energises cognitive activity and encourages social warmth." },
   { name: "Land of Dry", hex: "#FFD77F", family: "Yellows", story: "Land of Dry mimics the warmth of parched desert earth—simple, minimal, beautifully natural. It introduces a grounded neutrality while still bringing gentle warmth.", scientific: "With wavelengths around 580 nm, this muted yellow has a calming effect compared to vivid yellows. Its sandy reflectivity creates gentle, diffused interiors." },
 
+  // GREENS
+  { name: "Misty Sage", "hex": "#B7CBB2", "family": "Greens", "story": "Misty Sage is a breath of early-morning air drifting through dew-covered leaves. Soft, herbal, and quietly grounding.", "scientific": "With wavelengths around ~535 nm, Misty Sage reflects a gentle mid-green spectrum that reduces eye fatigue and promotes emotional clarity." },
+  { name: "Mineral Coast Green", "hex": "#8BAA91", "family": "Greens", "story": "Mineral Coast Green embodies the muted elegance of sea-washed stones and coastal vegetation. It feels organic, sophisticated and timeless.", "scientific": "Its mid-range green wavelength stabilises visual perception, offering a soothing environment without oversaturation." },
+  { name: "Heritage Olive", "hex": "#6B7F65", "family": "Greens", "story": "Heritage Olive carries the wisdom of old forests and the richness of ancient landscapes. This deep olive tone brings a cultivated, European charm to interiors.", "scientific": "With wavelengths around ~560 nm, Heritage Olive absorbs enough light to feel cocooning while still offering a warm green undertone." },
+  { name: "Alpine Mint", "hex": "#DFF2E1", "family": "Greens", "story": "Alpine Mint is crisp, pure, and invigorating — inspired by the cool freshness of high-altitude air.", "scientific": "Scientifically, its short-wavelength green spectrum enhances visual purity and increases perceived room brightness." },
+  { name: "Evergreen Coast", "hex": "#4E6F5A", "family": "Greens", "story": "Evergreen Coast captures the depth of ocean forests — lush, dramatic, and mysteriously calming.", "scientific": "Scientifically, its lower light reflectance combined with ~555 nm wavelengths creates a rich, enveloping atmosphere that feels secure and steady." },
+  { name: "Jade Valley", "hex": "#9CC9A5", "family": "Greens", "story": "Jade Valley is inspired by the serene clarity of jade stones and moss-covered streams. Its cool, airy presence refreshes interiors without overpowering them.", "scientific": "Its clean mid-green wavelengths offer comfort and visual ease, ideal for long-term use in living rooms and lounges." },
+  { name: "Olive Drift", "hex": "#A5B79E", "family": "Greens", "story": "Olive Drift is a beautifully softened olive tone — earthy, muted, and naturally sophisticated.", "scientific": "With wavelengths around ~550 nm, this shade reflects a mellow light signature that reduces visual sharpness and encourages relaxation." },
+  { name: "Forest Canopy", "hex": "#3C5442", "family": "Greens", "story": "Forest Canopy brings the deep tranquility of towering woodlands indoors. Rich, shadowed, and wonderfully grounding.", "scientific": "Its strong green wavelengths absorb excess brightness, creating a cocooning, retreat-like environment." },
+
   // BLUES
   { name: "Deepwater Blue", hex: "#003F5C", family: "Blues", story: "Deepwater Blue draws its mystery from the silent weight of the ocean trenches — a colour that feels ancient, endless and deeply grounding.", scientific: "Scientifically, blue wavelengths (~450–495 nm) are among the shorter visible spectrum, which is why this shade visually recedes, giving an illusion of expanded space." },
   { name: "Horizon Mist", hex: "#8EB9D4", family: "Blues", story: "Horizon Mist is inspired by the distant line where sky dissolves into air — the softest moment before dawn fully awakens.", scientific: "With wavelengths sitting in the mid-blue range (~470 nm), this colour reflects more light than deeper shades, creating a diffused, serene brightness." },
@@ -156,20 +205,19 @@ const ALL_COLORS = [
   { name: "Celestial Drift", hex: "#C7DEF1", family: "Blues", story: "Celestial Drift is the colour of sky-washed daylight — soft, hopeful, weightless. It creates interiors filled with openness and clarity.", scientific: "Its lighter blue wavelengths reflect soft illumination, enhancing perceived ceiling height and spaciousness." },
   { name: "Northern Harbour", hex: "#2C536F", family: "Blues", story: "Northern Harbour reflects the deep-weathered blues of Scandinavian coasts — strong, steady and beautifully moody.", scientific: "Scientifically, short wavelengths combined with high absorption create a cocoon-like visual experience that makes rooms feel enveloped." },
   { name: "Serene Fjord", hex: "#7DAEC4", family: "Blues", story: "Serene Fjord draws inspiration from the calm waters cupped between mountains — still, reflective and majestic.", scientific: "Its wavelengths (~480 nm) deliver a balanced coolness that refreshes without overwhelming the senses." },
-  // NEW BLUES FROM IMAGE
   { name: "Deep Harbour", hex: "#234E70", family: "Blues", story: "Deep Harbour captures the mysterious calm of the ocean at twilight. It brings a profound, grounding presence to a room, evocative of maritime depth and stability.", scientific: "A low-reflectance, deep blue (approx 460-480 nm) that absorbs light to create an intimate, introspective atmosphere. It reduces visual noise and promotes deep focus." },
   { name: "Denim Drift", hex: "#708090", family: "Blues", story: "Denim Drift is the ultimate versatile grey-blue, inspired by the timeless comfort of worn denim. It shifts beautifully with the light, feeling fresh in the morning and cozy at night.", scientific: "A desaturated blue-grey with balanced warm and cool notes. Its mutability allows it to act as a neutral background that enhances other colors without competing." },
   { name: "Jazz Blue", hex: "#2C5D87", family: "Blues", story: "Rhythmic and soulful, Jazz Blue brings a cool, melodic energy to interiors. It feels like a clear night sky or a deep, flowing melody that opens up a space.", scientific: "Sitting in the mid-blue spectrum, this shade balances stimulation with calm. Its cool temperature visually recedes, making smaller rooms appear more spacious." },
 
-  // GREENS
-  { name: "Misty Sage", hex: "#B7CBB2", family: "Greens", story: "Misty Sage is a breath of early-morning air drifting through dew-covered leaves. Soft, herbal, and quietly grounding.", scientific: "With wavelengths around ~535 nm, Misty Sage reflects a gentle mid-green spectrum that reduces eye fatigue and promotes emotional clarity." },
-  { name: "Mineral Coast Green", hex: "#8BAA91", family: "Greens", story: "Mineral Coast Green embodies the muted elegance of sea-washed stones and coastal vegetation. It feels organic, sophisticated and timeless.", scientific: "Its mid-range green wavelength stabilises visual perception, offering a soothing environment without oversaturation." },
-  { name: "Heritage Olive", hex: "#6B7F65", family: "Greens", story: "Heritage Olive carries the wisdom of old forests and the richness of ancient landscapes. This deep olive tone brings a cultivated, European charm to interiors.", scientific: "With wavelengths around ~560 nm, Heritage Olive absorbs enough light to feel cocooning while still offering a warm green undertone." },
-  { name: "Alpine Mint", hex: "#DFF2E1", family: "Greens", story: "Alpine Mint is crisp, pure, and invigorating — inspired by the cool freshness of high-altitude air.", scientific: "Scientifically, its short-wavelength green spectrum enhances visual purity and increases perceived room brightness." },
-  { name: "Evergreen Coast", hex: "#4E6F5A", family: "Greens", story: "Evergreen Coast captures the depth of ocean forests — lush, dramatic, and mysteriously calming.", scientific: "Scientifically, its lower light reflectance combined with ~555 nm wavelengths creates a rich, enveloping atmosphere that feels secure and steady." },
-  { name: "Jade Valley", hex: "#9CC9A5", family: "Greens", story: "Jade Valley is inspired by the serene clarity of jade stones and moss-covered streams. Its cool, airy presence refreshes interiors without overpowering them.", scientific: "Its clean mid-green wavelengths offer comfort and visual ease, ideal for long-term use in living rooms and lounges." },
-  { name: "Olive Drift", hex: "#A5B79E", family: "Greens", story: "Olive Drift is a beautifully softened olive tone — earthy, muted, and naturally sophisticated.", scientific: "With wavelengths around ~550 nm, this shade reflects a mellow light signature that reduces visual sharpness and encourages relaxation." },
-  { name: "Forest Canopy", hex: "#3C5442", family: "Greens", story: "Forest Canopy brings the deep tranquility of towering woodlands indoors. Rich, shadowed, and wonderfully grounding.", scientific: "Its strong green wavelengths absorb excess brightness, creating a cocooning, retreat-like environment." },
+  // VIOLETS & PURPLES
+  { name: "Lilac Memory", hex: "#B9AEDC", family: "Purples", story: "A nostalgic shade that recalls the soft, papery texture of old books and the gentle scent of dried lavender pressed between pages.", scientific: "This muted violet wavelength (around 400-420 nm) is complex, blending calm-inducing blue with a hint of red's warmth, fostering quiet contemplation." },
+  { name: "Plum Dusk", hex: "#674172", family: "Purples", story: "The color of fruit ripening in silence, this deep plum shade holds the quiet, sophisticated sweetness of a garden at twilight.", scientific: "A low-reflectance purple that absorbs most light, creating a velvety, cocooning effect. It’s a shade that encourages introspection and calm." },
+  { name: "Berry Smoke", hex: "#8E5572", family: "Purples", story: "A complex, smoky purple that sits between sweet and somber. It evokes the rich, moody tones of crushed mulberries and blackberries.", scientific: "This red-violet shade stimulates creativity while maintaining a grounded, sophisticated feel, balancing energy and calm." },
+  { name: "Mauve Thread", hex: "#A1869E", family: "Purples", story: "Inspired by the dusty, elegant tones of heritage textiles and hand-spun thread, this mauve is both timeless and modern.", scientific: "A mid-tone purple with grey undertones, it has a balanced wavelength that is easy on the eyes and creates a serene, harmonious atmosphere." },
+  { name: "Twilight Chant", hex: "#5A4A75", family: "Purples", story: "This shade captures the mystical moment between blue and true night, a deep and spiritual color that feels like a quiet chant.", scientific: "A blue-violet that combines the intellectual clarity of blue with the spiritual introspection of purple, ideal for spaces of focus and meditation." },
+  { name: "Royal Whisper", hex: "#473259", family: "Purples", story: "A muted, shadowy purple that speaks of velvet’s understated luxury. It's regal without shouting, sophisticated without being cold.", scientific: "This deep purple absorbs light and creates a sense of depth and intimacy. Psychologically, it’s associated with wisdom and luxury." },
+  { name: "Misty Lilac", hex: "#C9B4D5", family: "Purples", story: "A dreamy, modern neutral that feels like a hazy field of lavender at dawn. It’s soft, romantic, and endlessly versatile.", scientific: "A high-reflectance lilac that bounces light to make spaces feel larger and more airy, while its violet undertone adds a touch of creative energy." },
+  { name: "Violet Joy", hex: "#BFA2E0", family: "Purples", story: "A bright, clear hyacinth violet that captures the uninhibited joy of a spring garden in full bloom. It is energetic, optimistic, and pure.", scientific: "A high-frequency violet wavelength that is visually stimulating and associated with creativity and youthful energy. It adds a vibrant, uplifting pop to any space." },
 
   // NEUTRALS
   { name: "Limestone Haze", hex: "#D7D1C9", family: "Neutrals", story: "Limestone Haze is the colour of ancient walls weathered by centuries of sun and silence. Soft, chalky, and beautifully architectural.", scientific: "Its balanced reflectance distributes light evenly, minimizing glare and enhancing room softness." },
@@ -204,7 +252,6 @@ const ALL_COLORS = [
   { name: "Blush Whisper", hex: "#E6C5C2", family: "Whites", story: "Blush Whisper is Scandinavian elegance distilled into a colour — airy, pale, and delicately feminine.", scientific: "Scientifically, its warm-red undertone gently absorbs harsh light, leaving rooms wrapped in a diffused, velvety glow." },
   { name: "Wild Pink", hex: "#FF69B4", family: "Whites", story: "Wild Pink is playful, bold, and joyfully alive — the electric pop of bougainvillea on a sunny day.", scientific: "Its vibrant high-energy wavelengths bounce light dynamically, making interiors feel animated and full of movement." },
   { name: "Platinum Mist", hex: "#E0E0E0", family: "Whites", story: "Platinum Mist is the essence of modern minimalism — crisp, balanced, and quietly sophisticated.", scientific: "With a strong neutral wavelength balance, it reflects light cleanly while keeping the atmosphere sleek and restrained." },
-  // NEW WHITES / OFF-WHITES FROM IMAGE
   { name: "Butterveil", hex: "#F3EEE6", family: "Whites", story: "Soft as churned cream, Butterveil adds a delicate, savory warmth to walls. It feels like a hug of light—gentle, nurturing, and incredibly soft.", scientific: "A high-LRV off-white with subtle yellow-orange undertones. It softens harsh daylight and makes artificial lighting feel warmer and more inviting." },
   { name: "Desert Linen", hex: "#EADFCC", family: "Whites", story: "Inspired by raw fabrics bleaching in the sun, Desert Linen is an earthy, textural neutral. It brings the quiet simplicity of woven cloth into modern interiors.", scientific: "With a balanced beige-grey spectral curve, this color reflects light evenly, reducing eye strain and creating a natural, organic backdrop." },
   { name: "Lemon Grain", hex: "#F5E7AA", family: "Whites", story: "Lemon Grain carries the faint, sweet scent of summer wheat and citrus. It is a whisper of yellow that makes a room feel perpetually sunlit and cheerful.", scientific: "A pale yellow-white that maximizes light scattering. Its subtle chromaticity (near 570 nm) lifts mood without the visual fatigue of saturated yellows." },
@@ -220,8 +267,8 @@ const ALL_COLORS = [
   { name: "Whispered Memory", hex: "#D3C6B2", family: "Accents", story: "Whispered Memory feels like stepping into an old library where time moves slower — faded parchment, heritage walls, and the soft warmth of forgotten letters.", scientific: "Scientifically, its balanced wavelength mix softens shadows and creates a classic, timeless look in any room." },
   { name: "Morning Hush", hex: "#B2FF05", family: "Accents", story: "Morning Hush is the quiet brightness of early sunrise over fresh fields — an uplifting yellow-green that carries the optimism of a new day.", scientific: "Scientifically, its bright high-frequency wavelengths energise space, making it perfect for kitchens, studios, or children’s play areas." },
   { name: "Terracotta Veil", hex: "#E0B79F", family: "Accents", story: "Terracotta Veil is a soft clay blush — the gentler, more refined cousin of terracotta. It holds the warmth of pottery, the comfort of earthen textures.", scientific: "Its warm red-orange wavelengths create a flattering glow on skin and surfaces." }
-].map((c, i) => ({ ...c, id: `col-${i}` }));
 
+].map((c, i) => ({ ...c, id: `col-${i}` }));
 
 export default function App() {
   const [view, setView] = useState('library'); 
