@@ -1,4 +1,4 @@
-
+// context/CartContext.tsx
 'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
@@ -15,11 +15,13 @@ export interface CartItem {
   qty: number;
 }
 
+// 1. Update the Interface to include clearCart
 interface CartContextType {
   cartItems: CartItem[];
   addToCart: (item: Omit<CartItem, 'uniqueId'>) => void;
   removeFromCart: (uniqueId: string) => void;
   updateQty: (uniqueId: string, change: number) => void;
+  clearCart: () => void; // <--- Added this
   cartCount: number;
 }
 
@@ -52,13 +54,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, [cartItems, isLoaded]);
 
   const addToCart = (newItem: Omit<CartItem, 'uniqueId'>) => {
-    // Unique ID = ProductID + Finish + ColorHex (so different finishes of same color are separate)
     const uniqueId = `${newItem.productId}-${newItem.finish}-${newItem.hex}`.replace(/\s+/g, '-').toLowerCase();
 
     setCartItems((prev) => {
       const existing = prev.find((item) => item.uniqueId === uniqueId);
       if (existing) {
-        // Increment Qty if same item
         return prev.map((item) =>
           item.uniqueId === uniqueId ? { ...item, qty: item.qty + newItem.qty } : item
         );
@@ -83,10 +83,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     );
   };
 
+  // 2. Implement the clearCart function
+  const clearCart = () => {
+    setCartItems([]); // Clears state
+    localStorage.removeItem('tonester_cart'); // Clears storage
+  };
+
   const cartCount = cartItems.reduce((acc, item) => acc + item.qty, 0);
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQty, cartCount }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, updateQty, clearCart, cartCount }}>
       {children}
     </CartContext.Provider>
   );

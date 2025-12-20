@@ -1,14 +1,12 @@
-// app/cart/page.tsx
+
 'use client';
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Minus, Plus, Trash2, ArrowRight, X, Check, Loader2, Info } from 'lucide-react';
+import { Minus, Plus, Trash2, ArrowRight, X, Check, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useCart } from '../context/CartContext';
-
-// Simple Toast Component for the Cart Page
-const CartToast = ({ message, isVisible, onClose }: { message: string, isVisible: boolean, onClose: () => void }) => {
+const CartToast = ({ message, isVisible }: { message: string, isVisible: boolean, onClose: () => void }) => {
   return (
     <AnimatePresence>
       {isVisible && (
@@ -149,7 +147,7 @@ export default function LuxuryCart() {
           {cartItems.length === 0 && (
              <div className="py-20 text-center">
                 <p className="text-stone-400 text-lg mb-6 font-serif italic">"Color is a power which directly influences the soul."</p>
-                <Link href="/" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
+                <Link href="/collections" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
                   Return to Library
                 </Link>
              </div>
@@ -199,7 +197,6 @@ export default function LuxuryCart() {
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
                 className="fixed top-0 right-0 h-full w-full max-w-md bg-stone-50 z-[101] shadow-2xl flex flex-col"
             >
-                {/* 1. CLEAR CART PROMPT (Success State) */}
                 {showClearCartPrompt ? (
                    <div className="h-full flex flex-col items-center justify-center text-center p-8 bg-white">
                       <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-800 mb-6">
