@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Star, Droplets, Sun, Shield, Search, X, Check, BookOpen, Lightbulb } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Star, Droplets, Sun, Shield, Search, X, Check, BookOpen, Lightbulb, Package, Minus, Plus } from 'lucide-react';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -43,6 +43,12 @@ const Toast = ({ message, isVisible, onClose }: { message: string, isVisible: bo
 
 // --- 2. DATA CONSTANTS ---
 
+const SIZE_OPTIONS = [
+  { id: '1ltr', label: '1 Litre', multiplier: 0.28 },
+  { id: '4ltr', label: '4 Litres', multiplier: 1.0 }, // Base Price Reference
+  { id: '20ltr', label: '20 Litres', multiplier: 4.5 },
+];
+
 const FILTERS = [
   { id: 'all', label: 'All Colors', hex: '#E5E5E5' },
   { id: 'Reds', label: 'Reds', hex: '#B55233' },
@@ -64,49 +70,75 @@ const BRAND_CONTENT = {
     tagline: 'Soft walls. Calm spaces. Timeless elegance.',
     finishes: [
       {
-        id: 'matt',
-        name: 'Matt',
-        label: 'Matt',
-        title: 'Ceramic Society™ Matt Finish',
+        id: 'mineral-matt',
+        name: 'Mineral Matt',
+        label: 'Mineral Matt',
+        title: 'Ceramic Society™ Mineral Matt',
         price: 85,
-        description: 'A premium matt interior paint with a smooth, refined surface that absorbs light beautifully.',
+        description: 'A premium mineral-based matt finish that offers a deep, non-reflective elegance for sophisticated interiors.',
         details: {
-          whatItDoes: [ 'Creates a smooth, even matt finish', 'Delivers excellent hiding and uniform coverage', 'Reduces glare for relaxed, comfortable spaces' ],
-          whyDifferent: [ 'Nano-pigments for exceptional opacity', 'Anti-bacterial property', 'Ultra-low VOC formulation' ],
-          specs: { 'Finish': 'Matt', 'Coverage': '110–140 sq.ft / L', 'Coats': '2', 'DryTime': '30 min', 'Warranty': '7-year' }
+          whatItDoes: [ 'Creates a deep, non-reflective surface', 'Hides wall imperfections perfectly', 'Delivers rich, consistent colour' ],
+          whyDifferent: [ 'Ceramic microspheres for durability', 'Velvet-touch texture', 'Ultra-low VOC' ],
+          specs: { Finish: 'Dead Matt', Coverage: '120 sq.ft / L', Coats: '2', DryTime: '30 min', Warranty: '7-year' }
         }
       },
       {
-        id: 'gloss',
+        id: 'high-gloss',
         name: 'High Gloss',
         label: 'High Gloss',
-        title: 'Ceramic Society™ Glossy Finish',
-        price: 92,
-        description: 'A rich, reflective interior paint that brings colour to life. Crafted for bold interiors.',
+        title: 'Ceramic Society™ High Gloss',
+        price: 95,
+        description: 'A mirror-like high gloss finish that reflects light beautifully, adding drama and durability to any space.',
         details: {
-          whatItDoes: [ 'Delivers a smooth, luminous glossy finish', 'Enhances colour richness', 'Resists stains and is easy to clean' ],
-          whyDifferent: [ 'Nano-resin technology', 'High colour saturation', 'Ultra Low-VOC' ],
-          specs: { 'Finish': 'Glossy', 'Coverage': '100–130 sq.ft / L', 'Coats': '2', 'DryTime': '30 min', 'Warranty': '8-year' }
+          whatItDoes: [ 'Reflects light to brighten spaces', 'Highly washable and stain resistant', 'Creates a glass-like premium look' ],
+          whyDifferent: [ 'High-resin solids for depth', 'Scuff-resistant technology', 'Vibrant colour retention' ],
+          specs: { Finish: 'High Gloss', Coverage: '100 sq.ft / L', Coats: '2', DryTime: '45 min', Warranty: '8-year' }
         }
       }
     ]
   },
   ellora: {
     id: 'ellora',
-    name: 'Ellora™ Luxe',
-    tagline: 'Where light touches walls and everything feels elevated.',
+    name: 'Ellora by Elements',
+    tagline: 'The purest expression of interior luxury.',
     finishes: [
       {
-        id: 'soft-glow',
-        name: 'Soft Glow',
-        label: 'Soft Glow Luxe',
-        title: 'Ellora™ Luxe Interior Finish',
-        price: 120,
-        description: 'A soft–glow, ultra-smooth luxury wall coating inspired by natural minerals and modern design.',
+        id: 'matt',
+        name: 'Matt',
+        label: 'Matt',
+        title: 'Ellora™ Pure Matt',
+        price: 110,
+        description: 'Luxury that does not announce itself. A soft, powdery matt finish that feels like natural fabric.',
         details: {
-          whatItDoes: [ 'High-sheen luxury glow', 'Uniform, velvet-smooth finish', 'Washable & stain-resistant', 'Anti-fungal, anti-microbial nanotech' ],
-          whyDifferent: [ 'Mineral-rich micro-particles create a naturally smooth finish', 'Nano-enhanced film forms a dense, stain-blocking layer', 'Non-leaching antimicrobial action keeps surfaces hygienic' ],
-          specs: { 'Finish': 'Soft Glow Luxe', 'Sheen': 'Medium-to-high reflective subtle sheen', 'Coverage': '10–14 m²/L per coat', 'DryTime': '30-45 min', 'Recoat': '4 hrs', 'VOC': 'Low VOC' }
+          whatItDoes: [ 'Absorbs light for a calm atmosphere', 'Enhances colour purity', 'Zero reflection' ],
+          whyDifferent: [ 'Rare mineral pigmentation', 'Breathable film', 'Zero-VOC' ],
+          specs: { Finish: 'Powder Matt', Coverage: '130 sq.ft / L', Coats: '2', DryTime: '1 hr', Warranty: 'Lifetime' }
+        }
+      },
+      {
+        id: 'satin-silky',
+        name: 'Satin / Silky',
+        label: 'Satin / Silky',
+        title: 'Ellora™ Silky Satin',
+        price: 118,
+        description: 'The perfect balance between matt and gloss. A silky, pearl-like sheen that glows softly under light.',
+        details: {
+          whatItDoes: [ 'Offers a subtle, pearl-like glow', 'Easier to clean than matt', 'Softens sharp room angles' ],
+          whyDifferent: [ 'Silk-polymer emulsion', 'Light-diffusing technology', 'Stain-guard shield' ],
+          specs: { Finish: 'Soft Satin', Coverage: '125 sq.ft / L', Coats: '2', DryTime: '45 min', Warranty: 'Lifetime' }
+        }
+      },
+      {
+        id: 'high-gloss',
+        name: 'High Gloss',
+        label: 'High Gloss',
+        title: 'Ellora™ Mirror Gloss',
+        price: 125,
+        description: 'An ultra-reflective, lacquer-like finish for feature walls and statement spaces.',
+        details: {
+          whatItDoes: [ 'Creates a wet-look mirror finish', 'Maximizes light in dark rooms', 'Extreme durability' ],
+          whyDifferent: [ 'Nano-lacquer technology', 'Self-leveling smoothness', 'Hard-coat protection' ],
+          specs: { Finish: 'Mirror Gloss', Coverage: '110 sq.ft / L', Coats: '3', DryTime: '2 hrs', Warranty: 'Lifetime' }
         }
       }
     ]
@@ -117,36 +149,75 @@ const BRAND_CONTENT = {
     tagline: 'Nature. Strength. Timeless Protection.',
     finishes: [
       {
-        id: 'mineral-matte',
-        name: 'Mineral Matte',
-        label: 'Mineral Matte',
-        title: 'Minera™ Exterior Shield',
-        price: 150,
-        description: 'Luxury Mineral-Based Nanotech Coating for Walls. Defends against sun, rain, humidity, and pollution.',
+        id: 'x05',
+        name: 'X 05',
+        label: 'X 05',
+        title: 'Minera™ X 05 Shield',
+        price: 140,
+        description: 'Essential exterior protection with advanced weather resistance and anti-algal properties.',
         details: {
-          whatItDoes: [ 'Ultimate Weather Resistance', 'Eco & Carbon Neutral', 'Elegant mineral matte finish', 'Self-Cleaning & Anti-Stain' ],
-          whyDifferent: [ 'Mineral nanoparticles penetrate the surface to form a permanent protective lattice', 'Nano-silver & copper complexes provide 24/7 antimicrobial surface protection', 'Non-leaching, environmentally safe, and highly breathable' ],
-          specs: { 'Finish': 'Smooth, refined, mineral matte', 'Sheen': 'Low to medium', 'Durability': '8–10 years', 'Coverage': '10–12 m²/L per coat', 'Water Repellency': 'Superior', 'UV Shield': 'Excellent' }
+          whatItDoes: [ 'Protects against rain and sun', 'Prevents algae and fungal growth', 'Maintains brightness' ],
+          whyDifferent: [ 'Standard UV protection', 'Breathable polymer', 'Cost-effective durability' ],
+          specs: { Finish: 'Matt', Warranty: '5 Years', Coverage: '60 sq.ft / L', Coats: '2', 'Rain Guard': 'Standard' }
+        }
+      },
+      {
+        id: 'x10',
+        name: 'X 10',
+        label: 'X 10',
+        title: 'Minera™ X 10 Advanced',
+        price: 165,
+        description: 'Advanced exterior shield with crack-bridging technology and dust resistance.',
+        details: {
+          whatItDoes: [ 'Bridges hairline cracks', 'Repels dust and dirt', 'Enhanced waterproofing' ],
+          whyDifferent: [ 'Elastomeric mid-coat', 'Dust-Guard technology', 'High UV reflection' ],
+          specs: { Finish: 'Low Sheen', Warranty: '10 Years', Coverage: '55 sq.ft / L', Coats: '2', 'Rain Guard': 'Advanced' }
+        }
+      },
+      {
+        id: 'x15plus',
+        name: 'X 15 Plus',
+        label: 'X 15 PLUS',
+        title: 'Minera™ X 15 Plus Ultimate',
+        price: 190,
+        description: 'The ultimate exterior fortification. Heat-reflective, structural-grade protection for extreme climates.',
+        details: {
+          whatItDoes: [ 'Reduces indoor temperature', 'Waterproofs completely', 'Self-cleaning surface' ],
+          whyDifferent: [ 'Nano-ceramic heat barrier', 'Cross-linked polymers', 'Carbon-fiber reinforcement' ],
+          specs: { Finish: 'Satin', Warranty: '15 Years', Coverage: '50 sq.ft / L', Coats: '3', 'Rain Guard': 'Ultimate' }
         }
       }
     ]
   },
-  x10: {
-    id: 'x10',
-    name: 'X-10 GrapheneFlex™',
-    tagline: 'Crack-Proof. Weather-Proof. Future-Proof.',
+  woods_metals: {
+    id: 'woods_metals',
+    name: 'Woods & Metals',
+    tagline: 'Enduring beauty for trim, doors, and details.',
     finishes: [
       {
-        id: 'elastomeric-satin',
-        name: 'Elastomeric Satin',
-        label: 'Elastomeric',
-        title: 'X-10 GrapheneFlex™ Exterior Coating',
-        price: 180,
-        description: 'An ultra-premium, eco-conscious, graphene-reinforced elastomeric coating designed to outlast extreme sun, rain, dust, pollution and temperature swings.',
+        id: 'matt',
+        name: 'Matt',
+        label: 'Matt',
+        title: 'W&M Enamel Matt',
+        price: 90,
+        description: 'A modern, flat finish for metal gates, wooden doors, and furniture. Sleek and understated.',
         details: {
-          whatItDoes: [ 'Hydrophobic elastomeric film resists wind-driven rain', 'High crack-bridging capability up to 2 mm', 'Superior waterproofing and dampness control' ],
-          whyDifferent: [ 'Graphene-enhanced tensile strength and film toughness', 'Colloidal Nano-Silica densifies polymer matrix, increasing abrasion resistance', '250–350% elongation with deep film memory' ],
-          specs: { 'Tech Base': 'Graphene + Nano-Silica Elastomeric', 'Elongation': '250–350%', 'Crack Bridging': 'Up to 2 mm', 'UV Resistance': 'Excellent (QUV 1000h)', 'Life Expectancy': '10–12+ Years', 'VOC': '< 15 g/L' }
+          whatItDoes: [ 'Provides a flat, non-shiny finish', 'Hides surface grain/imperfections', 'Tough and scratch resistant' ],
+          whyDifferent: [ 'Urethane-modified alkyd', 'Anti-rust inhibitors', 'Quick drying' ],
+          specs: { Finish: 'Matt', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High' }
+        }
+      },
+      {
+        id: 'satin',
+        name: 'Satin',
+        label: 'Satin',
+        title: 'W&M Enamel Satin',
+        price: 98,
+        description: 'A soft, buttery sheen that mimics the glow of hand-rubbed wax. Elegant and durable.',
+        details: {
+          whatItDoes: [ 'Resists fingerprints and scuffs', 'Easy to wipe clean', 'Subtle glow highlights detailing' ],
+          whyDifferent: [ 'Self-leveling agents', 'Flexible film technology', 'Yellowing resistant' ],
+          specs: { Finish: 'Satin', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High' }
         }
       }
     ]
@@ -367,7 +438,9 @@ const LibraryView = ({ onSelect }: { onSelect: (c: any) => void }) => {
 
 const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
   const [activeBrand, setActiveBrand] = useState<keyof typeof BRAND_CONTENT>('ceramic');
-  const [activeFinishId, setActiveFinishId] = useState('matt');
+  const [activeFinishId, setActiveFinishId] = useState(BRAND_CONTENT['ceramic'].finishes[0].id);
+  const [selectedSize, setSelectedSize] = useState('4ltr');
+  const [quantity, setQuantity] = useState(1);
   
   // TOAST STATE
   const [toastVisible, setToastVisible] = useState(false);
@@ -377,11 +450,21 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
   const { addToCart } = useCart();
 
   const brandData = BRAND_CONTENT[activeBrand];
+  
+  // Safe finish retrieval (in case switching brands causes a mismatch in IDs)
   const finishData = brandData.finishes.find(f => f.id === activeFinishId) || brandData.finishes[0];
+  
+  const sizeOption = SIZE_OPTIONS.find(s => s.id === selectedSize) || SIZE_OPTIONS[1];
 
-  // Helper to safely get specifications without strict type errors
-  const specs = finishData.details.specs as Record<string, string>;
-  const warrantyLabel = specs.Warranty || specs.Durability || specs['Life Expectancy'] || 'Lifetime';
+  // Calculate Price: Base * Size Multiplier
+  const unitPrice = Math.round(finishData.price * sizeOption.multiplier);
+  const totalPrice = unitPrice * quantity;
+
+  const handleBrandChange = (brandId: keyof typeof BRAND_CONTENT) => {
+    setActiveBrand(brandId);
+    // Reset to the first finish of the new brand to avoid invalid IDs
+    setActiveFinishId(BRAND_CONTENT[brandId].finishes[0].id);
+  };
 
   const handleAddToCart = () => {
     addToCart({
@@ -389,14 +472,13 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
       name: color.name,
       brand: activeBrand,
       finish: finishData.label,
-      price: finishData.price,
+      price: unitPrice,
       hex: color.hex,
-      size: '1 Gallon',
-      qty: 1
+      size: sizeOption.label,
+      qty: quantity
     });
 
-    // TRIGGER TOAST
-    setToastMessage(`Added ${color.name} (${finishData.label}) to your bag.`);
+    setToastMessage(`Added ${quantity} x ${color.name} (${sizeOption.label}) to your bag.`);
     setToastVisible(true);
     setTimeout(() => setToastVisible(false), 3000); 
   };
@@ -407,7 +489,6 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white relative">
       
-      {/* Toast Rendered Here */}
       <Toast message={toastMessage} isVisible={toastVisible} onClose={() => setToastVisible(false)} />
 
       <div className="flex flex-col lg:flex-row min-h-screen">
@@ -435,18 +516,29 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
                 <h1 className="text-5xl font-serif text-stone-900 leading-[1] mb-2">{color?.name || 'Selected Color'}</h1>
                 <p className="text-stone-400 text-sm mb-10">{finishData.title}</p>
 
+                {/* 1. BRAND SELECTION */}
                 <div className="mb-8">
-                  <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">1. Choose Formula</label>
-                  <div className="flex gap-2 border-b border-stone-100 pb-4">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">1. Choose Brand / Usage</label>
+                  <div className="flex flex-wrap gap-2 border-b border-stone-100 pb-4">
                      {Object.values(BRAND_CONTENT).map((brand) => (
-                       <button key={brand.id} onClick={() => { setActiveBrand(brand.id as keyof typeof BRAND_CONTENT); setActiveFinishId(brand.finishes[0].id); }} className={cn("text-sm px-0 py-2 mr-4 border-b-2 transition-all font-medium", activeBrand === brand.id ? "border-stone-900 text-stone-900" : "border-transparent text-stone-400 hover:text-stone-600")}>
-                         {brand.name.split('™')[0]}
+                       <button 
+                          key={brand.id} 
+                          onClick={() => handleBrandChange(brand.id as keyof typeof BRAND_CONTENT)} 
+                          className={cn(
+                             "text-xs px-3 py-2 rounded-md transition-all font-medium border", 
+                             activeBrand === brand.id 
+                                ? "bg-stone-100 border-stone-300 text-stone-900" 
+                                : "bg-white border-transparent text-stone-400 hover:text-stone-600 hover:bg-stone-50"
+                          )}
+                        >
+                         {brand.name}
                        </button>
                      ))}
                   </div>
                 </div>
 
-                <div className="mb-10">
+                {/* 2. FINISH SELECTION */}
+                <div className="mb-8">
                    <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">2. Select Finish</label>
                    <div className="flex flex-wrap gap-2">
                       {brandData.finishes.map((finish) => (
@@ -457,13 +549,60 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
                    </div>
                 </div>
 
+                {/* 3. SIZE SELECTION */}
+                <div className="mb-10">
+                   <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 flex items-center gap-2"><Package size={12}/> 3. Select Size</label>
+                   <div className="grid grid-cols-3 gap-3">
+                      {SIZE_OPTIONS.map((size) => (
+                        <button 
+                          key={size.id} 
+                          onClick={() => setSelectedSize(size.id)} 
+                          className={cn(
+                            "flex flex-col items-center justify-center p-3 rounded-lg border transition-all duration-200", 
+                            selectedSize === size.id 
+                              ? "bg-stone-50 border-stone-900 ring-1 ring-stone-900" 
+                              : "border-stone-200 hover:border-stone-400"
+                          )}
+                        >
+                          <span className={cn("text-xs font-bold uppercase mb-1", selectedSize === size.id ? "text-stone-900" : "text-stone-500")}>{size.label}</span>
+                          <span className="text-[10px] text-stone-400">${Math.round(finishData.price * size.multiplier)}</span>
+                        </button>
+                      ))}
+                   </div>
+                </div>
+
+                {/* 4. QUANTITY SELECTION */}
+                <div className="mb-8">
+                  <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-3 block">4. Quantity</label>
+                  <div className="flex items-center gap-4">
+                     <div className="flex items-center border border-stone-200 rounded-full p-1">
+                        <button 
+                           onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-600 transition-colors"
+                        >
+                           <Minus size={14} />
+                        </button>
+                        <span className="w-12 text-center text-sm font-bold text-stone-900">{quantity}</span>
+                        <button 
+                           onClick={() => setQuantity(quantity + 1)}
+                           className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-stone-100 text-stone-600 transition-colors"
+                        >
+                           <Plus size={14} />
+                        </button>
+                     </div>
+                     <p className="text-xs text-stone-400">Total: <strong className="text-stone-900">${totalPrice}</strong></p>
+                  </div>
+                </div>
+
                 <div className="border-t border-stone-100 pt-8 mt-4">
                    <div className="flex items-end justify-between mb-6">
-                      <div><p className="text-3xl font-serif text-stone-900">${finishData.price}</p><p className="text-xs text-stone-500 mt-1">Per Gallon · 3.78L</p></div>
+                      <div>
+                        <p className="text-3xl font-serif text-stone-900">${totalPrice}</p>
+                        <p className="text-xs text-stone-500 mt-1">{sizeOption.label} · {quantity} Unit(s)</p>
+                      </div>
                       <div className="flex items-center gap-2"><div className="w-8 h-8 rounded-full border border-stone-200 shadow-sm" style={{ backgroundColor: color?.hex }} /><span className="text-xs font-bold uppercase">{color?.name}</span></div>
                    </div>
 
-                   {/* Add To Cart Button */}
                    <button 
                      onClick={handleAddToCart}
                      className="w-full bg-stone-900 text-white py-5 text-sm font-bold uppercase tracking-widest hover:bg-stone-800 transition-transform active:scale-[0.98] mb-3"
@@ -477,7 +616,7 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
             <div className="mt-8 pt-8 border-t border-stone-100 grid grid-cols-3 gap-4 text-center">
                 <div><Droplets className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Washable</span></div>
                 <div><Sun className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Low VOC</span></div>
-                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{String(warrantyLabel).split(' ')[0]}</span></div>
+                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{finishData.details.specs.Warranty ? String(finishData.details.specs.Warranty).split(' ')[0] : 'Lifetime'}</span></div>
             </div>
         </div>
       </div>
