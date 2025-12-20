@@ -216,8 +216,6 @@ export default function OurStoryPage() {
           />
         ))}
       </main>
-
-      {/* Footer/Conclusion */}
       <section className="py-32 px-4 bg-stone-50 mt-12 border-t border-stone-100">
         <motion.div 
             initial={{ opacity: 0 }} 
@@ -243,7 +241,7 @@ export default function OurStoryPage() {
               className="group inline-flex justify-center items-center px-8 py-4 text-sm font-bold tracking-widest text-white bg-stone-900 uppercase hover:bg-stone-800 transition-all shadow-lg shadow-stone-200"
             >
               Discover Our Technology
-            </a>
+            </a> 
             <a 
               href="/collections" 
               className="group inline-flex justify-center items-center px-8 py-4 text-sm font-bold tracking-widest text-stone-900 bg-transparent border border-stone-300 uppercase hover:bg-white hover:border-stone-900 transition-all"

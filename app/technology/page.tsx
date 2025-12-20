@@ -3,7 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, CheckCircle2, ShieldCheck, ThermometerSun, Wind } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, ThermometerSun, Wind } from 'lucide-react';
+
+// Imported images (paths updated to match variable names)
+import tech11 from '../../public/tech11.png';
+import tech12 from '../../public/tech12.png';
+import tech13 from '../../public/tech13.png';
+import tech21 from '../../public/tech21.png';
+import tech22 from '../../public/tech22.png';
+import tech23 from '../../public/tech23.png';
+import tech31 from '../../public/tech31.png';
+import tech32 from '../../public/tech32.png';
+import tech33 from '../../public/tech33.png';
 
 const content = {
   hero: {
@@ -17,33 +28,24 @@ const content = {
       title: "Nano-Shield™",
       body: "Buildings fail silently—through corrosion, carbonation, UV fatigue, and micro-cracks. Nano-Shield™ penetrates deep into the surface matrix, reinforcing it at a molecular level to stop damage before it starts.",
       tags: ["Stops Corrosion", "Resists Cracking", "UV Stable"],
-      images: [
-        "https://drive.google.com/file/d/1tp9v-B4cVUI2ZaF91YrII2sCeo_cAjAL/view",
-        "https://images.pexels.com/photos/5973972/pexels-photo-5973972.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        "https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=1600"
-      ]
+      // Updated with local imports
+      images: [ tech11, tech12, tech13 ]
     },
     {
       category: "Healthier Air",
       title: "24/7 Germ Defense™",
       body: "Clean isn’t enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
       tags: ["Silver & Copper Ion", "Mold Prevention", "No Toxins"],
-      images: [
-        "https://images.pexels.com/photos/3735709/pexels-photo-3735709.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        "https://images.pexels.com/photos/668298/pexels-photo-668298.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        "https://images.pexels.com/photos/250591/pexels-photo-250591.jpeg?auto=compress&cs=tinysrgb&w=1600"
-      ]
+      // Updated with local imports
+      images: [ tech21, tech22, tech23 ]
     },
     {
       category: "Self-Preserving",
       title: "Smart Surface Intelligence™",
-      body: "Why should surfaces only look good. when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
+      body: "Why should surfaces only look good when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
       tags: ["Self-Cleaning", "-12°C Heat Drop", "Self-Healing"],
-      images: [
-        "https://cdn.pixabay.com/photo/2015/09/05/22/49/drop-of-water-926372_1280.jpg",
-        "https://images.pexels.com/photos/256514/pexels-photo-256514.jpeg?auto=compress&cs=tinysrgb&w=1600",
-        "https://cdn.pixabay.com/photo/2016/12/29/18/44/background-1939128_1280.jpg"
-      ]
+      // Updated with local imports
+      images: [ tech31, tech32, tech33 ]
     }
   ],
   specs: [
@@ -53,7 +55,6 @@ const content = {
     { label: "Safety", value: "0%", desc: "Toxic emissions", icon: Wind },
   ]
 };
-
 
 const FadeIn = ({ children, delay = 0, className = "" }: { children: React.ReactNode, delay?: number, className?: string }) => (
   <motion.div
@@ -74,7 +75,7 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveTagIndex((prev) => (prev + 1) % feature.tags.length);
-    }, 3000); // Change every 3 seconds
+    }, 3000); 
     return () => clearInterval(timer);
   }, [feature.tags.length]);
 
@@ -105,6 +106,7 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
                 className="object-cover"
                 priority={index === 0} 
                 sizes="(max-width: 768px) 100vw, 50vw"
+                placeholder="blur" // Optional: adds blur effect while loading if imported locally
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </motion.div>
@@ -191,18 +193,10 @@ export default function NanogradsPage() {
           <p className="text-xl md:text-2xl text-stone-500 max-w-3xl mx-auto leading-relaxed font-light mb-12">
             {content.hero.desc}
           </p>
-          
-          {/* <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="group px-8 py-4 bg-stone-900 text-white font-medium rounded-sm hover:bg-stone-800 transition-all flex items-center justify-center gap-2">
-              Get Started
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 text-stone-600 font-medium rounded-sm border border-stone-200 hover:border-stone-900 hover:bg-stone-50 transition-all">
-              View Technology
-            </button>
-          </div> */}
         </FadeIn>
       </section>
+
+      {/* 2. SPECS SECTION */}
       <section className="border-y border-stone-100 bg-stone-50/50">
         <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 divide-x divide-stone-100/50">
           {content.specs.map((spec, i) => (
@@ -221,8 +215,6 @@ export default function NanogradsPage() {
           ))}
         </div>
       </section>
-
-      {/* 3. MAIN FEATURES - Now with Auto-Rotation */}
       <section className="py-32 px-6 md:px-12 max-w-7xl mx-auto space-y-32">
         {content.features.map((feature, i) => (
           <FeatureRow key={i} feature={feature} index={i} />
@@ -231,7 +223,6 @@ export default function NanogradsPage() {
 
       {/* 4. THE DIFFERENCE (Bento Grid) */}
       <section className="py-24 px-6 md:px-12 bg-stone-900 text-stone-200 mt-12 overflow-hidden relative">
-        {/* Background Texture */}
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto relative z-10">
