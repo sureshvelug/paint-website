@@ -73,7 +73,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Creates a smooth, even matt finish', 'Delivers excellent hiding and uniform coverage', 'Reduces glare for relaxed, comfortable spaces' ],
           whyDifferent: [ 'Nano-pigments for exceptional opacity', 'Anti-bacterial property', 'Ultra-low VOC formulation' ],
-          specs: { Finish: 'Matt', Coverage: '110–140 sq.ft / L', Coats: '2', DryTime: '30 min', Warranty: '7-year' }
+          specs: { 'Finish': 'Matt', 'Coverage': '110–140 sq.ft / L', 'Coats': '2', 'DryTime': '30 min', 'Warranty': '7-year' }
         }
       },
       {
@@ -86,7 +86,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Delivers a smooth, luminous glossy finish', 'Enhances colour richness', 'Resists stains and is easy to clean' ],
           whyDifferent: [ 'Nano-resin technology', 'High colour saturation', 'Ultra Low-VOC' ],
-          specs: { Finish: 'Glossy', Coverage: '100–130 sq.ft / L', Coats: '2', DryTime: '30 min', Warranty: '8-year' }
+          specs: { 'Finish': 'Glossy', 'Coverage': '100–130 sq.ft / L', 'Coats': '2', 'DryTime': '30 min', 'Warranty': '8-year' }
         }
       }
     ]
@@ -106,7 +106,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'High-sheen luxury glow', 'Uniform, velvet-smooth finish', 'Washable & stain-resistant', 'Anti-fungal, anti-microbial nanotech' ],
           whyDifferent: [ 'Mineral-rich micro-particles create a naturally smooth finish', 'Nano-enhanced film forms a dense, stain-blocking layer', 'Non-leaching antimicrobial action keeps surfaces hygienic' ],
-          specs: { Finish: 'Soft Glow Luxe', Sheen: 'Medium-to-high reflective subtle sheen', Coverage: '10–14 m²/L per coat', DryTime: '30-45 min', Recoat: '4 hrs', VOC: 'Low VOC' }
+          specs: { 'Finish': 'Soft Glow Luxe', 'Sheen': 'Medium-to-high reflective subtle sheen', 'Coverage': '10–14 m²/L per coat', 'DryTime': '30-45 min', 'Recoat': '4 hrs', 'VOC': 'Low VOC' }
         }
       }
     ]
@@ -126,7 +126,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Ultimate Weather Resistance', 'Eco & Carbon Neutral', 'Elegant mineral matte finish', 'Self-Cleaning & Anti-Stain' ],
           whyDifferent: [ 'Mineral nanoparticles penetrate the surface to form a permanent protective lattice', 'Nano-silver & copper complexes provide 24/7 antimicrobial surface protection', 'Non-leaching, environmentally safe, and highly breathable' ],
-          specs: { Finish: 'Smooth, refined, mineral matte', Sheen: 'Low to medium', Durability: '8–10 years', Coverage: '10–12 m²/L per coat', 'Water Repellency': 'Superior', 'UV Shield': 'Excellent' }
+          specs: { 'Finish': 'Smooth, refined, mineral matte', 'Sheen': 'Low to medium', 'Durability': '8–10 years', 'Coverage': '10–12 m²/L per coat', 'Water Repellency': 'Superior', 'UV Shield': 'Excellent' }
         }
       }
     ]
@@ -146,7 +146,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Hydrophobic elastomeric film resists wind-driven rain', 'High crack-bridging capability up to 2 mm', 'Superior waterproofing and dampness control' ],
           whyDifferent: [ 'Graphene-enhanced tensile strength and film toughness', 'Colloidal Nano-Silica densifies polymer matrix, increasing abrasion resistance', '250–350% elongation with deep film memory' ],
-          specs: { 'Tech Base': 'Graphene + Nano-Silica Elastomeric', Elongation: '250–350%', 'Crack Bridging': 'Up to 2 mm', 'UV Resistance': 'Excellent (QUV 1000h)', 'Life Expectancy': '10–12+ Years', VOC: '< 15 g/L' }
+          specs: { 'Tech Base': 'Graphene + Nano-Silica Elastomeric', 'Elongation': '250–350%', 'Crack Bridging': 'Up to 2 mm', 'UV Resistance': 'Excellent (QUV 1000h)', 'Life Expectancy': '10–12+ Years', 'VOC': '< 15 g/L' }
         }
       }
     ]
@@ -379,6 +379,10 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
   const brandData = BRAND_CONTENT[activeBrand];
   const finishData = brandData.finishes.find(f => f.id === activeFinishId) || brandData.finishes[0];
 
+  // Helper to safely get specifications without strict type errors
+  const specs = finishData.details.specs as Record<string, string>;
+  const warrantyLabel = specs.Warranty || specs.Durability || specs['Life Expectancy'] || 'Lifetime';
+
   const handleAddToCart = () => {
     addToCart({
       productId: color.id,
@@ -473,7 +477,7 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
             <div className="mt-8 pt-8 border-t border-stone-100 grid grid-cols-3 gap-4 text-center">
                 <div><Droplets className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Washable</span></div>
                 <div><Sun className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Low VOC</span></div>
-                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{finishData.details.specs.Warranty ? String(finishData.details.specs.Warranty).split(' ')[0] : 'Lifetime'}</span></div>
+                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{String(warrantyLabel).split(' ')[0]}</span></div>
             </div>
         </div>
       </div>
