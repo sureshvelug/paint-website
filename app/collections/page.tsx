@@ -158,7 +158,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Protects against rain and sun', 'Prevents algae and fungal growth', 'Maintains brightness' ],
           whyDifferent: [ 'Standard UV protection', 'Breathable polymer', 'Cost-effective durability' ],
-          specs: { Finish: 'Matt', Warranty: '5 Years', Coverage: '60 sq.ft / L', Coats: '2', 'Rain Guard': 'Standard' }
+          specs: { Finish: 'Matt', Warranty: '5-Year', Coverage: '60 sq.ft / L', Coats: '2', 'Rain Guard': 'Standard' }
         }
       },
       {
@@ -171,7 +171,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Bridges hairline cracks', 'Repels dust and dirt', 'Enhanced waterproofing' ],
           whyDifferent: [ 'Elastomeric mid-coat', 'Dust-Guard technology', 'High UV reflection' ],
-          specs: { Finish: 'Low Sheen', Warranty: '10 Years', Coverage: '55 sq.ft / L', Coats: '2', 'Rain Guard': 'Advanced' }
+          specs: { Finish: 'Low Sheen', Warranty: '10-Year', Coverage: '55 sq.ft / L', Coats: '2', 'Rain Guard': 'Advanced' }
         }
       },
       {
@@ -184,7 +184,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Reduces indoor temperature', 'Waterproofs completely', 'Self-cleaning surface' ],
           whyDifferent: [ 'Nano-ceramic heat barrier', 'Cross-linked polymers', 'Carbon-fiber reinforcement' ],
-          specs: { Finish: 'Satin', Warranty: '15 Years', Coverage: '50 sq.ft / L', Coats: '3', 'Rain Guard': 'Ultimate' }
+          specs: { Finish: 'Satin', Warranty: '15-Year', Coverage: '50 sq.ft / L', Coats: '3', 'Rain Guard': 'Ultimate' }
         }
       }
     ]
@@ -204,7 +204,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Provides a flat, non-shiny finish', 'Hides surface grain/imperfections', 'Tough and scratch resistant' ],
           whyDifferent: [ 'Urethane-modified alkyd', 'Anti-rust inhibitors', 'Quick drying' ],
-          specs: { Finish: 'Matt', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High' }
+          specs: { Finish: 'Matt', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High', Warranty: '10-Year' }
         }
       },
       {
@@ -217,7 +217,7 @@ const BRAND_CONTENT = {
         details: {
           whatItDoes: [ 'Resists fingerprints and scuffs', 'Easy to wipe clean', 'Subtle glow highlights detailing' ],
           whyDifferent: [ 'Self-leveling agents', 'Flexible film technology', 'Yellowing resistant' ],
-          specs: { Finish: 'Satin', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High' }
+          specs: { Finish: 'Satin', Usage: 'Wood & Metal', Coats: '2', DryTime: '4 hrs', RustProtection: 'High', Warranty: '10-Year' }
         }
       }
     ]
@@ -486,6 +486,10 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
   const HERO_IMG = "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
   const TEXTURE_IMG = "https://images.pexels.com/photos/1939485/pexels-photo-1939485.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
 
+  // Use type assertion to tell TS that specs always has a Warranty, or handle undefined
+  // Best approach here given the static data is to rely on the fact we added Warranty to all.
+  const warrantyText = (finishData.details.specs as any).Warranty;
+
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="bg-white relative">
       
@@ -616,7 +620,7 @@ const ProductPage = ({ color, onBack }: { color: any, onBack: () => void }) => {
             <div className="mt-8 pt-8 border-t border-stone-100 grid grid-cols-3 gap-4 text-center">
                 <div><Droplets className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Washable</span></div>
                 <div><Sun className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">Low VOC</span></div>
-                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{finishData.details.specs.Warranty ? String(finishData.details.specs.Warranty).split(' ')[0] : 'Lifetime'}</span></div>
+                <div><Shield className="w-4 h-4 mx-auto mb-2 text-stone-400" /><span className="text-[10px] font-bold uppercase block text-stone-900">{warrantyText ? String(warrantyText).split(' ')[0] : 'Lifetime'}</span></div>
             </div>
         </div>
       </div>
