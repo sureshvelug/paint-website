@@ -76,8 +76,7 @@ export default function LuxuryCart() {
           {cartItems.length === 0 && (
              <div className="py-20 text-center">
                 <p className="text-stone-400 text-lg mb-6 font-serif italic">"Color is a power which directly influences the soul."</p>
-                {/* FIX: Link directly to home to reset view */}
-                <Link href="/" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
+                <Link href="/collections" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
                   Return to Library
                 </Link>
              </div>
