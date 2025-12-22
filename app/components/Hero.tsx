@@ -49,8 +49,6 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
               <span className="tracking-wide text-sm font-medium text-stone-900">{secondaryCTA.text}</span>
             </Link>
           </div>
-
-          {/* Trust Indicators - Minimalist Row */}
           <div className="mt-16 pt-8 border-t border-stone-200 flex gap-8 text-stone-500">
             <div className="flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-amber-700" />
@@ -72,10 +70,6 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
           transition={{ duration: 1.2 }}
           className="relative h-full w-full"
         >
-          {/* 
-             Updated Image: Verified High-Res Interior with Deep Green Wall
-             Source: Unsplash (ID: 1560448204-e02f11c3d0e2)
-          */}
           <Image
             src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop" 
             alt="Luxury modern living room with deep green painted accent wall"

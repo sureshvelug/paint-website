@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, ShieldCheck, ThermometerSun, Wind } from 'lucide-react';
+import { CheckCircle2, ShieldCheck, ThermometerSun, Wind, ArrowRight } from 'lucide-react';
 
-// Imported images (paths updated to match variable names)
 import tech11 from '../../public/tech11.png';
 import tech12 from '../../public/tech12.png';
 import tech13 from '../../public/tech13.png';
@@ -15,6 +14,7 @@ import tech23 from '../../public/tech23.png';
 import tech31 from '../../public/tech31.png';
 import tech32 from '../../public/tech32.png';
 import tech33 from '../../public/tech33.png';
+import techbackgrnd2 from '../../public/techbackgrnd2.jpg';
 
 const content = {
   hero: {
@@ -28,15 +28,13 @@ const content = {
       title: "Nano-Shield™",
       body: "Buildings fail silently—through corrosion, carbonation, UV fatigue, and micro-cracks. Nano-Shield™ penetrates deep into the surface matrix, reinforcing it at a molecular level to stop damage before it starts.",
       tags: ["Stops Corrosion", "Resists Cracking", "UV Stable"],
-      // Updated with local imports
       images: [ tech11, tech12, tech13 ]
     },
     {
       category: "Healthier Air",
       title: "24/7 Germ Defense™",
-      body: "Clean isn’t enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
+      body: "Clean isn't enough. Surfaces must actively protect. Our silver & copper ion systems disrupt microbial metabolism and DNA replication, working continuously without human intervention to destroy microbes on touch.",
       tags: ["Silver & Copper Ion", "Mold Prevention", "No Toxins"],
-      // Updated with local imports
       images: [ tech21, tech22, tech23 ]
     },
     {
@@ -44,7 +42,6 @@ const content = {
       title: "Smart Surface Intelligence™",
       body: "Why should surfaces only look good when they can work intelligently? Our self-cleaning, superhydrophobic technology repels water and dust, while IR & UV reflection drops surface temperatures by 6–12°C.",
       tags: ["Self-Cleaning", "-12°C Heat Drop", "Self-Healing"],
-      // Updated with local imports
       images: [ tech31, tech32, tech33 ]
     }
   ],
@@ -106,7 +103,7 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
                 className="object-cover"
                 priority={index === 0} 
                 sizes="(max-width: 768px) 100vw, 50vw"
-                placeholder="blur" // Optional: adds blur effect while loading if imported locally
+                placeholder="blur"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
             </motion.div>
@@ -115,10 +112,10 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
           {/* Progress Indicators */}
           <div className="absolute bottom-6 left-6 right-6 flex gap-2 z-10">
              {feature.tags.map((_, idx) => (
-               <div 
-                 key={idx} 
-                 className={`h-1 rounded-full transition-all duration-500 ${idx === activeTagIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
-               />
+                <div 
+                  key={idx} 
+                  className={`h-1 rounded-full transition-all duration-500 ${idx === activeTagIndex ? 'w-8 bg-white' : 'w-2 bg-white/40'}`}
+                />
              ))}
           </div>
         </div>
@@ -164,7 +161,6 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
               );
             })}
           </div>
-
         </FadeIn>
       </div>
     </div>
@@ -174,26 +170,75 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
 export default function NanogradsPage() {
   return (
     <main className="bg-white text-stone-900 font-sans selection:bg-indigo-50 selection:text-indigo-900 overflow-x-hidden">
-      
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto text-center">
-        <FadeIn>
-          <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-stone-100 border border-stone-200 text-indigo-900 text-xs font-bold tracking-widest uppercase mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-600"></span>
-            </span>
-            {content.hero.label}
-          </div>
-          
-          <h1 className="text-5xl md:text-8xl font-serif font-medium tracking-tight text-stone-900 mb-8 leading-[1.1]">
-            {content.hero.title}
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-stone-500 max-w-3xl mx-auto leading-relaxed font-light mb-12">
-            {content.hero.desc}
-          </p>
-        </FadeIn>
+
+      <section className="relative h-screen w-full bg-stone-50 overflow-hidden flex flex-col lg:flex-row pt-10">
+        <div className="w-full lg:w-1/2 h-full flex flex-col justify-center px-8 md:px-20 z-10 relative">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-xl"
+          >
+            {/* Eyebrow */}
+            <div className="flex items-center gap-4 mb-8">
+              <span className="h-[1px] w-12 bg-indigo-700"></span>
+              <span className="text-indigo-800 font-medium tracking-widest text-xs uppercase">
+                {content.hero.label}
+              </span>
+            </div>
+
+            {/* Headline - Editorial Serif */}
+            <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-[1.1] mb-8">
+              {content.hero.title}
+            </h1>
+            <p className="text-lg md:text-xl text-stone-600 leading-relaxed mb-10 max-w-md font-light">
+              {content.hero.desc}
+            </p>
+
+            {/* CTAs */}
+            {/* <div className="flex flex-col sm:flex-row gap-5 mb-16">
+              <a href="#features" className="group flex items-center justify-center gap-3 bg-stone-900 text-stone-50 px-8 py-4 rounded-none hover:bg-stone-800 transition-all duration-300">
+                <span className="tracking-wide text-sm font-medium text-white">Explore Technology</span>
+                <ArrowRight className="w-4 h-4 text-white group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a href="#specs" className="group flex items-center justify-center gap-3 border border-stone-300 px-8 py-4 rounded-none hover:border-stone-900 hover:bg-stone-50 transition-all duration-300">
+                <span className="tracking-wide text-sm font-medium text-stone-900">View Specs</span>
+              </a>
+            </div> */}
+
+            {/* Trust Indicators */}
+            <div className="pt-8 border-t border-stone-200 flex gap-8 text-stone-500">
+              <div className="flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-indigo-700" />
+                <span className="text-xs uppercase tracking-wider">15Yr Warranty</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                <span className="text-xs uppercase tracking-wider">Antimicrobial</span>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* RIGHT: Visual Hero Image */}
+        <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full">
+          <motion.div 
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1.2 }}
+            className="relative h-full w-full"
+          >
+            <Image
+              src={techbackgrnd2}
+              alt="Material Intelligence Hero"
+              fill
+              className="object-cover"
+              priority
+            />
+            {/* Subtle Overlay to blend edges */}
+            <div className="absolute inset-0 bg-gradient-to-r from-stone-50 via-transparent to-transparent lg:w-1/3" />
+          </motion.div>
+        </div>
       </section>
 
       {/* 2. SPECS SECTION */}
@@ -220,8 +265,6 @@ export default function NanogradsPage() {
           <FeatureRow key={i} feature={feature} index={i} />
         ))}
       </section>
-
-      {/* 4. THE DIFFERENCE (Bento Grid) */}
       <section className="py-24 px-6 md:px-12 bg-stone-900 text-stone-200 mt-12 overflow-hidden relative">
         <div className="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none" />
         

@@ -17,14 +17,13 @@ import {
   X,
   ArrowRight,
   Star,
+  Home,
+  Armchair,
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-
-// 1. IMPORT YOUR DATA
 import { ALL_COLORS, BRAND_CONTENT, SIZE_OPTIONS } from "../data";
 
-// 2. IMPORT THE REAL CART HOOK
 import { useCart } from "../context/CartContext";
 
 function cn(...inputs: ClassValue[]) {
@@ -133,8 +132,9 @@ export default function ProductPage() {
     router.push("/");
   };
 
-  const HERO_IMG =
-    "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  // Use the dynamic interior image from data, fallback if missing
+  const HERO_IMG = color.interiorImage || "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  
   const warrantyText = (finish.details.specs as any).Warranty;
 
   return (
@@ -168,13 +168,19 @@ export default function ProductPage() {
             <img
               src={HERO_IMG}
               className="w-full h-full object-cover"
-              alt="Room Context"
+              alt={`${color.name} Interior Context`}
             />
             <div
-              className="absolute inset-0 mix-blend-multiply opacity-40 transition-colors duration-700"
+              className="absolute inset-0 mix-blend-multiply opacity-20 transition-colors duration-700"
               style={{ backgroundColor: color?.hex }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent" />
+            
+            {/* Visual Label */}
+            <div className="absolute bottom-8 left-8 text-white/90 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+                <Armchair size={14} />
+                <span>Interior Simulation</span>
+            </div>
           </div>
         </div>
 
@@ -404,13 +410,13 @@ export default function ProductPage() {
                   </h2>
                   
                   <div className="prose prose-stone prose-lg text-stone-600 font-light mb-12">
-                     {color.story && <p>{color.story}</p>}
+                      {color.story && <p>{color.story}</p>}
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                     <div>
                       <h3 className="text-xs font-bold uppercase tracking-widest text-stone-900 mb-6 flex items-center gap-2">
-                         What it does
+                          What it does
                       </h3>
                       <ul className="space-y-4">
                         {finish.details.whatItDoes.map((item, i) => (
@@ -433,6 +439,41 @@ export default function ProductPage() {
                         </div>
                     )}
                   </div>
+
+                  {/* VISUAL CONTEXT SECTION */}
+                  <div className="mt-16 pt-16 border-t border-stone-200">
+                    <div className="flex items-center gap-4 mb-8">
+                        <span className="h-[1px] w-12 bg-stone-300"></span>
+                        <span className="text-stone-400 text-xs font-bold uppercase tracking-[0.2em]">
+                        Visual Context
+                        </span>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div className="group relative aspect-[4/3] bg-stone-200 overflow-hidden cursor-pointer">
+                             <img 
+                                src={color.interiorImage} 
+                                alt="Interior"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             />
+                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                             <div className="absolute bottom-4 left-4 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                                <Armchair size={14} /> Interior
+                             </div>
+                        </div>
+                        <div className="group relative aspect-[4/3] bg-stone-200 overflow-hidden cursor-pointer">
+                             <img 
+                                src={color.exteriorImage} 
+                                alt="Exterior"
+                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                             />
+                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                             <div className="absolute bottom-4 left-4 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                                <Home size={14} /> Exterior
+                             </div>
+                        </div>
+                    </div>
+                  </div>
+
                </div>
                
                <div className="lg:col-span-5">
