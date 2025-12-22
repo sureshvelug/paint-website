@@ -2,8 +2,8 @@ import type { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'The Chemical Industry',
-    short_name: 'Chemical Industry',
+    name: 'Limeria Colours',
+    short_name: 'Limeria',
     description: 'Nano-mineral sustainable premium paints',
     start_url: '/',
     display: 'standalone',

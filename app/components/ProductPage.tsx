@@ -434,7 +434,7 @@ export default function ProductPage() {
                             <Lightbulb size={16} /> Mood Science
                           </h3>
                           <p className="text-sm text-stone-600 leading-relaxed font-serif italic">
-                            "{color.scientific}"
+                            {color.scientific}
                           </p>
                         </div>
                     )}

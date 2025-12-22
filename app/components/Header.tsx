@@ -25,19 +25,24 @@ export default function Header() {
   return (
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 bg-white transition-all duration-300 ${
-        isScrolled ? 'border-b border-stone-200 py-4' : 'py-6'
+        isScrolled ? 'h-20 border-b border-stone-200' : 'h-24'
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
+      <div className="h-full container mx-auto px-6 md:px-12 flex justify-between items-center relative">
         
-        {/* 1. LOGO (Left) */}
-        <Link href="/" className="relative z-50 flex-shrink-0">
-          <span className="font-serif text-2xl tracking-tighter font-bold text-stone-900">
-            The Chemical Industry
-          </span>
+        {/* 1. LOGO (Left) - big and cleanly aligned */}
+        <Link href="/" className="relative z-50 shrink-0 flex items-center">
+          <div className="h-14 md:h-16 flex items-center">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/lemiria-logo.png"
+              alt="Limeria Colours"
+              className="h-40 ml-20 auto object-contain"
+            />
+          </div>
         </Link>
 
-        {/* 2. CENTER NAVIGATION (Restored) */}
+        {/* 2. CENTER NAVIGATION - Absolute Positioning ensures it doesn't push other elements */}
         <nav className="hidden md:flex items-center gap-8 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           {navLinks.map((link) => (
             <Link 
@@ -65,9 +70,6 @@ export default function Header() {
               )}
             </AnimatePresence>
           </Link>
-          {/* <button className="px-6 py-2.5 text-xs font-bold uppercase tracking-widest border border-stone-900 text-stone-900 hover:bg-stone-900 hover:text-white transition-all duration-300">
-            Request Sample
-          </button> */}
         </div>
         
         {/* 4. MOBILE CONTROLS */}
@@ -85,7 +87,7 @@ export default function Header() {
            </button>
         </div>
 
-        {/* 5. MOBILE MENU TRAY (Restored) */}
+        {/* 5. MOBILE MENU TRAY */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
@@ -117,13 +119,6 @@ export default function Header() {
                     <ShoppingBag size={20} />
                     View Bag ({cartCount})
                   </Link>
-                  {/* <Link 
-                    href="/contact"
-                    className="text-lg font-medium text-stone-600 block hover:text-stone-900"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    Request Sample Kit
-                  </Link> */}
                 </div>
               </div>
             </motion.div>

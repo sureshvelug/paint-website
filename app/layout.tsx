@@ -19,28 +19,28 @@ const playfair = Playfair_Display({
 import { CartProvider } from './context/CartContext'
 export const metadata: Metadata = {
   title: {
-    default: 'The Chemical Industry | Nano-Based Low VOC Premium Paints',
-    template: '%s | The Chemical Industry'
+    default: 'Limeria Colours | Nano-Based Low VOC Premium Paints',
+    template: '%s | Limeria Colours'
   },
-  description: 'Discover nanotechnology-driven, VOC-free paints that combine luxury with environmental responsibility. The Chemical Industry — redefining premium walls through science and sustainability.',
-  keywords: ['nano paint', 'low VOC paint India', 'eco paint', 'sustainable coatings', 'mineral paint', 'LEED certified paint', 'green chemistry coatings', 'The Chemical Industry', 'chemical Industry'],
-  authors: [{ name: 'The Chemical Industry' }],
-  creator: 'The Chemical Industry',
+  description: 'Discover nanotechnology-driven, VOC-free paints that combine luxury with environmental responsibility. Limeria Colours — redefining premium walls through science and sustainability.',
+  keywords: ['nano paint', 'low VOC paint India', 'eco paint', 'sustainable coatings', 'mineral paint', 'LEED certified paint', 'green chemistry coatings', 'Limeria Colours', 'Limeria'],
+  authors: [{ name: 'Limeria Colours' }],
+  creator: 'Limeria Colours',
   openGraph: {
     type: 'website',
     locale: 'en_IN',
     url: 'https://ecoluxurypaints.com',
-    siteName: 'The Chemical Industry',
+    siteName: 'Limeria Colours',
     images: [{
       url: '/og-image.jpg',
       width: 1200,
       height: 630,
-      alt: 'The Chemical Industry - Nano-Based Sustainable Paints',
+      alt: 'Limeria Colours - Nano-Based Sustainable Paints',
     }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'The Chemical Industry | Nano-Based Low VOC Premium Paints',
+    title: 'Limeria Colours | Nano-Based Low VOC Premium Paints',
     description: 'Sustainable luxury paint with nano-mineral technology',
     images: ['/og-image.jpg'],
   },
