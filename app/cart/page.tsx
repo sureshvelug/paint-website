@@ -47,22 +47,67 @@ export default function LuxuryCart() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // SIMULATE NETWORK REQUEST (No Email Logic)
-    setTimeout(() => {
-      setIsSubmitting(false);
-      
-      // 1. Show Success Toast
-      setToastMessage("Request received! We will reach out soon.");
-      setToastVisible(true);
-      setTimeout(() => setToastVisible(false), 4000);
+    // Build a human‑readable summary of the cart and customer details
+    const itemsSummary =
+      cartItems.length > 0
+        ? cartItems
+            .map(
+              (item, index) =>
+                `${index + 1}. ${item.name} (${item.brand}) - ${item.finish} · ${
+                  item.size
+                }  | Qty: ${item.qty}  | Color: ${item.hex}`
+            )
+            .join('\n')
+        : 'No items in cart.';
 
-      // 2. Show Clear Cart Prompt
+    const notes = formData.notes ? formData.notes : 'N/A';
+
+    try {
+      const response = await fetch('/api/send-quote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          customer: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+          },
+          itemsSummary,
+          notes,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send quote');
+      }
+
+      // Optional: also open WhatsApp with pre-filled message to your number
+      const whatsappNumber = '9786203621'; // change if needed
+      const whatsappMessage = encodeURIComponent(
+        `New quote request from Eco Luxury Paints website:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nCart Items:\n${itemsSummary}\n\nAdditional Notes:\n${notes}`
+      );
+      if (typeof window !== 'undefined') {
+        const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+        window.open(whatsappUrl, '_blank');
+      }
+
+      setToastMessage('Request received! We will reach out soon.');
+      setToastVisible(true);
       setShowClearCartPrompt(true);
-    }, 1500);
+    } catch (error) {
+      console.error(error);
+      setToastMessage('Something went wrong. Please try again.');
+      setToastVisible(true);
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setToastVisible(false), 4000);
+    }
   };
 
   const handleClearCartDecision = (shouldClear: boolean) => {
@@ -145,8 +190,8 @@ export default function LuxuryCart() {
           </div>
           
           {cartItems.length === 0 && (
-             <div className="py-20 text-center">
-                <p className="text-stone-400 text-lg mb-6 font-serif italic">"Color is a power which directly influences the soul."</p>
+            <div className="py-20 text-center">
+               <p className="text-stone-400 text-lg mb-6 font-serif italic">&quot;Color is a power which directly influences the soul.&quot;</p>
                 <Link href="/collections" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
                   Return to Library
                 </Link>
