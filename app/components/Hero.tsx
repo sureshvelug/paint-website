@@ -71,13 +71,12 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
           className="relative h-full w-full"
         >
           <Image
-            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?q=80&w=2000&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1200&auto=format&fit=crop" 
             alt="Luxury modern living room with deep green painted accent wall"
             fill
             className="object-cover"
             priority
           />
-          {/* Subtle Overlay to blend edges */}
           <div className="absolute inset-0 bg-gradient-to-r from-stone-50 via-transparent to-transparent lg:w-1/3" />
         </motion.div>
       </div>

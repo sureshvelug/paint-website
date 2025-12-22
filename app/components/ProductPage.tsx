@@ -17,8 +17,7 @@ import {
   X,
   ArrowRight,
   Star,
-  Home,
-  Armchair,
+  Hash, // Used for Hex icon
 } from "lucide-react";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -105,10 +104,8 @@ export default function ProductPage() {
   const sizeOption =
     SIZE_OPTIONS.find((s) => s.id === selectedSize) || SIZE_OPTIONS[1];
   
-  // Internal pricing calculation still happens for the Cart, 
-  // but we won't display it on the UI anymore.
   const unitPrice = Math.round(finish.price * sizeOption.multiplier);
-
+  console.log("hexa code of the color", color.hex)
   const handleAddToCart = () => {
     addToCart({
       productId: color.id.toString(),
@@ -132,8 +129,7 @@ export default function ProductPage() {
     router.push("/");
   };
 
-  // Use the dynamic interior image from data, fallback if missing
-  const HERO_IMG = color.interiorImage || "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+  // const HERO_IMG = color.interiorImage || "https://images.pexels.com/photos/6707628/pexels-photo-6707628.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
   
   const warrantyText = (finish.details.specs as any).Warranty;
 
@@ -165,22 +161,15 @@ export default function ProductPage() {
           </button>
 
           <div className="w-full h-full relative">
-            <img
-              src={HERO_IMG}
-              className="w-full h-full object-cover"
-              alt={`${color.name} Interior Context`}
+            <div
+              className={`w-full h-full object-cover`}
+              style={{ backgroundColor: color.hex }}
             />
             <div
               className="absolute inset-0 mix-blend-multiply opacity-20 transition-colors duration-700"
               style={{ backgroundColor: color?.hex }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-stone-900/30 via-transparent to-transparent" />
-            
-            {/* Visual Label */}
-            <div className="absolute bottom-8 left-8 text-white/90 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-                <Armchair size={14} />
-                <span>Interior Simulation</span>
-            </div>
           </div>
         </div>
 
@@ -305,8 +294,6 @@ export default function ProductPage() {
                   ))}
                 </div>
               </div>
-
-              {/* Quantity */}
               <div>
                 <label className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-4 flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-stone-100 text-stone-500 flex items-center justify-center text-[9px] font-bold">4</span>
@@ -386,7 +373,7 @@ export default function ProductPage() {
         </div>
       </div>
 
-      {/* ADDITIONAL CONTENT SECTION */}
+      {/* ADDITIONAL CONTENT SECTION - Cleaned up: Removed Visual Context */}
       <div className="bg-stone-50 border-t border-stone-200">
         <div className="max-w-7xl mx-auto px-6 md:px-12 py-24">
           <AnimatePresence mode="wait">
@@ -438,40 +425,6 @@ export default function ProductPage() {
                           </p>
                         </div>
                     )}
-                  </div>
-
-                  {/* VISUAL CONTEXT SECTION */}
-                  <div className="mt-16 pt-16 border-t border-stone-200">
-                    <div className="flex items-center gap-4 mb-8">
-                        <span className="h-[1px] w-12 bg-stone-300"></span>
-                        <span className="text-stone-400 text-xs font-bold uppercase tracking-[0.2em]">
-                        Visual Context
-                        </span>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div className="group relative aspect-[4/3] bg-stone-200 overflow-hidden cursor-pointer">
-                             <img 
-                                src={color.interiorImage} 
-                                alt="Interior"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                             />
-                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                             <div className="absolute bottom-4 left-4 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                                <Armchair size={14} /> Interior
-                             </div>
-                        </div>
-                        <div className="group relative aspect-[4/3] bg-stone-200 overflow-hidden cursor-pointer">
-                             <img 
-                                src={color.exteriorImage} 
-                                alt="Exterior"
-                                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                             />
-                             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
-                             <div className="absolute bottom-4 left-4 text-white text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                                <Home size={14} /> Exterior
-                             </div>
-                        </div>
-                    </div>
                   </div>
 
                </div>

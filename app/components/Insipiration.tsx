@@ -52,7 +52,7 @@ export default function InspirationGallery() {
       desc: "Antiqued surfaces that evoke heritage walls and lived-in charm." 
     },
     { 
-      src: "https://images.unsplash.com/photo-1519710884009-22a691530a50?auto=format&fit=crop&q=100&w=2000", 
+      src: "https://images.pexels.com/photos/7135063/pexels-photo-7135063.jpeg?auto=compress&cs=tinysrgb&w=800", 
       title: "PEARLS & METALS", 
       desc: "Iridescent, light-catching finishes with metallic and pearlescent glow." 
     },

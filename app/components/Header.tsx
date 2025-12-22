@@ -54,8 +54,6 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-
-        {/* 3. DESKTOP ACTIONS (Right) */}
         <div className="hidden md:flex items-center gap-6 flex-shrink-0">
           <Link href="/cart" className="relative p-2 text-stone-900 hover:text-amber-700 transition-colors">
             <ShoppingBag strokeWidth={1.5} size={22} />
@@ -72,7 +70,6 @@ export default function Header() {
           </Link>
         </div>
         
-        {/* 4. MOBILE CONTROLS */}
         <div className="flex items-center gap-4 md:hidden z-50">
            <Link href="/cart" className="relative text-stone-900">
              <ShoppingBag strokeWidth={1.5} size={20} />
@@ -86,8 +83,6 @@ export default function Header() {
              {isMobileMenuOpen ? <X /> : <Menu />}
            </button>
         </div>
-
-        {/* 5. MOBILE MENU TRAY */}
         <AnimatePresence>
           {isMobileMenuOpen && (
             <motion.div 
