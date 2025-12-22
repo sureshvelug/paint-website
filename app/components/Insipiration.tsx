@@ -2,73 +2,98 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { ArrowRight } from 'lucide-react'
 
 export default function InspirationGallery() {
-  const moods = [ 
+  const finishes = [ 
     { 
-      // Organic Modern: Sharp, high-res beige living room with natural light
+      // Image from your snippet (Beige/Organic) -> Fits "Textured Paint"
       src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=100&w=2000", 
-      title: "Organic Modern", 
-      color: "Sage & Stone" 
+      title: "Textured Paint", 
+      desc: "Tactile depth & dimension" 
     },
     { 
-      // Industrial Luxe: High-contrast dark interior with sharp concrete details
+      // Image from your snippet (Dark/Metallic) -> Fits "Metallic Finishes"
       src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=100&w=2000", 
-      title: "Industrial Luxe", 
-      color: "Charcoal" 
+      title: "Metallic Finishes", 
+      desc: "Luminous light-reflecting surfaces" 
     },
     { 
-      
-      src: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=100&w=2000", 
-      title: "Minimalist Warmth", 
-      color: "Alabaster" 
-    },
-    { 
+      // Image from your snippet (Terracotta/Red) -> Fits "Oxidation Effects" (Rust)
       src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2000", 
-      title: "Earthen Clay", 
-      color: "Terracotta" 
+      title: "Oxidation Effects", 
+      desc: "Industrial chic rust & patina" 
     },
-]
-
-  
+    { 
+      // Image from your snippet (White/Minimal) -> Fits "Custom Finishes"
+      src: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=100&w=2000", 
+      title: "Custom Finishes", 
+      desc: "Bespoke artistry for unique spaces" 
+    },
+  ]
 
   return (
     <section className="py-32 bg-stone-100">
       <div className="container mx-auto px-6 md:px-12">
+        
+        {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-16">
           <div>
-            <span className="text-amber-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">Inspiration</span>
-            <h2 className="text-4xl md:text-5xl font-serif text-stone-900">Curated Palettes</h2>
+            <span className="text-amber-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
+              Surface Collection
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif text-stone-900">
+              Curated Finishes
+            </h2>
           </div>
-          <p className="text-stone-500 max-w-sm mt-6 md:mt-0">
-            Explore how top designers are using Lumina to create spaces that evoke emotion and calm.
+          <p className="text-stone-500 max-w-sm mt-6 md:mt-0 font-light leading-relaxed">
+            From tactile minerals to reactive metals, explore surfaces that redefine architectural depth.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {moods.map((mood, idx) => (
+        {/* Card Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {finishes.map((item, idx) => (
             <motion.div 
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.1 }}
+              transition={{ delay: idx * 0.1, duration: 0.6 }}
               viewport={{ once: true }}
-              className="group cursor-pointer"
+              className="group relative overflow-hidden rounded-sm border border-stone-200 hover:border-stone-900 transition-all duration-300 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-stone-200">
+              {/* Image Container */}
+              <div className="relative h-96 overflow-hidden">
                 <Image 
-                  src={mood.src} 
-                  alt={mood.title} 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  src={item.src} 
+                  alt={item.title} 
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors" />
+                {/* Optional subtle overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-500" />
               </div>
-              <h3 className="text-lg font-serif text-stone-900">{mood.title}</h3>
-              <p className="text-stone-500 text-xs uppercase tracking-wider mt-1 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-stone-400"></span>
-                {mood.color}
-              </p>
+
+              {/* Card Footer / Button Area */}
+              <div className="p-6 border-t border-stone-100 group-hover:border-stone-900 transition-colors duration-300 bg-white relative z-10">
+                <button className="flex items-center justify-between w-full text-left group/btn outline-none">
+                  <div>
+                    <h3 className="text-lg font-serif font-medium text-stone-900 group-hover:text-black transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-stone-500 uppercase tracking-wider mt-1 font-medium group-hover:text-amber-700 transition-colors">
+                      {item.desc}
+                    </p>
+                  </div>
+                  
+                  <div className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center group-hover:border-stone-900 group-hover:bg-stone-900 transition-all duration-300">
+                    <ArrowRight 
+                      className="w-4 h-4 text-stone-400 group-hover:text-white transform group-hover:-rotate-45 transition-all duration-300" 
+                    />
+                  </div>
+                </button>
+              </div>
             </motion.div>
           ))}
         </div>

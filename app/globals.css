@@ -1,3 +1,4 @@
+@import url("https://fonts.cdnfonts.com/css/gotham"); /* self-hosted Gotham is preferred when available */
 @import "tailwindcss";
 
 /* Root tokens */
@@ -30,7 +31,10 @@
   --color-brand-gold: var(--brand-gold);
 
   /* Typography */
-  --font-sans: var(--font-inter, ui-sans-serif, system-ui);
+  --font-primary: "Gotham", var(--font-inter), "Helvetica Neue", Arial, sans-serif;
+  --font-secondary: var(--font-playfair, ui-serif, Georgia, "Times New Roman", serif);
+  --font-sans: var(--font-primary);
+  --font-serif: var(--font-secondary);
   --text-h1: 3.25rem;        /* ~52px */
   --text-h1--line-height: 1.1;
   --text-h2: 2.25rem;        /* ~36px */
@@ -57,7 +61,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter, ui-sans-serif, system-ui);
+  font-family: var(--font-primary, ui-sans-serif, system-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

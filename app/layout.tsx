@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -7,6 +7,12 @@ import Footer from './components/Footer'
 const inter = Inter({ 
   subsets: ['latin'],
   variable: '--font-inter',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
   display: 'swap',
 })
 
@@ -60,8 +66,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="bg-brand-offwhite text-gray-900 antialiased">
+    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+      <body className="bg-brand-offwhite text-gray-900 antialiased font-primary">
         <main className="min-h-screen">
         <CartProvider>
           <Header />
