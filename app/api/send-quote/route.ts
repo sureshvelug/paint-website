@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
     const toEmail = process.env.QUOTE_TO_EMAIL || 'ameerjafar123@gmail.com';
 
     const mailSubject = `New Quote Request - ${customer.name}`;
-    const mailText = `You have received a new quote request from Eco Luxury Paints.
+    const mailText = `You have received a new quote request from Limeria Colours.
 
 Customer Details:
 Name: ${customer.name}
@@ -63,7 +63,7 @@ Additional Notes:
 ${notes || 'N/A'}
 
 ---
-Sent from Eco Luxury Paints website.`;
+Sent from Limeria Colours website.`;
 
     await transporter.sendMail({
       from:

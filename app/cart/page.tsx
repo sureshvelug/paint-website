@@ -86,11 +86,9 @@ export default function LuxuryCart() {
       if (!response.ok) {
         throw new Error('Failed to send quote');
       }
-
-      // Optional: also open WhatsApp with pre-filled message to your number
-      const whatsappNumber = '9786203621'; // change if needed
+      const whatsappNumber = '9444074638'; 
       const whatsappMessage = encodeURIComponent(
-        `New quote request from Eco Luxury Paints website:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nCart Items:\n${itemsSummary}\n\nAdditional Notes:\n${notes}`
+        `New quote request from Limeria Colours website:\n\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nCart Items:\n${itemsSummary}\n\nAdditional Notes:\n${notes}`
       );
       if (typeof window !== 'undefined') {
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
@@ -199,7 +197,6 @@ export default function LuxuryCart() {
           )}
         </div>
 
-        {/* RIGHT: SUMMARY */}
         <div className="lg:col-span-4 h-full">
             <div className="bg-white p-8 border border-stone-200 sticky top-32 shadow-sm">
               <h2 className="text-sm font-bold uppercase tracking-widest text-stone-900 mb-8 pb-4 border-b border-stone-100">
