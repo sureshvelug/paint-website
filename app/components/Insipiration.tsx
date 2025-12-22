@@ -7,28 +7,64 @@ import { ArrowRight } from 'lucide-react'
 export default function InspirationGallery() {
   const finishes = [ 
     { 
-      // Image from your snippet (Beige/Organic) -> Fits "Textured Paint"
       src: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&q=100&w=2000", 
-      title: "Textured Paint", 
-      desc: "Tactile depth & dimension" 
+      title: "COLOURS BY NATURE", 
+      desc: "Earth-born palettes inspired by stone, sand, and sky." 
     },
     { 
-      // Image from your snippet (Dark/Metallic) -> Fits "Metallic Finishes"
+      src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=100&w=2000", 
+      title: "NATURAL LIME WASH", 
+      desc: "Soft, breathable mineral layers with a timeless, cloud-like movement." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=100&w=2000", 
+      title: "NATURAL CLAY WASH", 
+      desc: "Velvety, matte finishes with gentle, natural depth and warmth." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=100&w=2000", 
+      title: "POLISHED PLASTERS", 
+      desc: "Refined, hand-burnished surfaces with subtle sheen and movement." 
+    },
+    { 
       src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=100&w=2000", 
-      title: "Metallic Finishes", 
-      desc: "Luminous light-reflecting surfaces" 
+      title: "URBAN AURA (STUCCOS & MARMARINOS)", 
+      desc: "Contemporary stucco and marble effects for elevated urban spaces." 
     },
     { 
-      // Image from your snippet (Terracotta/Red) -> Fits "Oxidation Effects" (Rust)
-      src: "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&q=80&w=2000", 
-      title: "Oxidation Effects", 
-      desc: "Industrial chic rust & patina" 
+      src: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=100&w=2000", 
+      title: "URBAN RUST", 
+      desc: "Reactive rust textures that bring industrial patina and drama." 
     },
     { 
-      // Image from your snippet (White/Minimal) -> Fits "Custom Finishes"
-      src: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=100&w=2000", 
-      title: "Custom Finishes", 
-      desc: "Bespoke artistry for unique spaces" 
+      src: "https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?auto=format&fit=crop&q=100&w=2000", 
+      title: "URBAN CONCRETE", 
+      desc: "Raw, architectural concrete looks with minimalist character." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=100&w=2000", 
+      title: "TRAVERTONES", 
+      desc: "Travertine-inspired textures with layered stone depth." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&q=100&w=2000", 
+      title: "OLD AGE", 
+      desc: "Antiqued surfaces that evoke heritage walls and lived-in charm." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1519710884009-22a691530a50?auto=format&fit=crop&q=100&w=2000", 
+      title: "PEARLS & METALS", 
+      desc: "Iridescent, light-catching finishes with metallic and pearlescent glow." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&q=100&w=2000", 
+      title: "WATERPROOFING", 
+      desc: "High-performance protective systems for demanding wet areas." 
+    },
+    { 
+      src: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=100&w=2000", 
+      title: "CONSTRUCTION CHEMICALS", 
+      desc: "Technical solutions that support resilient, long-lasting builds." 
     },
   ]
 

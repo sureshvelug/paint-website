@@ -37,7 +37,7 @@ export default function Header() {
             <img
               src="/lemiria-logo.png"
               alt="Limeria Colours"
-              className="h-40 ml-20 auto object-contain"
+              className="h-40 ml-20 mb-10 auto object-contain"
             />
           </div>
         </Link>
