@@ -71,7 +71,7 @@ export default function ColorPreview() {
               <span className="w-1.5 h-1.5 rounded-full bg-orange-400" />
               2025 Collection
             </span>
-            <h2 className="text-4xl md:text-6xl font-serif font-medium text-stone-900 mb-6 tracking-tight">
+            <h2 className="text-4xl md:text-6xl  font-medium text-stone-900 mb-6 tracking-tight">
               Curated Palette
             </h2>
             <p className="text-lg text-stone-600 max-w-2xl mx-auto font-light leading-relaxed">
@@ -193,7 +193,7 @@ export default function ColorPreview() {
               { label: 'Color Accuracy', value: '100%' },
             ].map((stat, i) => (
               <div key={i} className="flex flex-col items-center">
-                <span className="text-3xl font-serif font-medium text-stone-900 mb-1">{stat.value}</span>
+                <span className="text-3xl  font-medium text-stone-900 mb-1">{stat.value}</span>
                 <span className="text-xs font-bold tracking-widest uppercase text-stone-400">{stat.label}</span>
               </div>
             ))}

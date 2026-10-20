@@ -36,7 +36,7 @@ export default function CollectionsPage() {
         {/* Filter Rail */}
         <div className="w-full md:w-64 shrink-0 md:sticky md:top-32 md:h-[calc(100vh-10rem)] flex flex-col">
           <div className="mb-8">
-            <h1 className="text-3xl font-serif text-stone-900 mb-2">Palette</h1>
+            <h1 className="text-3xl  text-stone-900 mb-2">Palette</h1>
             <p className="text-xs text-stone-500 uppercase tracking-widest">{filteredColors.length} Pigments</p>
           </div>
           <div className="relative mb-8">
@@ -61,7 +61,7 @@ export default function CollectionsPage() {
         {/* Grid */}
         <div className="flex-1">
            <div className="mb-6 flex items-center justify-between border-b border-stone-100 pb-4">
-              <h2 className="text-xl font-serif text-stone-900">{FILTERS.find(f => f.id === activeFilter)?.label}</h2>
+              <h2 className="text-xl  text-stone-900">{FILTERS.find(f => f.id === activeFilter)?.label}</h2>
               {activeFilter !== 'all' && <button onClick={() => setActiveFilter('all')} className="text-xs text-stone-400 hover:text-stone-900 flex items-center gap-1"><X size={12}/> Clear Filter</button>}
            </div>
            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-10">

@@ -8,17 +8,19 @@ import SustainabilityMetrics from "./SustainabilityMetrics";
 import InspirationGallery from "./Insipiration";
 import TestimonialCarousel from "./TestimonialCarousel";
 import CTASection from "./CTASection";
+import RoomCategories from "./Oct2026/RoomCategories";
+import FreeSwatchesSection from "./Oct2026/PopularColours";
+import NewBannerVideo from "./Oct2026/NewBannerVideo";
 
 export default function HomeContent() {
   return (
-    <main className="bg-stone-50 min-h-screen selection:bg-amber-200 selection:text-amber-900">
-      <Hero
-        title="The Art of Performance."
-        subtitle="Architectural coatings engineered with nano-mineral technology for spaces that demand distinction."
-        primaryCTA={{ text: "Explore Collection", href: "/collections" }}
-        secondaryCTA={{ text: "Our Story", href: "/story" }}
-        imageSrc="https://images.unsplash.com/photo-1563293775-e832df759e6e?q=80&w=2000"
-      />
+    <main className="bg-[#d9cfab] min-h-screen selection:bg-amber-200 selection:text-amber-900">
+
+      <NewBannerVideo />
+
+      <RoomCategories />
+
+      <FreeSwatchesSection />
 
       <InspirationGallery />
 

@@ -13,7 +13,7 @@ const projects = [
     name: 'Kyoto Minimalist', 
     // location: 'Kyoto, Japan',
     category: 'Residential',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80' 
+    image: '/architecture/image1.jpg' 
   },
   { 
     id: 2, 
@@ -21,14 +21,14 @@ const projects = [
     // location: 'London, UK',
     category: 'Commercial',
     // Verified Stable Image
-    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1200&auto=format&fit=crop' 
+    image: '/architecture/image2.jpg' 
   },
   { 
     id: 3, 
     name: 'Desert Villa', 
     // location: 'Palm Springs, USA',
     category: 'Residential',
-    image: 'https://images.unsplash.com/photo-1600210491892-03d54c0aaf87?w=1200&q=80' 
+    image: '/architecture/image3.jpg' 
   }
 ]
 
@@ -46,11 +46,116 @@ export default function ProjectsShowcase() {
   }
   
   return (
-    <section className="bg-stone-900 py-32 overflow-hidden relative group/section">
+    <section className="bg-[#cbbc97] py-32 overflow-hidden relative group/section">
+
+  {/* Right Splash */}
+  <motion.div
+    animate={{
+      x: [10, -10, 10],
+      rotate: [3, -3, 3],
+    }}
+    transition={{
+      duration: 14,
+      repeat: Infinity,
+      ease: "easeInOut",
+    }}
+    className="
+      absolute
+      right-0
+      bottom-[15%]
+      h-[340px]
+      w-[220px]
+      rounded-l-[140px]
+      bg-[#7c9b00]/20
+      blur-xl
+      pointer-events-none
+    "
+  />
+
+  {/* Right Horizontal Paint Drips */}
+  <div className="absolute right-0 top-[10%] z-10 flex flex-col items-end pointer-events-none">
+    <div className="mb-8 h-8 w-40 rounded-l-full bg-[#f59e0b]/40" />
+    <div className="mr-3 mb-8 h-6 w-28 rounded-l-full bg-[#f59e0b]/30" />
+    <div className="h-10 w-48 rounded-l-full bg-[#f59e0b]/25" />
+  </div>
+
+  {/* Floating Drops */}
+  <motion.div
+    animate={{ y: [-10, 10, -10] }}
+    transition={{ duration: 5, repeat: Infinity }}
+    className="
+      absolute
+      left-[58%]
+      top-[35%]
+      h-10
+      w-10
+      rounded-full
+      bg-[#14b8a6]/50
+    "
+  />
+
+  <motion.div
+    animate={{ y: [10, -10, 10] }}
+    transition={{ duration: 7, repeat: Infinity }}
+    className="
+      absolute
+      left-[58%]
+      top-[55%]
+      h-6
+      w-6
+      rounded-full
+      bg-[#14b8a6]/40
+    "
+  />
+
+  <motion.div
+    animate={{ y: [-8, 8, -8] }}
+    transition={{ duration: 6, repeat: Infinity }}
+    className="
+      absolute
+      right-[10%]
+      top-[40%]
+      h-8
+      w-8
+      rounded-full
+      bg-[#f59e0b]/50
+    "
+  />
+
+  <motion.div
+    animate={{ scale: [1, 1.3, 1] }}
+    transition={{ duration: 4, repeat: Infinity }}
+    className="
+      absolute
+      right-[20%]
+      bottom-[20%]
+      h-5
+      w-5
+      rounded-full
+      bg-[#f97316]/50
+    "
+  />
+
+  {/* Paint Splatter Left */}
+  <div className="absolute left-[4%] top-[2%] pointer-events-none">
+    <div className="h-12 w-12 rounded-full bg-[#14b8a6]/25" />
+    <div className="absolute -left-4 top-3 h-3 w-3 rounded-full bg-[#14b8a6]/25" />
+    <div className="absolute left-14 top-0 h-4 w-4 rounded-full bg-[#14b8a6]/25" />
+    <div className="absolute left-8 top-12 h-2 w-2 rounded-full bg-[#14b8a6]/25" />
+  </div>
+
+  {/* Paint Splatter Right */}
+  <div className="absolute right-[4%] top-[90%] pointer-events-none">
+    <div className="h-14 w-14 rounded-full bg-[#f59e0b]/25" />
+    <div className="absolute -top-4 right-8 h-4 w-4 rounded-full bg-[#f59e0b]/25" />
+    <div className="absolute left-12 top-10 h-3 w-3 rounded-full bg-[#f59e0b]/25" />
+    <div className="absolute -left-3 top-6 h-2 w-2 rounded-full bg-[#f59e0b]/25" />
+  </div>
+
       <div className="container mx-auto px-6 mb-16 flex justify-between items-end">
         <div>
           <span className="text-stone-500 text-xs tracking-widest uppercase block mb-4">Selected Works</span>
-          <h2 className="text-4xl md:text-6xl font-serif text-white">
+          <h2 className="text-5xl md:text-5xl lg:text-7xl font-bold leading-none text-black">
             Architecture <br /> & <span className="text-stone-500">Texture</span>
           </h2>
         </div>
@@ -107,7 +212,7 @@ export default function ProjectsShowcase() {
               <div className="flex justify-between items-end border-t border-white/20 pt-6">
                 <div>
                   <p className="text-amber-500 text-xs uppercase tracking-widest mb-2">{project.category}</p>
-                  <h3 className="text-3xl font-serif text-white mb-1">{project.name}</h3>
+                  <h3 className="text-3xl  text-white mb-1">{project.name}</h3>
                   {/* <p className="text-stone-400 font-light">{project.location}</p> */}
                 </div>
                 <div className="bg-white/10 p-3 backdrop-blur-sm rounded-full opacity-0 group-hover:opacity-100 transition-opacity">

@@ -131,7 +131,7 @@ const FeatureRow = ({ feature, index }: { feature: any, index: number }) => {
             </span>
           </div>
           
-          <h2 className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-6 leading-tight">
+          <h2 className="text-4xl md:text-5xl  font-medium text-stone-900 mb-6 leading-tight">
             {feature.title}
           </h2>
           
@@ -188,7 +188,7 @@ export default function NanogradsPage() {
             </div>
 
             {/* Headline - Editorial Serif */}
-            <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-[1.1] mb-8">
+            <h1 className="text-5xl md:text-7xl  text-stone-900 leading-[1.1] mb-8">
               {content.hero.title}
             </h1>
             <p className="text-lg md:text-xl text-stone-600 leading-relaxed mb-10 max-w-md font-light">
@@ -254,7 +254,7 @@ export default function NanogradsPage() {
               viewport={{ once: true }}
             >
               <spec.icon className="w-6 h-6 mx-auto mb-4 text-indigo-600 opacity-80" />
-              <div className="text-4xl md:text-5xl font-serif font-medium text-stone-900 mb-2">{spec.value}</div>
+              <div className="text-4xl md:text-5xl  font-medium text-stone-900 mb-2">{spec.value}</div>
               <div className="text-xs font-bold uppercase tracking-widest text-stone-400 mb-1">{spec.label}</div>
             </motion.div>
           ))}
@@ -270,7 +270,7 @@ export default function NanogradsPage() {
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-6xl font-serif font-medium text-white mb-6">The Nanograds Difference</h2>
+            <h2 className="text-4xl md:text-6xl  font-medium text-white mb-6">The Nanograds Difference</h2>
             <p className="text-stone-400 max-w-2xl mx-auto font-light text-lg">
               Six pillars of advanced protection integrated into every coat.
             </p>
@@ -295,7 +295,7 @@ export default function NanogradsPage() {
                 className="bg-white/5 backdrop-blur-sm p-8 rounded-sm border border-white/10 transition-all duration-300 group"
               >
                 <div className="text-indigo-400 font-mono text-xs mb-4 opacity-50 group-hover:opacity-100 transition-opacity">0{i + 1}</div>
-                <h3 className="text-xl font-serif font-bold text-white mb-2">{item.title}</h3>
+                <h3 className="text-xl  font-bold text-white mb-2">{item.title}</h3>
                 <p className="text-stone-400 text-sm font-light leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}

@@ -98,7 +98,7 @@ export default function Header() {
                     key={link.name} 
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-3xl font-serif text-stone-900 flex justify-between items-center group border-b border-stone-100 pb-4"
+                    className="text-3xl  text-stone-900 flex justify-between items-center group border-b border-stone-100 pb-4"
                   >
                     {link.name}
                     <ChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity text-amber-600" />

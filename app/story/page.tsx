@@ -173,7 +173,7 @@ const ZigZagSection: React.FC<SectionData & { index: number }> = ({
 
         {/* Content Column */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-4xl lg:text-5xl font-serif text-stone-900 mb-6 leading-tight">
+          <h2 className="text-4xl lg:text-5xl  text-stone-900 mb-6 leading-tight">
             {heading}
           </h2>
 
@@ -191,7 +191,7 @@ const ZigZagSection: React.FC<SectionData & { index: number }> = ({
                 >
                   <div className="mt-1.5 min-w-[3px] h-10 bg-amber-600"></div>
                   <div>
-                    <h3 className="font-serif font-semibold text-stone-900 mb-1">
+                    <h3 className=" font-semibold text-stone-900 mb-1">
                       {point.title}
                     </h3>
                     <p className="text-sm text-stone-600 leading-relaxed font-light">
@@ -293,7 +293,7 @@ export default function OurStoryPage() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif text-stone-900 leading-[1.1] mb-6 lg:mb-8">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl  text-stone-900 leading-[1.1] mb-6 lg:mb-8">
               {storyData.title}
             </h1>
 
@@ -368,7 +368,7 @@ export default function OurStoryPage() {
           transition={{ duration: 1 }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-4xl sm:text-5xl font-serif font-medium text-stone-900 mb-6">
+          <h2 className="text-4xl sm:text-5xl  font-medium text-stone-900 mb-6">
             {conclusion.heading}
           </h2>
           <p className="text-lg text-stone-600 mb-10 leading-relaxed font-light">

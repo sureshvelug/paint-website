@@ -14,7 +14,22 @@ const CartToast = ({ message, isVisible }: { message: string, isVisible: boolean
           initial={{ opacity: 0, y: 50, x: '-50%' }}
           animate={{ opacity: 1, y: 0, x: '-50%' }}
           exit={{ opacity: 0, y: 20, x: '-50%' }}
-          className="fixed bottom-10 left-1/2 z-[200] flex items-center gap-4 bg-stone-900 text-white px-6 py-4 rounded-sm shadow-2xl min-w-[300px]"
+          className="fixed
+bottom-10
+left-1/2
+z-[200]
+flex
+items-center
+gap-4
+bg-white/95
+backdrop-blur-xl
+text-stone-900
+px-6
+py-4
+rounded-2xl
+border
+border-stone-200
+shadow-2xl px-6 py-4 rounded-sm shadow-2xl min-w-[300px]"
         >
           <Check size={18} className="text-emerald-400" />
           <span className="text-sm font-medium">{message}</span>
@@ -124,8 +139,13 @@ export default function LuxuryCart() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 font-sans text-stone-900 pt-32 pb-20 relative overflow-x-hidden">
-      
+    <div className="min-h-screen bg-gradient-to-br from-[#fdfcf9] via-[#f8f5ee] to-[#eef4ff] font-sans text-stone-900 pt-32 pb-20 relative overflow-x-hidden">
+      {/* Luxury Background Blobs */}
+<div className="absolute inset-0 overflow-hidden pointer-events-none">
+  <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-cyan-200/20 blur-3xl" />
+  <div className="absolute top-1/3 -right-32 w-[500px] h-[500px] rounded-full bg-amber-200/20 blur-3xl" />
+  <div className="absolute bottom-10 left-1/3 w-80 h-80 rounded-full bg-pink-200/10 blur-3xl" />
+</div>
       <CartToast 
         message={toastMessage} 
         isVisible={toastVisible} 
@@ -137,7 +157,7 @@ export default function LuxuryCart() {
         {/* LEFT: CART ITEMS */}
         <div className="lg:col-span-8">
           <div className="flex items-baseline justify-between mb-8 border-b border-stone-200 pb-4">
-             <h1 className="text-3xl md:text-4xl font-serif text-stone-900">Your Selection</h1>
+             <h1 className="text-3xl md:text-4xl  text-stone-900">Your Selection</h1>
              <span className="text-sm font-bold uppercase tracking-widest text-stone-400">
                {cartItems.length} Items
              </span>
@@ -152,17 +172,40 @@ export default function LuxuryCart() {
                    initial={{ opacity: 0, y: 20 }} 
                    animate={{ opacity: 1, y: 0 }} 
                    exit={{ opacity: 0, scale: 0.95 }}
-                   className="relative bg-white p-6 shadow-sm border border-stone-100 flex flex-col sm:flex-row gap-6 transition-all"
+                   className="
+relative
+bg-white/90
+backdrop-blur-xl
+rounded-3xl
+p-8
+border
+border-white/60
+shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+hover:shadow-[0_25px_70px_rgba(0,0,0,0.12)]
+transition-all
+duration-500
+flex
+flex-col
+sm:flex-row
+gap-6
+"
                  >
                     <div className="w-full sm:w-32 aspect-[4/5] sm:aspect-square shrink-0 relative overflow-hidden bg-stone-100">
-                       <div className="absolute inset-0" style={{ backgroundColor: item.hex }} />
+                       <div className="absolute inset-0 rounded-2xl"
+  style={{
+    background: `linear-gradient(
+      135deg,
+      ${item.hex},
+      rgba(255,255,255,0.3)
+    )`,
+  }} />
                     </div>
 
                     <div className="flex-1 flex flex-col justify-between">
                        <div className="flex justify-between items-start">
                           <div>
                              <span className="text-[10px] font-bold uppercase tracking-widest text-stone-400 mb-1 block">{item.brand}</span>
-                             <h3 className="text-2xl font-serif text-stone-900 mb-1">{item.name}</h3>
+                             <h3 className="text-2xl  text-stone-900 mb-1">{item.name}</h3>
                              <p className="text-sm text-stone-500 font-light mb-4">{item.finish} · {item.size}</p>
                           </div>
                        </div>
@@ -189,7 +232,7 @@ export default function LuxuryCart() {
           
           {cartItems.length === 0 && (
             <div className="py-20 text-center">
-               <p className="text-stone-400 text-lg mb-6 font-serif italic">&quot;Color is a power which directly influences the soul.&quot;</p>
+               <p className="text-stone-400 text-lg mb-6  italic">&quot;Color is a power which directly influences the soul.&quot;</p>
                 <Link href="/collections" className="inline-block bg-stone-900 text-white px-8 py-4 text-xs font-bold uppercase tracking-widest hover:bg-stone-800">
                   Return to Library
                 </Link>
@@ -198,7 +241,15 @@ export default function LuxuryCart() {
         </div>
 
         <div className="lg:col-span-4 h-full">
-            <div className="bg-white p-8 border border-stone-200 sticky top-32 shadow-sm">
+            <div className="bg-white/90
+backdrop-blur-xl
+rounded-3xl
+p-10
+border
+border-white/60
+shadow-[0_20px_50px_rgba(0,0,0,0.08)]
+sticky
+top-32">
               <h2 className="text-sm font-bold uppercase tracking-widest text-stone-900 mb-8 pb-4 border-b border-stone-100">
                 Inquiry Summary
               </h2>
@@ -215,7 +266,21 @@ export default function LuxuryCart() {
               <button 
                 onClick={() => setIsFormOpen(true)}
                 disabled={cartItems.length === 0}
-                className="w-full bg-stone-900 text-white py-5 flex items-center justify-center gap-3 hover:bg-stone-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+                className="w-full
+rounded-2xl
+bg-gradient-to-r
+from-stone-900
+to-stone-700
+text-white
+py-5
+flex
+items-center
+justify-center
+gap-3
+hover:scale-[1.02]
+hover:shadow-xl
+transition-all
+duration-300 hover:bg-stone-800 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
               >
                   <span className="text-xs font-bold uppercase tracking-widest">Request Quote</span>
                   <ArrowRight size={16} />
@@ -237,14 +302,32 @@ export default function LuxuryCart() {
             <motion.div 
                 initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }}
                 transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                className="fixed top-0 right-0 h-full w-full max-w-md bg-stone-50 z-[101] shadow-2xl flex flex-col"
+                className="fixed
+top-0
+right-0
+h-full
+w-full
+max-w-lg
+bg-white/95
+backdrop-blur-xl
+shadow-[0_20px_60px_rgba(0,0,0,0.25)] z-[101] shadow-2xl flex flex-col"
             >
                 {showClearCartPrompt ? (
                    <div className="h-full flex flex-col items-center justify-center text-center p-8 bg-white">
-                      <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-800 mb-6">
+                      <div className="w-24
+  h-24
+  rounded-full
+  bg-gradient-to-br
+  from-emerald-500
+  to-emerald-700
+  text-white
+  shadow-xl
+  flex
+  items-center
+  justify-center flex items-center justify-center text-emerald-800 mb-6">
                          <Check size={32} />
                       </div>
-                      <h3 className="text-2xl font-serif text-stone-900 mb-4">Request Received</h3>
+                      <h3 className="text-2xl  text-stone-900 mb-4">Request Received</h3>
                       <p className="text-stone-500 mb-12 leading-relaxed">
                         Our team will contact you shortly. <br/>
                         Would you like to clear your cart for a fresh start?
@@ -269,7 +352,7 @@ export default function LuxuryCart() {
                 /* 2. INQUIRY FORM */
                    <>
                     <div className="p-8 border-b border-stone-200 flex items-center justify-between bg-white">
-                        <h2 className="text-xl font-serif text-stone-900">Complete Inquiry</h2>
+                        <h2 className="text-xl  text-stone-900">Complete Inquiry</h2>
                         <button onClick={() => setIsFormOpen(false)} className="text-stone-400 hover:text-stone-900">
                             <X size={24} />
                         </button>
