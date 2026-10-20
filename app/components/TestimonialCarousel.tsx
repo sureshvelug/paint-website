@@ -29,7 +29,53 @@ export default function TestimonialCarousel() {
   const prevSlide = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
 
   return (
-    <section className="py-32 bg-stone-50 overflow-hidden">
+    <section className="relative overflow-hidden py-32 bg-[#ffc77875]">
+      {/* =========================
+    FLOATING PAINT DUST
+========================= */}
+
+<div className="absolute inset-0 overflow-hidden pointer-events-none">
+
+  {Array.from({ length: 120 }).map((_, i) => {
+    const colors = [
+      "#22d3ee", // cyan
+      "#f97316", // orange
+      "#ec4899", // pink
+      "#eab308", // yellow
+      "#10b981", // emerald
+      "#8b5cf6", // violet
+      "#ef4444", // red
+      "#3b82f6", // blue
+    ];
+
+    return (
+      <motion.div
+        key={i}
+        animate={{
+          y: [-10, 10, -10],
+          x: [-5, 5, -5],
+          opacity: [0.15, 0.8, 0.15],
+          scale: [1, 1.4, 1],
+        }}
+        transition={{
+          duration: 3 + (i % 6),
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: i * 0.05,
+        }}
+        className="absolute rounded-full"
+        style={{
+          backgroundColor: colors[i % colors.length],
+          width: `${2 + (i % 5)}px`,
+          height: `${2 + (i % 5)}px`,
+          top: `${Math.random() * 100}%`,
+          left: `${Math.random() * 100}%`,
+          filter: "blur(0.5px)",
+        }}
+      />
+    );
+  })}
+</div>
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
           
@@ -47,7 +93,7 @@ export default function TestimonialCarousel() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-3xl md:text-5xl font-serif text-stone-900 leading-tight mb-12 italic">
+              <h3 className="text-3xl md:text-5xl  text-stone-900 leading-tight mb-12 italic">
                 {testimonials[current].quote}
               </h3>
               
@@ -56,7 +102,7 @@ export default function TestimonialCarousel() {
                   <Image src={testimonials[current].image} alt={testimonials[current].author} fill className="object-cover" />
                 </div>
                 <h4 className="text-lg font-bold text-stone-900">{testimonials[current].author}</h4>
-                <p className="text-stone-500 text-sm mb-2">{testimonials[current].role}</p>
+                <p className="text-stone text-sm mb-2">{testimonials[current].role}</p>
                 <span className="text-xs font-medium text-amber-700 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full">
                   Project: {testimonials[current].project}
                 </span>

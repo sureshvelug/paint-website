@@ -33,7 +33,7 @@ export default function Hero({ title, subtitle, primaryCTA, secondaryCTA, imageS
           </div>
 
           {/* Headline - Editorial Serif */}
-          <h1 className="text-5xl md:text-7xl font-serif text-stone-900 leading-[1.1] mb-8">
+          <h1 className="text-5xl md:text-7xl poppins-extrabold text-stone-900 leading-[1.1] mb-8">
             {title}
           </h1>
           <p className="text-lg md:text-xl text-stone-600 leading-relaxed mb-10 max-w-md font-light">

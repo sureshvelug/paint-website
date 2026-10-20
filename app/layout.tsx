@@ -3,6 +3,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import NewHeader from './components/Oct2026/NewHeader'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -70,7 +71,7 @@ export default function RootLayout({
       <body className="bg-brand-offwhite text-gray-900 antialiased font-primary">
         <main className="min-h-screen">
         <CartProvider>
-          <Header />
+          <NewHeader />
           {children}
           <Footer />
         </CartProvider>

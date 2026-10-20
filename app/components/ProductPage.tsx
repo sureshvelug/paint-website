@@ -51,7 +51,7 @@ const Toast = ({
             <Check size={20} />
           </div>
           <div className="flex-1">
-            <p className="text-sm font-medium tracking-wide font-serif">
+            <p className="text-sm font-medium tracking-wide ">
               {message}
             </p>
           </div>
@@ -186,7 +186,7 @@ export default function ProductPage() {
             </div>
 
             <div className="flex items-end justify-between gap-4">
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif text-stone-900 leading-[0.9]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl  text-stone-900 leading-[0.9]">
                 {color?.name}
               </h1>
               <div className="hidden md:flex flex-col items-end pb-1 opacity-60">
@@ -348,7 +348,7 @@ export default function ProductPage() {
               <div className="flex flex-col">
                 <span className="text-[10px] font-bold text-stone-400 uppercase tracking-widest mb-1">Configuration</span>
                 {/* Shows summary instead of price */}
-                <span className="text-xl font-serif text-stone-900">
+                <span className="text-xl  text-stone-900">
                   {quantity} x {sizeOption.label}
                 </span>
               </div>
@@ -391,7 +391,7 @@ export default function ProductPage() {
                     </span>
                   </div>
                   
-                  <h2 className="text-3xl md:text-4xl font-serif text-stone-900 mb-8 leading-tight">
+                  <h2 className="text-3xl md:text-4xl  text-stone-900 mb-8 leading-tight">
                     <span className="text-amber-700 italic mr-3">{brand.tagline}</span>
                     for {color.name}
                   </h2>
@@ -420,7 +420,7 @@ export default function ProductPage() {
                           <h3 className="text-xs font-bold uppercase tracking-widest text-stone-900 mb-4 flex items-center gap-2">
                             <Lightbulb size={16} /> Mood Science
                           </h3>
-                          <p className="text-sm text-stone-600 leading-relaxed font-serif italic">
+                          <p className="text-sm text-stone-600 leading-relaxed  italic">
                             {color.scientific}
                           </p>
                         </div>
@@ -432,7 +432,7 @@ export default function ProductPage() {
                <div className="lg:col-span-5">
                   <div className="sticky top-12 bg-stone-900 text-stone-50 p-8 md:p-12 shadow-2xl">
                     <div className="mb-8 pb-8 border-b border-stone-700 flex items-center justify-between">
-                      <h3 className="text-xl font-serif">Technical Specifications</h3>
+                      <h3 className="text-xl ">Technical Specifications</h3>
                       <BookOpen className="text-amber-500" size={24} />
                     </div>
                     <div className="space-y-6">
