@@ -93,7 +93,7 @@ export default function NewBannerVideo() {
 
                     {/* Hero Title */}
                     <div className="px-4 sm:px-6 lg:px-10 pb-6">
-                        <h1 className=" text-white font-extrabold leading-none tracking-tight text-center tracking-wider text-[100px] xs:text-[100px] sm:text-[150px] md:text-[220px] lg:text-[260px] xl:text-[280px] 2xl:text-[340px]">
+                        <h1 className=" text-white font-extrabold leading-none tracking-tight text-center tracking-wider text-[80px] xs:text-[100px] sm:text-[150px] md:text-[220px] lg:text-[260px] xl:text-[280px] 2xl:text-[340px]">
                             Limeria
                         </h1>
                     </div>
