@@ -16,11 +16,11 @@ export default function Footer() {
         <div className="absolute bottom-20 right-20 w-[200px] h-[200px] rounded-full bg-emerald-300/15 blur-2xl" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
 
         {/* Brand Statement */}
         <div className="text-center mb-20">
-          <h2 className="text-5xl md:text-7xl font-bold text-stone-900">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl sm:text-5xl md:text-7xl font-bold text-stone-900">
             Limeria Colours
           </h2>
 
@@ -30,16 +30,16 @@ export default function Footer() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 mb-20">
-          
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-10 mb-16 lg:mb-20">
+
           {/* Newsletter */}
-          <div className="rounded-3xl border border-white/50 bg-white/70 backdrop-blur-xl p-10 shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
-            
+          <div className="rounded-3xl border border-white/50 bg-white/70 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
+
             <span className="text-amber-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
               Newsletter
             </span>
 
-            <h3 className="text-4xl font-bold mb-4">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Stay Inspired
             </h3>
 
@@ -68,17 +68,18 @@ export default function Footer() {
               <button
                 type="submit"
                 className="
-                  px-8
-                  py-4
-                  rounded-xl
-                  bg-gradient-to-r
-                  from-stone-900
-                  to-stone-700
-                  text-white
-                  font-semibold
-                  hover:scale-105
-                  hover:shadow-xl
-                  transition-all
+                  w-full sm:w-auto
+    px-8
+    py-4
+    rounded-xl
+    bg-gradient-to-r
+    from-stone-900
+    to-stone-700
+    text-white
+    font-semibold
+    hover:scale-105
+    hover:shadow-xl
+    transition-all
                 "
               >
                 Subscribe
@@ -91,13 +92,13 @@ export default function Footer() {
           </div>
 
           {/* Support */}
-          <div className="rounded-3xl border border-white/50 bg-white/70 backdrop-blur-xl p-10 shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
+          <div className="rounded-3xl border border-white/50 bg-white/70 backdrop-blur-xl p-6 sm:p-8 lg:p-10 shadow-[0_20px_80px_rgba(0,0,0,0.08)]">
 
             <span className="text-amber-600 text-xs font-bold tracking-[0.2em] uppercase mb-4 block">
               Support
             </span>
 
-            <h3 className="text-4xl font-bold mb-4">
+            <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
               Need Help?
             </h3>
 
@@ -112,25 +113,25 @@ export default function Footer() {
                 href="tel:+919444074638"
                 className="
                   group
-                  flex
-                  items-center
-                  gap-4
-                  p-5
-                  bg-white
-                  rounded-2xl
-                  border
-                  border-stone-200
-                  hover:border-amber-500
-                  hover:shadow-xl
-                  hover:-translate-y-1
-                  transition-all
+    flex
+    items-center
+    gap-3
+    p-4 sm:p-5
+    bg-white
+    rounded-2xl
+    border
+    border-stone-200
+    hover:border-amber-500
+    hover:shadow-xl
+    hover:-translate-y-1
+    transition-all
                 "
               >
                 <div className="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center">
                   📞
                 </div>
 
-                <div>
+                <div className="flex flex-wrap justify-center gap-4">
                   <div className="text-xs uppercase tracking-wider text-stone-500">
                     Call Us
                   </div>
@@ -145,18 +146,18 @@ export default function Footer() {
                 href="mailto:Wepicananoindia@gmail.com"
                 className="
                   group
-                  flex
-                  items-center
-                  gap-4
-                  p-5
-                  bg-white
-                  rounded-2xl
-                  border
-                  border-stone-200
-                  hover:border-amber-500
-                  hover:shadow-xl
-                  hover:-translate-y-1
-                  transition-all
+    flex
+    items-center
+    gap-3
+    p-4 sm:p-5
+    bg-white
+    rounded-2xl
+    border
+    border-stone-200
+    hover:border-amber-500
+    hover:shadow-xl
+    hover:-translate-y-1
+    transition-all
                 "
               >
                 <div className="w-12 h-12 rounded-xl bg-stone-100 flex items-center justify-center">
@@ -168,7 +169,7 @@ export default function Footer() {
                     Email
                   </div>
 
-                  <div className="truncate font-semibold">
+                  <div className="truncate text-sm sm:text-base font-semibold">
                     wepicananoindia@gmail.com
                   </div>
                 </div>
@@ -184,7 +185,7 @@ export default function Footer() {
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
 
-            <div>
+            <div className="flex flex-wrap justify-center gap-4">
               <h4 className="text-2xl font-bold text-center md:text-left">
                 Follow Our Journey
               </h4>
@@ -194,7 +195,7 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap justify-center gap-4">
 
               <a
                 href="https://youtube.com/@picananoindia"
@@ -277,7 +278,7 @@ export default function Footer() {
               © {currentYear} Picanano India. All rights reserved. Made in India 🇮🇳
             </p>
 
-            <div className="flex flex-wrap justify-center gap-8 text-sm font-medium">
+            <div className="flex flex-wrap justify-center md:justify-end gap-4 sm:gap-6 text-sm font-medium">
 
               <Link href="/privacy" className="hover:text-amber-600 transition-colors">
                 Privacy
